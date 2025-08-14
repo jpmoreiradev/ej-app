@@ -1,0 +1,69 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.sidebarToggleIcon {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0452aa;
+  font-size: 28px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.sidebarToggleIcon:hover {
+  color: #0051a8; 
+  transform: scale(1.2);
+}
+
+.content {
+  display: flex;
+  flex: 1;
+}
+
+.main {
+  flex: 1;
+  padding: 2rem;
+  transition: margin-left 0.3s ease;
+}
+
+
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  background: #0070f3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
