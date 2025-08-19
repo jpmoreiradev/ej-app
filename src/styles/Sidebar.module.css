@@ -106,12 +106,10 @@
   color: #ffffff;
 }
 
-/* Footer fixo embaixo */
 .footer {
   margin-top: auto;
 }
 
-/* Mini sidebar ajustes */
 .closed .titleSidebar,
 .closed .groupTitle,
 .closed span {
@@ -119,7 +117,7 @@
 }
 
 .closed .navItem svg {
-  width: 28px; /* ícones maiores no mini sidebar */
+  width: 28px;
   height: 28px;
 }
 

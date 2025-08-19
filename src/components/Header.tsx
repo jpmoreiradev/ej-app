@@ -13,14 +13,14 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, toggleSidebar }) => {
     <header
       className={styles.header}
       style={{
-        marginLeft: sidebarOpen ? 256 : 60, // se abre ou fecha
+        marginLeft: sidebarOpen ? 256 : 60,
       }}
     >
       <button
         className={styles.menuButton}
         onClick={toggleSidebar}
         style={{
-          marginLeft: sidebarOpen ? 0 : -8, // botão se move junto da sidebar
+          marginLeft: sidebarOpen ? 0 : -8,
         }}
       >
         <PanelLeft size={16} />

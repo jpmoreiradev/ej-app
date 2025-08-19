@@ -27,10 +27,7 @@ const EditaisPage = () => {
       <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
 
       <div className={styles.layout}>
-        {/* Sidebar */}
         <Sidebar sidebarOpen={sidebarOpen} />
-
-        {/* Conteúdo principal */}
         <main
           className={styles.container}
           style={{
