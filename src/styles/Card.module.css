@@ -1,0 +1,59 @@
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.badge {
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.orgao {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  color: #668099;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.resultItems {
+  font-weight: 500;
+  color: #1f262e;
+  font-size: 14px;
+}

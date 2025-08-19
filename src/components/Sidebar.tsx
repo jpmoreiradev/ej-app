@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { FiHome, FiInfo, FiMail } from 'react-icons/fi'; // ícones leves
-import styles from './Sidebar.module.css';
+import styles from '../../styles/Sidebar.module.css';
 
 interface SidebarProps {
   isOpen: boolean;
