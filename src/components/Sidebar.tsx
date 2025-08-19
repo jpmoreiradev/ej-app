@@ -1,19 +1,12 @@
 'use client';
 import React from 'react';
-import {
-  Home,
-  FileText,
-  Settings,
-  LogOut,
-  Building2,
-  Search,
-} from 'lucide-react';
+import { Home, FileText, LogOut, Building2, Search } from 'lucide-react';
+import Link from 'next/link';
 import styles from '../styles/Sidebar.module.css';
 
-const Sidebar = () => {
+export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
   return (
-    <aside className={styles.sidebar}>
-      {/* Header da sidebar */}
+    <aside className={`${styles.sidebar} ${!sidebarOpen ? styles.closed : ''}`}>
       <div className={styles.headerSidebar}>
         <Building2 className={styles.logo} />
         <div className={styles.titleSidebar}>
@@ -22,65 +15,44 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Grupo: Navegação */}
       <div className={styles.navGroup}>
         <p className={styles.groupTitle}>Navegação</p>
         <nav className={styles.nav}>
-          <a href="#" className={styles.navItem}>
-            <Home size={18} />
-            Início
-          </a>
-          <a href="#" className={styles.navItem}>
+          <Link href="/" className={styles.navItem}>
+            <Home size={16} />
+            <span>Início</span>
+          </Link>
+          <Link href="/buscar" className={styles.navItem}>
             <Search size={18} />
-            Buscar Editais
-          </a>
+            <span>Buscar Editais</span>
+          </Link>
         </nav>
       </div>
 
-      {/* Grupo: Tipos de Editais */}
       <div className={styles.navGroup}>
         <p className={styles.groupTitle}>Tipos de Editais</p>
         <nav className={styles.nav}>
           <a href="#" className={styles.navItem}>
             <FileText size={18} />
-            Públicos
+            <span>Públicos</span>
           </a>
           <a href="#" className={styles.navItem}>
             <FileText size={18} />
-            Privados
+            <span>Privados</span>
           </a>
           <a href="#" className={styles.navItem}>
             <FileText size={18} />
-            Internacionais
+            <span>Internacionais</span>
           </a>
         </nav>
       </div>
 
-      {/* Grupo: Categorias */}
-      <div className={styles.navGroup}>
-        <p className={styles.groupTitle}>Categorias</p>
-        <nav className={styles.nav}>
-          <a href="#" className={styles.navItem}>
-            Saúde
-          </a>
-          <a href="#" className={styles.navItem}>
-            Educação
-          </a>
-          <a href="#" className={styles.navItem}>
-            Tecnologia
-          </a>
-        </nav>
-      </div>
-
-      {/* Footer */}
       <div className={styles.footer}>
         <a href="#" className={styles.navItem}>
           <LogOut size={18} />
-          Sair
+          <span>Sair</span>
         </a>
       </div>
     </aside>
   );
-};
-
-export default Sidebar;
+}

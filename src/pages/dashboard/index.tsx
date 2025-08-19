@@ -18,9 +18,9 @@ const EditaisPage = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <p>Carregando editais...</p>;
-
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
+  if (loading) return <p>Carregando editais...</p>;
 
   return (
     <div className={styles.page}>
@@ -28,17 +28,13 @@ const EditaisPage = () => {
 
       <div className={styles.layout}>
         {/* Sidebar */}
-        <div
-          className={`${styles.sidebar} ${!sidebarOpen ? styles.closed : ''}`}
-        >
-          <Sidebar />
-        </div>
+        <Sidebar sidebarOpen={sidebarOpen} />
 
         {/* Conteúdo principal */}
         <main
           className={styles.container}
           style={{
-            marginLeft: sidebarOpen ? 220 : 60,
+            marginLeft: sidebarOpen ? 256 : 60,
             transition: 'margin-left 0.3s ease',
           }}
         >

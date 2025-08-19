@@ -7,30 +7,47 @@
   flex-direction: column;
   margin: 0;
   gap: 20px;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   border-bottom: 1px solid #e1e7ef;
   border-right: 1px solid #e1e7ef;
+  transition: width 0.3s ease;
+  z-index: 100;
+}
+
+.closed {
+  width: 60px; /* mini sidebar */
+}
+
+.closed .logo,
+.closed .titleSidebar {
+  display: none;
+}
+
+.closed .headerSidebar {
+  display: none;
+}
+
+.headerSidebar {
+  display: flex;
+  align-items: center;
+  padding: 14px 10px 10px 25px;
+  gap: 16px;
+  border-bottom: 1px solid #e1e7ef;
 }
 
 .logo {
-  font-size: 18px;
   font-weight: bold;
-  background-color: #3182ed;
-  margin-bottom: 20px;
   padding: 8px;
-  margin-top: 14px;
+  background-color: #3182ed;
   width: 40px;
   height: 40px;
   color: #e5effd;
   border-radius: 8px;
-}
-.headerSidebar {
   display: flex;
   align-items: center;
-  padding: 10px 0px 0px 20px;
-  gap: 16px;
-  border-bottom: 1px solid #e1e7ef;
+  justify-content: center;
 }
 
 .titleSidebar h1 {
@@ -42,14 +59,24 @@
 }
 
 .titleSidebar p {
-  display: flex;
+  margin: 0;
   font-weight: 400;
   font-size: 12px;
-  line-height: 16px;
   color: #668099;
-  margin: 0px;
-  padding: 0px;
-  flex-direction: column;
+}
+
+.navGroup {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.groupTitle {
+  font-size: 12px;
+  font-weight: 500;
+  color: #668099;
+  text-transform: uppercase;
+  margin: 4px 0;
+  padding-left: 14px;
 }
 
 .nav {
@@ -63,36 +90,32 @@
   align-items: center;
   gap: 10px;
   padding: 1px 10px;
-  margin: 4px 8px; /* reduz a margem acima e abaixo dos itens */
+  margin: 4px 8px;
   border-radius: 8px;
   font-size: 14px;
   color: #3e9cf5;
   text-decoration: none;
-  transition: background 0.2s ease;
+  transition: all 0.3s ease;
   border-left: 2px solid #e1e7ef;
 }
 
 .navItem:hover {
-  background-color: #374151; /* Cinza mais claro */
+  background-color: #374151;
   color: #ffffff;
 }
 
-/* Footer (logout fixado embaixo) */
+/* Footer fixo embaixo */
 .footer {
   margin-top: auto;
 }
 
-.navGroup {
-  margin-top: 0px;
-  margin-bottom: 0px; /* adiciona espaço menor abaixo do grupo */
+/* Mini sidebar ajustes */
+.closed .titleSidebar,
+.closed .groupTitle,
+.closed .navItem span {
+  display: none;
 }
 
-.groupTitle {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
-  color: #668099;
-  text-transform: uppercase;
-  margin: 4px 0; /* reduz espaço acima e abaixo do título */
-  padding-left: 14px;
+.closed .navItem {
+  justify-content: center;
 }

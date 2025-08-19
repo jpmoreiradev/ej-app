@@ -5,18 +5,16 @@
   height: 100vh;
 }
 
-/* Layout principal (sidebar + conteúdo) */
 .layout {
   display: flex;
   flex: 1;
 }
 
-/* Sidebar fixa */
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
-  width: 220px;
+  width: 256px;
   height: 100vh;
   background-color: #f9fafb;
   color: #f9fafb;
@@ -25,7 +23,8 @@
 }
 
 .closed {
-  transform: translateX(-160px);
+  transform: translateX(-205px);
+  top: 0;
 }
 
 /* Conteúdo principal (cards) */

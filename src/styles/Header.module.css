@@ -2,11 +2,13 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 8px 70px;
+  padding: 8px 24px;
   background-color: #f9fafb;
-  color: #35262e;
   border-bottom: 1px solid #e1e7ef;
-  border-left: 1px solid #e1e7ef;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  transition: margin-left 0.3s ease; /* aumenta a duração da transição */
 }
 
 .titleHeader h1 {
