@@ -18,6 +18,8 @@
 
 .closed {
   width: 60px; /* mini sidebar */
+  gap: 20px;
+  padding-top: 10px;
 }
 
 .closed .logo,
@@ -82,7 +84,7 @@
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0px;
 }
 
 .navItem {
@@ -100,7 +102,7 @@
 }
 
 .navItem:hover {
-  background-color: #374151;
+  background-color: #3e9cf5;
   color: #ffffff;
 }
 
@@ -112,8 +114,13 @@
 /* Mini sidebar ajustes */
 .closed .titleSidebar,
 .closed .groupTitle,
-.closed .navItem span {
+.closed span {
   display: none;
+}
+
+.closed .navItem svg {
+  width: 28px; /* ícones maiores no mini sidebar */
+  height: 28px;
 }
 
 .closed .navItem {
