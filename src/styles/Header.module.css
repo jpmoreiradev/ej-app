@@ -1,0 +1,50 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 70px;
+  background-color: #f9fafb;
+  color: #35262e;
+  border-bottom: 1px solid #e1e7ef;
+  border-left: 1px solid #e1e7ef;
+}
+
+.titleHeader h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #1f262e;
+}
+
+.titleHeader p {
+  display: flex;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #668099;
+  margin: 0px;
+  padding: 0px;
+  flex-direction: column;
+}
+
+.menuButton {
+  background: transparent;
+  border: 2px solid transparent;
+  color: #35262e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #3182ed;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  color: #e5effd;
+  border-radius: 8px;
+}

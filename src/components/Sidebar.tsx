@@ -1,48 +1,85 @@
 'use client';
-
 import React from 'react';
-import Link from 'next/link';
-import { FiHome, FiInfo, FiMail } from 'react-icons/fi'; // ícones leves
-import styles from '../../styles/Sidebar.module.css';
+import {
+  Home,
+  FileText,
+  Settings,
+  LogOut,
+  Building2,
+  Search,
+} from 'lucide-react';
+import styles from '../styles/Sidebar.module.css';
 
-interface SidebarProps {
-  isOpen: boolean;
-  onClose?: () => void;
-}
-
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+const Sidebar = () => {
   return (
-    <>
-      <div
-        className={`${styles.overlay} ${isOpen ? styles.showOverlay : ''}`}
-        onClick={onClose}
-      ></div>
-
-      <div
-        className={`${styles.sidebar} ${isOpen ? styles.open : styles.closed}`}
-      >
-        <div className={styles.content}>
-          <h2>Menu</h2>
-          <ul>
-            <li>
-              <Link href="/">
-                <FiHome className={styles.icon} /> Início
-              </Link>
-            </li>
-            <li>
-              <Link href="/sobre">
-                <FiInfo className={styles.icon} /> Sobre
-              </Link>
-            </li>
-            <li>
-              <Link href="/contato">
-                <FiMail className={styles.icon} /> Contato
-              </Link>
-            </li>
-          </ul>
+    <aside className={styles.sidebar}>
+      {/* Header da sidebar */}
+      <div className={styles.headerSidebar}>
+        <Building2 className={styles.logo} />
+        <div className={styles.titleSidebar}>
+          <h1>Portal de Editais</h1>
+          <p>Governo Federal</p>
         </div>
       </div>
-    </>
+
+      {/* Grupo: Navegação */}
+      <div className={styles.navGroup}>
+        <p className={styles.groupTitle}>Navegação</p>
+        <nav className={styles.nav}>
+          <a href="#" className={styles.navItem}>
+            <Home size={18} />
+            Início
+          </a>
+          <a href="#" className={styles.navItem}>
+            <Search size={18} />
+            Buscar Editais
+          </a>
+        </nav>
+      </div>
+
+      {/* Grupo: Tipos de Editais */}
+      <div className={styles.navGroup}>
+        <p className={styles.groupTitle}>Tipos de Editais</p>
+        <nav className={styles.nav}>
+          <a href="#" className={styles.navItem}>
+            <FileText size={18} />
+            Públicos
+          </a>
+          <a href="#" className={styles.navItem}>
+            <FileText size={18} />
+            Privados
+          </a>
+          <a href="#" className={styles.navItem}>
+            <FileText size={18} />
+            Internacionais
+          </a>
+        </nav>
+      </div>
+
+      {/* Grupo: Categorias */}
+      <div className={styles.navGroup}>
+        <p className={styles.groupTitle}>Categorias</p>
+        <nav className={styles.nav}>
+          <a href="#" className={styles.navItem}>
+            Saúde
+          </a>
+          <a href="#" className={styles.navItem}>
+            Educação
+          </a>
+          <a href="#" className={styles.navItem}>
+            Tecnologia
+          </a>
+        </nav>
+      </div>
+
+      {/* Footer */}
+      <div className={styles.footer}>
+        <a href="#" className={styles.navItem}>
+          <LogOut size={18} />
+          Sair
+        </a>
+      </div>
+    </aside>
   );
 };
 
