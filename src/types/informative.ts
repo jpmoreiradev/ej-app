@@ -3,6 +3,7 @@ export interface Notice {
   titulo: string;
   orgaoResponsavel: string;
   conteudo: string;
+  categoria: string;
   dataPublicacao: string;
   linkEdital: string;
 }

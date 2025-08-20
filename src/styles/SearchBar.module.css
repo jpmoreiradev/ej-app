@@ -1,0 +1,128 @@
+.searchBarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  border-radius: 8px;
+  flex: 7;
+}
+
+.inputWrapper:focus-within {
+  border: 2px solid #3182ed; /* azul */
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2); /* brilho sutil */
+}
+
+.selectWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f9fafb;
+  padding: 8px 12px;
+  border-radius: 8px;
+  flex: 1;
+}
+
+.selectWrapper:focus-within {
+  border: 2px solid #3182ed;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.icon {
+  color: #64748b;
+  width: 18px;
+  height: 18px;
+}
+
+.input,
+.select {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 14px;
+  color: #1e293b;
+}
+
+.button {
+  background-color: #3182ed;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.button:hover {
+  background-color: #1d4ed8;
+}
+
+.activeFilters {
+  display: flex;
+  margin-left: 7px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.activeFilters strong {
+  font-size: 14px;
+  color: #668099;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.filterTag {
+  background-color: #fcfcfc;
+  color: #000000;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.noFilterTag {
+  background-color: #f9fafb;
+  color: #1f262e;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.closeIcon {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
