@@ -1,18 +1,26 @@
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
+}
+
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* garante altura uniforme para o motion.div */
 }
 
 .badge {

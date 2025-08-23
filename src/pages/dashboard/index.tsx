@@ -7,46 +7,90 @@ import SearchBar from '../../components/SearchBar';
 import { fetchEditais } from '../../services/informativeServive';
 import { Notice, NoticePage } from '../../types/informative';
 import styles from '../../styles/Dashboard.module.css';
+import { motion } from 'framer-motion';
 
 const EditaisPage = () => {
   const [editais, setEditais] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [total, setTotal] = useState(0);
-
-  // Filtros controlados pelo pai
   const [busca, setBusca] = useState('');
   const [categorias, setCategorias] = useState<string[]>([]);
   const [ordem, setOrdem] = useState('');
+  const [pagina, setPagina] = useState(0);
 
   useEffect(() => {
-    carregarEditais(); // carrega todos ao iniciar
+    carregarEditais(true);
   }, []);
 
-  const carregarEditais = (
-    buscaParam = busca,
-    categoriasParam = categorias,
-    ordemParam = ordem,
-  ) => {
-    setLoading(true);
-    const categoriaParam = categoriasParam.join(',');
-    fetchEditais({
-      page: 0,
-      size: 0,
-      busca: buscaParam,
-      categorias,
-      ordem: ordemParam,
-    })
-      .then((data: NoticePage) => {
-        setEditais(data.content);
-        setTotal(data.totalElements);
+  useEffect(() => {
+    const handleScroll = () => {
+      const nearBottom =
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 100;
+
+      if (nearBottom && !loading && !loadingMore && editais.length < total) {
+        carregarMaisEditais();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [loading, loadingMore, editais, total]);
+
+  const carregarEditais = (reset = false) => {
+    if (reset) setLoading(true);
+
+    setPagina((prevPagina) => {
+      const pageToFetch = reset ? 1 : prevPagina;
+
+      fetchEditais({
+        page: pageToFetch,
+        size: 20,
+        busca,
+        categorias,
+        ordem,
       })
-      .finally(() => setLoading(false));
+        .then((data: NoticePage) => {
+          setEditais((prevEditais) =>
+            pageToFetch === 0
+              ? data.content
+              : [...prevEditais, ...data.content],
+          );
+          setTotal(data.totalEditals);
+        })
+        .finally(() => {
+          if (reset) setLoading(false);
+          else setLoadingMore(false);
+        });
+
+      return pageToFetch + 1;
+    });
+  };
+  const carregarMaisEditais = () => {
+    if (editais.length >= total) return;
+    setLoadingMore(true);
+    carregarEditais();
+  };
+
+  const onSearch = () => {
+    setPagina(0);
+    setEditais([]);
+    carregarEditais(true);
   };
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-  if (loading) return <p>Carregando editais...</p>;
+  // Loader inicial
+  if (loading) {
+    return (
+      <div className={styles.loader}>
+        <div className={styles.spinner}></div>
+        <p>Carregando editais...</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.page}>
@@ -56,12 +100,13 @@ const EditaisPage = () => {
         <Sidebar sidebarOpen={sidebarOpen} />
 
         <main
-          className={styles.container}
+          className={styles.containerWrapper}
           style={{
             marginLeft: sidebarOpen ? 256 : 60,
             transition: 'margin-left 0.3s ease',
           }}
         >
+          {/* Filtros */}
           <div className={styles.filterContainer}>
             <SearchBar
               busca={busca}
@@ -70,24 +115,49 @@ const EditaisPage = () => {
               setCategorias={setCategorias}
               ordem={ordem}
               setOrdem={setOrdem}
-              onSearch={carregarEditais} // só dispara a API
+              onSearch={onSearch}
             />
             <p className={styles.totalEditais}>{total} editais encontrados </p>
           </div>
 
-          {editais.map((edital) => (
-            <EditalCard
-              key={edital.id}
-              id={edital.id.toString()}
-              title={edital.titulo}
-              orgao={edital.orgaoResponsavel}
-              valor="R$ 0,00"
-              dataFinal={edital.dataPublicacao}
-              categoria="saude"
-              status="aberto"
-              cidade="Cidade X"
-            />
-          ))}
+          {/* Cards */}
+          <div className={styles.container}>
+            {editais.map((edital, index) => (
+              <motion.div
+                key={edital['_id'] ?? index} // se _id faltar, usa o índice
+                className={styles.cardWrapper}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <EditalCard
+                  id={edital['_id'] ?? String(index)}
+                  title={edital.titulo}
+                  orgao={edital.orgaoResponsavel}
+                  valorEstimado={edital.valorEstimado}
+                  dataFinal={edital.dataPublicacao}
+                  categoria={edital.categoria}
+                  status={edital.status}
+                  cidade={edital.cidade}
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Loader ao carregar mais */}
+          {loadingMore && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className={styles.loader}
+            >
+              <div className={styles.spinner}></div>
+              <p>Carregando mais editais...</p>
+            </motion.div>
+          )}
         </main>
       </div>
     </div>

@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Search, Filter, SortAsc, X } from 'lucide-react';
 import styles from '../styles/SearchBar.module.css';
 
@@ -13,13 +13,6 @@ interface SearchBarProps {
   onSearch: () => void; // só dispara a API
 }
 
-const categoriasDisponiveis = [
-  { label: 'Saúde', value: 'saude' },
-  { label: 'Educação', value: 'educacao' },
-  { label: 'Esporte', value: 'esporte' },
-  { label: 'Segurança', value: 'seguranca' },
-];
-
 const SearchBar: React.FC<SearchBarProps> = ({
   busca,
   setBusca,
@@ -29,6 +22,29 @@ const SearchBar: React.FC<SearchBarProps> = ({
   setOrdem,
   onSearch,
 }) => {
+  const [categoriasDisponiveis, setCategoriasDisponiveis] = useState<
+    { label: string; value: string }[]
+  >([]);
+
+  // Buscar categorias da API
+  useEffect(() => {
+    fetch('http://localhost:3001/editals/categories', {
+      headers: {
+        'api-key': 'minhachavesupersecreta',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Supondo que a API retorne algo como: ["saude", "educacao"]
+        const categoriasMapeadas = data.map((cat: string) => ({
+          label: cat.charAt(0).toUpperCase() + cat.slice(1),
+          value: cat,
+        }));
+        setCategoriasDisponiveis(categoriasMapeadas);
+      })
+      .catch((err) => console.error('Erro ao buscar categorias:', err));
+  }, []);
+
   const adicionarCategoria = (value: string) => {
     if (value && !categorias.includes(value)) {
       setCategorias([...categorias, value]);
@@ -56,7 +72,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
           />
         </div>
 
-        {/* Select de categorias */}
         <div className={styles.selectWrapper}>
           <Filter className={styles.icon} />
           <select
@@ -76,8 +91,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
               ))}
           </select>
         </div>
-
-        {/* Select de ordem */}
         <div className={styles.selectWrapper}>
           <SortAsc className={styles.icon} />
           <select
@@ -86,13 +99,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
             className={styles.select}
           >
             <option value="">Ordem</option>
-            <option value="recentes">Mais Recentes</option>
-            <option value="antigos">Mais Antigos</option>
-            <option value="maior_valor">Maior Valor</option>
-            <option value="menor_valor">Menor Valor</option>
+            <option value="tituloAsc">Titulo</option>
+            <option value="desc">Mais Recentes</option>
+            <option value="asc">Mais Antigos</option>
+            <option value="valorDesc">Maior Valor</option>
+            <option value="valorAsc">Menor Valor</option>
           </select>
         </div>
-
         <button type="button" className={styles.button} onClick={onSearch}>
           Buscar
         </button>

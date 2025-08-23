@@ -6,7 +6,7 @@ interface EditalCardProps {
   id: string;
   title: string;
   orgao: string;
-  valor: string;
+  valorEstimado: number;
   dataFinal: string;
   categoria: string;
   status: 'aberto' | 'fechando' | 'fechado';
@@ -39,7 +39,7 @@ const statusBackground: Record<EditalCardProps['status'], string> = {
 const EditalCard: React.FC<EditalCardProps> = ({
   title,
   orgao,
-  valor,
+  valorEstimado,
   dataFinal,
   categoria,
   status,
@@ -56,11 +56,11 @@ const EditalCard: React.FC<EditalCardProps> = ({
             border: `1px solid ${categoryColors[categoria]}33`,
           }}
         >
-          {categoria === 'saude'
-            ? 'Saúde'
-            : categoria === 'esporte'
-              ? 'Esporte'
-              : 'Educação'}
+          {categoria === 'Saúde'
+            ? 'saude'
+            : categoria === 'Esporte'
+              ? 'esporte'
+              : 'educação'}
         </span>
         <span
           className={styles.badge}
@@ -71,7 +71,7 @@ const EditalCard: React.FC<EditalCardProps> = ({
           }}
         >
           <Clock size={14} className="text-gray-500" />
-          {status.charAt(0).toUpperCase() + status.slice(1)}
+          {status}
         </span>
       </div>
 
@@ -81,7 +81,7 @@ const EditalCard: React.FC<EditalCardProps> = ({
       <div className={styles.info}>
         <div className={styles.infoItem}>
           <DollarSign size={16} color="#6ec68e" />
-          <span className={styles.resultItems}> {valor}</span>
+          <span className={styles.resultItems}> {valorEstimado}</span>
         </div>
         <div className={styles.infoItem}>
           <Calendar size={16} color="#3182ed" />
