@@ -3,6 +3,10 @@ export interface Notice {
   titulo: string;
   orgaoResponsavel: string;
   conteudo: string;
+  categoria: string;
+  valorEstimado: number;
+  status: 'aberto' | 'fechando' | 'fechado';
+  cidade: string;
   dataPublicacao: string;
   linkEdital: string;
 }
@@ -26,7 +30,7 @@ export interface NoticePage {
   pageable: Pageable;
   last: boolean;
   totalPages: number;
-  totalElements: number;
+  totalEditals: number;
   first: boolean;
   size: number;
   number: number;

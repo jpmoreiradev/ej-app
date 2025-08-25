@@ -1,37 +1,176 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import EditalCard from '../../components/Card';
-import { fetchEditais } from '../../services/informativeServive';
-import { Notice } from '../../types/informative';
+import Sidebar from '../../components/Sidebar';
+import Header from '../../components/Header';
+import SearchBar from '../../components/SearchBar';
+import { fetchEditais } from '../../services/editals/informativeServive';
+import { validateToken } from '../../services/auth/authProfile';
+import { Notice, NoticePage } from '../../types/informative';
 import styles from '../../styles/Dashboard.module.css';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 const EditaisPage = () => {
   const [editais, setEditais] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [total, setTotal] = useState(0);
+  const [busca, setBusca] = useState('');
+  const [categorias, setCategorias] = useState<string[]>([]);
+  const [ordem, setOrdem] = useState('');
+  const [pagina, setPagina] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
-    fetchEditais(0, 6)
-      .then((data) => setEditais(data.content))
-      .finally(() => setLoading(false));
+    const init = async () => {
+      const isValid = await validateToken();
+      if (!isValid) {
+        Cookies.remove('authToken');
+        router.push('/login');
+        return;
+      }
+      carregarEditais(true);
+    };
+    init();
   }, []);
 
-  if (loading) return <p>Carregando editais...</p>;
+  useEffect(() => {
+    const handleScroll = () => {
+      const nearBottom =
+        window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 100;
+
+      if (nearBottom && !loading && !loadingMore && editais.length < total) {
+        carregarMaisEditais();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [loading, loadingMore, editais, total]);
+
+  const carregarEditais = (reset = false) => {
+    if (reset) setLoading(true);
+
+    setPagina((prevPagina) => {
+      const pageToFetch = reset ? 1 : prevPagina;
+
+      fetchEditais({
+        page: pageToFetch,
+        size: 20,
+        busca,
+        categorias,
+        ordem,
+      })
+        .then((data: NoticePage) => {
+          setEditais((prevEditais) =>
+            pageToFetch === 0
+              ? data.content
+              : [...prevEditais, ...data.content],
+          );
+          setTotal(data.totalEditals);
+        })
+        .finally(() => {
+          if (reset) setLoading(false);
+          else setLoadingMore(false);
+        });
+
+      return pageToFetch + 1;
+    });
+  };
+
+  const carregarMaisEditais = () => {
+    if (editais.length >= total) return;
+    setLoadingMore(true);
+    carregarEditais();
+  };
+
+  const onSearch = () => {
+    setPagina(0);
+    setEditais([]);
+    carregarEditais(true);
+  };
+
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
+  // Loader inicial
+  if (loading) {
+    return (
+      <div className={styles.loader}>
+        <div className={styles.spinner}></div>
+        <p>Carregando editais...</p>
+      </div>
+    );
+  }
 
   return (
-    <div className={styles.container}>
-      {editais.map((edital) => (
-        <EditalCard
-          key={edital.id}
-          id={edital.id.toString()}
-          title={edital.titulo}
-          orgao={edital.orgaoResponsavel}
-          valor="R$ 0,00" // adapte conforme a API
-          dataFinal={edital.dataPublicacao}
-          categoria="saude" // adapte conforme a API
-          status="aberto" // adapte conforme a API
-          cidade="Cidade X" // adapte conforme a API
-        />
-      ))}
+    <div className={styles.page}>
+      <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+
+      <div className={styles.layout}>
+        <Sidebar sidebarOpen={sidebarOpen} />
+
+        <main
+          className={styles.containerWrapper}
+          style={{
+            marginLeft: sidebarOpen ? 256 : 60,
+            transition: 'margin-left 0.3s ease',
+          }}
+        >
+          <div className={styles.filterContainer}>
+            <SearchBar
+              busca={busca}
+              setBusca={setBusca}
+              categorias={categorias}
+              setCategorias={setCategorias}
+              ordem={ordem}
+              setOrdem={setOrdem}
+              onSearch={onSearch}
+            />
+            <p className={styles.totalEditais}>{total} editais encontrados </p>
+          </div>
+
+          <div className={styles.container}>
+            {editais.map((edital, index) => (
+              <motion.div
+                key={edital['_id'] ?? index}
+                className={styles.cardWrapper}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <EditalCard
+                  id={edital['_id'] ?? String(index)}
+                  title={edital.titulo}
+                  orgao={edital.orgaoResponsavel}
+                  valorEstimado={edital.valorEstimado}
+                  dataFinal={edital.dataPublicacao}
+                  categoria={edital.categoria}
+                  status={edital.status}
+                  cidade={edital.cidade}
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {loadingMore && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className={styles.loader}
+            >
+              <div className={styles.spinner}></div>
+              <p>Carregando mais editais...</p>
+            </motion.div>
+          )}
+        </main>
+      </div>
     </div>
   );
 };
