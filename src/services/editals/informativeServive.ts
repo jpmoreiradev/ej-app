@@ -1,4 +1,4 @@
-import { NoticePage } from '../types/informative';
+import { NoticePage } from '../../types/informative';
 
 export const fetchEditais = async ({
   page,
@@ -26,7 +26,6 @@ export const fetchEditais = async ({
       ordem,
     }),
   });
-  console.log('res: ', res);
 
   if (!res.ok) {
     throw new Error('Erro ao buscar editais');

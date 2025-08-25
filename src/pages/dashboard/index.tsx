@@ -4,10 +4,13 @@ import EditalCard from '../../components/Card';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 import SearchBar from '../../components/SearchBar';
-import { fetchEditais } from '../../services/informativeServive';
+import { fetchEditais } from '../../services/editals/informativeServive';
+import { validateToken } from '../../services/auth/authProfile';
 import { Notice, NoticePage } from '../../types/informative';
 import styles from '../../styles/Dashboard.module.css';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 const EditaisPage = () => {
   const [editais, setEditais] = useState<Notice[]>([]);
@@ -19,9 +22,19 @@ const EditaisPage = () => {
   const [categorias, setCategorias] = useState<string[]>([]);
   const [ordem, setOrdem] = useState('');
   const [pagina, setPagina] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
-    carregarEditais(true);
+    const init = async () => {
+      const isValid = await validateToken();
+      if (!isValid) {
+        Cookies.remove('authToken');
+        router.push('/login');
+        return;
+      }
+      carregarEditais(true);
+    };
+    init();
   }, []);
 
   useEffect(() => {
@@ -68,6 +81,7 @@ const EditaisPage = () => {
       return pageToFetch + 1;
     });
   };
+
   const carregarMaisEditais = () => {
     if (editais.length >= total) return;
     setLoadingMore(true);
@@ -106,7 +120,6 @@ const EditaisPage = () => {
             transition: 'margin-left 0.3s ease',
           }}
         >
-          {/* Filtros */}
           <div className={styles.filterContainer}>
             <SearchBar
               busca={busca}
@@ -120,11 +133,10 @@ const EditaisPage = () => {
             <p className={styles.totalEditais}>{total} editais encontrados </p>
           </div>
 
-          {/* Cards */}
           <div className={styles.container}>
             {editais.map((edital, index) => (
               <motion.div
-                key={edital['_id'] ?? index} // se _id faltar, usa o índice
+                key={edital['_id'] ?? index}
                 className={styles.cardWrapper}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -145,7 +157,6 @@ const EditaisPage = () => {
             ))}
           </div>
 
-          {/* Loader ao carregar mais */}
           {loadingMore && (
             <motion.div
               initial={{ opacity: 0 }}
