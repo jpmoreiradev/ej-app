@@ -43,3 +43,10 @@ export interface NoticePage {
 export interface NoticePageProps {
   noticesPage?: NoticePage;
 }
+
+export interface Statistics {
+  totalEditals: number;
+  participatingAgencies: number;
+  totalAmount: number;
+  updated: string;
+}

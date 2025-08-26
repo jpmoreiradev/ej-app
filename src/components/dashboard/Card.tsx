@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/Card.module.css';
+import styles from '../../styles/Card.module.css';
 import { Calendar, DollarSign, MapPin, Clock } from 'lucide-react';
 
 interface EditalCardProps {
@@ -30,6 +30,7 @@ const statusColors: Record<EditalCardProps['status'], string> = {
   Fechando: '#89665a',
   fechado: '#9CA3AF',
 };
+
 const statusBackground: Record<EditalCardProps['status'], string> = {
   Aberto: '#dcfce7',
   Fechando: '#fef9c3',

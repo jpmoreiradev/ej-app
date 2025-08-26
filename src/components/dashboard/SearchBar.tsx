@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { Search, Filter, SortAsc, X } from 'lucide-react';
-import styles from '../styles/SearchBar.module.css';
+import styles from '../../styles/SearchBar.module.css';
 
 interface SearchBarProps {
   busca: string;
