@@ -7,9 +7,9 @@ interface EditalCardProps {
   title: string;
   orgao: string;
   valorEstimado: number;
-  dataFinal: string;
+  dataEncerramento: string;
   categoria: string;
-  status: 'aberto' | 'fechando' | 'fechado';
+  status: 'Aberto' | 'Fechando' | 'fechado';
   cidade: string;
 }
 
@@ -26,13 +26,13 @@ const categoryBackground: Record<EditalCardProps['categoria'], string> = {
 };
 
 const statusColors: Record<EditalCardProps['status'], string> = {
-  aberto: '#166534',
-  fechando: '#FBBF24',
+  Aberto: '#166534',
+  Fechando: '#89665a',
   fechado: '#9CA3AF',
 };
 const statusBackground: Record<EditalCardProps['status'], string> = {
-  aberto: '#ccecd7',
-  fechando: '#FBBF24',
+  Aberto: '#dcfce7',
+  Fechando: '#fef9c3',
   fechado: '#9CA3AF',
 };
 
@@ -40,7 +40,7 @@ const EditalCard: React.FC<EditalCardProps> = ({
   title,
   orgao,
   valorEstimado,
-  dataFinal,
+  dataEncerramento,
   categoria,
   status,
   cidade,
@@ -56,22 +56,17 @@ const EditalCard: React.FC<EditalCardProps> = ({
             border: `1px solid ${categoryColors[categoria]}33`,
           }}
         >
-          {categoria === 'Saúde'
-            ? 'saude'
-            : categoria === 'Esporte'
-              ? 'esporte'
-              : 'educação'}
+          {categoria}
         </span>
         <span
           className={styles.badge}
           style={{
             backgroundColor: statusBackground[status] + '',
             color: statusColors[status],
-            border: `1px solid ${statusColors[status]}33`,
           }}
         >
           <Clock size={14} className="text-gray-500" />
-          {status}
+          {status === 'Fechando' ? 'Fechando em breve' : 'Aberto'}
         </span>
       </div>
 
@@ -86,7 +81,8 @@ const EditalCard: React.FC<EditalCardProps> = ({
         <div className={styles.infoItem}>
           <Calendar size={16} color="#3182ed" />
           <span>
-            Encerra em: <span className={styles.resultItems}>{dataFinal}</span>
+            Encerra em:{' '}
+            <span className={styles.resultItems}>{dataEncerramento}</span>
           </span>
         </div>
         <div className={styles.infoItem}>

@@ -5,9 +5,10 @@ export interface Notice {
   conteudo: string;
   categoria: string;
   valorEstimado: number;
-  status: 'aberto' | 'fechando' | 'fechado';
+  status: 'Aberto' | 'Fechando' | 'fechado';
   cidade: string;
   dataPublicacao: string;
+  dataEncerramento: string;
   linkEdital: string;
 }
 

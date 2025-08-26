@@ -1,13 +1,13 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import EditalCard from '../../components/Card';
-import Sidebar from '../../components/Sidebar';
-import Header from '../../components/Header';
-import SearchBar from '../../components/SearchBar';
-import { fetchEditais } from '../../services/editals/informativeServive';
-import { validateToken } from '../../services/auth/authProfile';
-import { Notice, NoticePage } from '../../types/informative';
-import styles from '../../styles/Dashboard.module.css';
+import EditalCard from '../components/Card';
+import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
+import { fetchEditais } from '../services/editals/informativeServive';
+import { validateToken } from '../services/auth/authProfile';
+import { Notice, NoticePage } from '../types/informative';
+import styles from '../styles/Dashboard.module.css';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
@@ -148,7 +148,7 @@ const EditaisPage = () => {
                   title={edital.titulo}
                   orgao={edital.orgaoResponsavel}
                   valorEstimado={edital.valorEstimado}
-                  dataFinal={edital.dataPublicacao}
+                  dataEncerramento={edital.dataEncerramento}
                   categoria={edital.categoria}
                   status={edital.status}
                   cidade={edital.cidade}

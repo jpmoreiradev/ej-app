@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import styles from '../styles/Login.module.css';
 import { Building2, Lock, Mail } from 'lucide-react';
 import { loginRequest } from '../services/auth/login';
+import Link from 'next/link';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -24,7 +25,6 @@ const Login = () => {
       if (data.authToken) {
         document.cookie = `authToken=${data.authToken}; path=/; secure; samesite=strict`;
       }
-
       router.push('/');
     } catch (err: any) {
       setError(err.message || 'Erro no login');
@@ -94,7 +94,11 @@ const Login = () => {
             </button>
           </form>
 
-          <button className={styles.forgot}>Esqueceu sua senha?</button>
+          <p className={styles.forgotWrapper}>
+            <Link href="/esqueceu-senha" className={styles.forgot}>
+              Esqueceu sua senha?
+            </Link>
+          </p>
         </div>
 
         <p className={styles.footer}>
