@@ -12,7 +12,7 @@ export const validateToken = async (): Promise<boolean> => {
       },
     });
 
-    return response.ok; // true se 200, false se 401 ou erro
+    return response.ok;
   } catch {
     return false;
   }

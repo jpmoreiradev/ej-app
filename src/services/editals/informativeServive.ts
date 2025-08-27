@@ -1,4 +1,4 @@
-import { NoticePage } from '../../types/informative';
+import { NoticePage, Statistics } from '../../types/informative';
 
 export const fetchEditais = async ({
   page,
@@ -33,3 +33,19 @@ export const fetchEditais = async ({
 
   return res.json();
 };
+
+export async function fetchStatistics(): Promise<Statistics> {
+  const api_url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/editals/statistics`;
+  const res = await fetch(api_url, {
+    headers: {
+      'api-key': process.env.NEXT_PUBLIC_API_KEY || '',
+    },
+    cache: 'no-store', // garante dados sempre atualizados no Next.js
+  });
+
+  if (!res.ok) {
+    throw new Error('Erro ao buscar estatísticas');
+  }
+
+  return res.json();
+}

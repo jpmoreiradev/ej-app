@@ -14,7 +14,7 @@ import {
   Shield,
 } from 'lucide-react';
 import Link from 'next/link';
-import styles from '../styles/Sidebar.module.css';
+import styles from '../../styles/Sidebar.module.css';
 
 export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
   return (
