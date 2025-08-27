@@ -36,34 +36,38 @@
 }
 
 .videoSection {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto 3.5rem;
+  box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  border-radius: 1rem;
 }
 
 .videoCard {
   background: white;
   border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 8px 12px -4px rgba(0, 0, 0, 0.15); /* sombra só embaixo */
+  box-shadow: 0 8px 12px -4px rgba(0, 0, 0, 0.15);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
 }
 
-.videoCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 20px -4px rgba(0, 0, 0, 0.2); /* mais forte no hover */
-}
 .videoPreview {
   position: relative;
   aspect-ratio: 16/9;
   background: #f3f4f6;
   border-radius: 0.75rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2rem;
   overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.videoFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: 1;
 }
 
 .overlay {
@@ -72,8 +76,13 @@
   background: linear-gradient(
     to bottom right,
     rgba(37, 99, 235, 0.2),
-    rgba(227, 235, 248, 0.2) /* Azul mais claro */
+    rgba(227, 235, 248, 0.2)
   );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
 }
 
 .videoContent {
@@ -230,7 +239,6 @@
   border-radius: 0.5rem;
   cursor: pointer;
   width: 100%;
-  margin-top: 15px;
   font-weight: 600;
   transition: all 0.2s;
 }
