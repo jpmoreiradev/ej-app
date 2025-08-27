@@ -1,50 +1,64 @@
 .pageWrapper {
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #f8fafc, #eef2ff);
+  background: linear-gradient(135deg, #f9fafb, #eef2ff);
+  font-family: 'Inter', sans-serif;
+  color: #1f2937;
 }
 
+/* Layout principal */
 .main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 1rem;
+  padding: 4rem 1rem;
 }
 
+/* Textos de introdução */
 .introText {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 20px;
 }
 
 .introTitle {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #1f2937;
+  font-size: 2.25rem;
+  margin-top: 0px;
+  font-weight: 700;
+  color: #111827;
   margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
 }
 
 .introSubtitle {
   color: #6b7280;
   font-size: 1.125rem;
-  max-width: 600px;
+  max-width: 620px;
   margin: 0 auto;
+  line-height: 1.6;
 }
 
 .videoSection {
   max-width: 900px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 3.5rem;
 }
 
 .videoCard {
-  background: linear-gradient(to right, #e0f2fe, #e0e7ff);
-  border-radius: 0.5rem;
+  background: white;
+  border-radius: 1rem;
   padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 12px -4px rgba(0, 0, 0, 0.15); /* sombra só embaixo */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
+.videoCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px -4px rgba(0, 0, 0, 0.2); /* mais forte no hover */
+}
 .videoPreview {
   position: relative;
   aspect-ratio: 16/9;
   background: #f3f4f6;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,8 +71,8 @@
   inset: 0;
   background: linear-gradient(
     to bottom right,
-    rgba(59, 130, 246, 0.2),
-    rgba(16, 185, 129, 0.2)
+    rgba(37, 99, 235, 0.2),
+    rgba(227, 235, 248, 0.2) /* Azul mais claro */
   );
 }
 
@@ -76,6 +90,15 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto 1rem;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.playButton:hover {
+  background: #1d4ed8;
+  transform: scale(1.05);
 }
 
 .playIcon {
@@ -92,28 +115,32 @@
 
 .videoSubtitle {
   color: #6b7280;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
 }
 
-/* Cards */
 .cardsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
 }
 
 .navCard {
   background: white;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1.75rem;
+  border: 1px solid #e5e7eb;
   cursor: pointer;
-  transition: 0.2s;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  box-shadow: 0 6px 10px -3px rgba(0, 0, 0, 0.1); /* sombra só embaixo */
 }
 
 .navCard:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  border-color: #2563eb20;
+  transform: translateY(-2px);
+  border-color: #2563eb40;
+  box-shadow: 0 10px 16px -4px rgba(0, 0, 0, 0.15); /* mais forte no hover */
 }
 
 .cardContent {
@@ -128,24 +155,29 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto 1rem;
+  transition: transform 0.2s;
+}
+
+.iconCircle:hover {
+  transform: scale(1.05);
 }
 
 .publicIcon {
-  background: #2563eb20;
+  background: #10b98120;
+  color: #1d4ed8;
 }
 
 .privateIcon {
-  background: #d1d5db20;
+  background: #10b98120;
 }
 
 .internationalIcon {
-  background: #d1d5db20;
+  background: #10b98120;
 }
 
 .icon {
   width: 32px;
   height: 32px;
-  color: #2563eb;
 }
 
 .cardTitle {
@@ -156,7 +188,7 @@
 
 .cardText {
   color: #6b7280;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   margin-bottom: 1rem;
 }
 
@@ -164,56 +196,78 @@
 .primaryButton {
   background: #2563eb;
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
   width: 100%;
   border: none;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .primaryButton:hover {
   background: #1d4ed8;
+  transform: translateY(-2px);
 }
 
 .outlineButton {
   border: 2px solid #d1d5db;
   background: transparent;
   color: #374151;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
   cursor: pointer;
   width: 100%;
   font-weight: 600;
   transition: all 0.2s;
 }
 
+.outlineButtonInternacionais {
+  border: 2px solid #d1d5db;
+  background: transparent;
+  color: #374151;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
 .outlineButton:hover {
   background: #f3f4f6;
+  border-color: #2563eb40;
 }
 
 /* Stats */
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.75rem;
   max-width: 900px;
-  margin: 2rem auto 0;
+  margin: 2.5rem auto 0;
 }
 
 .statItem {
   text-align: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: background 0.2s;
+}
+
+.statItem:hover {
+  background: #f9fafb;
 }
 
 .statValue {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: #2563eb;
   margin-bottom: 0.25rem;
 }
 
 .statLabel {
   color: #6b7280;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
 }

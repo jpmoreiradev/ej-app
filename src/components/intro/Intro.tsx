@@ -108,7 +108,9 @@ export default function Intro() {
                   <p className={styles.cardText}>
                     Oportunidades e bolsas em organizações internacionais
                   </p>
-                  <button className={styles.outlineButton}>Acessar</button>
+                  <button className={styles.outlineButtonInternacionais}>
+                    Acessar
+                  </button>
                 </div>
               </div>
             </div>
