@@ -2,10 +2,11 @@
   position: sticky;
   top: 0;
   z-index: 50;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9); /* translúcido */
+  backdrop-filter: blur(12px); /* efeito blur elegante */
   border-bottom: 1px solid #e5e7eb;
-  background: rgba(255, 255, 255, 0.85); /* translúcido e moderno */
-  backdrop-filter: blur(14px); /* blur mais suave */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   transition:
     background 0.3s ease,
     box-shadow 0.3s ease;
@@ -21,7 +22,6 @@
   align-items: center;
 }
 
-/* Logo e título */
 .headerLeft {
   display: flex;
   align-items: center;
@@ -56,8 +56,7 @@
 .headerTitle {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #111827;
-  letter-spacing: -0.5px;
+  color: #1e293b;
 }
 
 .headerSubtitle {
@@ -66,40 +65,19 @@
   margin-top: -2px;
 }
 
-/* Botão Sair */
-.outlineButton {
-  border: 1px solid #d1d5db;
+.homeButton {
+  border: 1px solid #2563eb;
   background: white;
-  color: #374151;
+  color: #2563eb;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
   font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
 }
 
-.outlineButton:hover {
+.homeButton:hover {
   background: #2563eb;
-  border-color: #2563eb;
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .headerContainer {
-    padding: 0 1rem;
-  }
-  .headerTitle {
-    font-size: 1.1rem;
-  }
-  .headerSubtitle {
-    font-size: 0.75rem;
-  }
-  .logo {
-    width: 40px;
-    height: 40px;
-  }
+  transform: translateY(-1px);
 }

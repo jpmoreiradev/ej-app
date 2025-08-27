@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/Card.module.css';
+import styles from '../../styles/dashboard/Card.module.css';
 import { Calendar, DollarSign, MapPin, Clock } from 'lucide-react';
 
 interface EditalCardProps {

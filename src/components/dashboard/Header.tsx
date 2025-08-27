@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { PanelLeft, Building2 } from 'lucide-react';
-import styles from '../../styles/Header.module.css';
+import styles from '../../styles/dashboard/Header.module.css';
 
 interface HeaderProps {
   sidebarOpen: boolean;

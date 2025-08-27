@@ -7,7 +7,7 @@ import SearchBar from '../../components/dashboard/SearchBar';
 import { fetchEditais } from '../../services/editals/informativeServive';
 import { validateToken } from '../../services/auth/authProfile';
 import { Notice, NoticePage } from '../../types/informative';
-import styles from '../../styles/Dashboard.module.css';
+import styles from '../../styles/dashboard/Dashboard.module.css';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';

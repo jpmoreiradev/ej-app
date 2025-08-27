@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { Search, Filter, SortAsc, X } from 'lucide-react';
-import styles from '../../styles/SearchBar.module.css';
+import styles from '../../styles/dashboard/SearchBar.module.css';
 import { getCategorias } from '../../services/editals/informativeServive';
 
 interface SearchBarProps {
@@ -52,8 +52,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
         <div className={styles.inputWrapper}>
           <Search className={styles.icon} />
           <input
+            id="inputBusca"
             type="text"
-            placeholder="Buscar por título ou órgão"
+            placeholder="Buscar por título ou órgão..."
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
             className={styles.input}

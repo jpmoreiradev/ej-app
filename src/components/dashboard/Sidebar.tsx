@@ -14,7 +14,7 @@ import {
   Shield,
 } from 'lucide-react';
 import Link from 'next/link';
-import styles from '../../styles/Sidebar.module.css';
+import styles from '../../styles/dashboard/Sidebar.module.css';
 
 export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
   return (
@@ -34,28 +34,45 @@ export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
             <Home size={18} />
             <span>Início</span>
           </Link>
-          <Link href="/dashboard/publicos" className={styles.navItem}>
+          <a
+            href="#"
+            className={styles.navItem}
+            onClick={(e) => {
+              e.preventDefault();
+              const input = document.getElementById(
+                'inputBusca',
+              ) as HTMLInputElement;
+              input?.focus();
+            }}
+          >
             <Search size={18} />
             <span>Buscar Editais</span>
-          </Link>
+          </a>
         </nav>
       </div>
 
       <div className={styles.navGroup}>
         <p className={styles.groupTitle}>Tipos de Editais</p>
         <nav className={styles.nav}>
-          <a href="#" className={styles.navItem}>
+          <a
+            href="#"
+            className={styles.navItem}
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.reload(); // força recarregamento da página
+            }}
+          >
             <FileText size={18} />
             <span>Públicos</span>
           </a>
-          <a href="#" className={styles.navItem}>
+          <Link href="/dashboard/privado" className={styles.navItem}>
             <Shield size={18} />
             <span>Privados</span>
-          </a>
-          <a href="#" className={styles.navItem}>
+          </Link>
+          <Link href="/dashboard/internacionais" className={styles.navItem}>
             <Globe size={18} />
             <span>Internacionais</span>
-          </a>
+          </Link>
         </nav>
       </div>
 

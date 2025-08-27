@@ -2,22 +2,19 @@
 
 import React from 'react';
 import { Building2 } from 'lucide-react';
-import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
-import styles from '../../styles/intro/Header.module.css';
+import styles from '../../styles/maintenance/Header.module.css';
 
-interface HeaderProps {
+interface MaintenanceHeaderProps {
   title: string;
   subtitle: string;
 }
 
-export default function Header({ title, subtitle }: HeaderProps) {
+export default function MaintenanceHeader({
+  title,
+  subtitle,
+}: MaintenanceHeaderProps) {
   const router = useRouter();
-
-  const handleLogout = () => {
-    Cookies.remove('authToken');
-    window.location.reload();
-  };
 
   return (
     <header className={styles.header}>
@@ -31,8 +28,8 @@ export default function Header({ title, subtitle }: HeaderProps) {
             <p className={styles.headerSubtitle}>{subtitle}</p>
           </div>
         </div>
-        <button className={styles.outlineButton} onClick={handleLogout}>
-          Sair
+        <button className={styles.homeButton} onClick={() => router.push('/')}>
+          Voltar para Início
         </button>
       </div>
     </header>

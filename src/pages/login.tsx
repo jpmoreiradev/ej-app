@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from '../styles/Login.module.css';
+import styles from '../styles/login/Login.module.css';
 import { Building2, Lock, Mail } from 'lucide-react';
 import { loginRequest } from '../services/auth/login';
 import Link from 'next/link';
