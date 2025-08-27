@@ -1,6 +1,6 @@
 import { NoticePage, Statistics } from '../../types/informative';
 
-export const fetchEditais = async ({
+export async function fetchEditais({
   page,
   size,
   busca,
@@ -12,7 +12,7 @@ export const fetchEditais = async ({
   busca?: string;
   categorias?: string[];
   ordem?: string;
-}): Promise<NoticePage> => {
+}): Promise<NoticePage> {
   const api_url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/editals/summary?page=${page}&pageSize=${size}`;
   const res = await fetch(api_url, {
     method: 'POST',
@@ -32,7 +32,7 @@ export const fetchEditais = async ({
   }
 
   return res.json();
-};
+}
 
 export async function fetchStatistics(): Promise<Statistics> {
   const api_url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/editals/statistics`;
@@ -40,7 +40,7 @@ export async function fetchStatistics(): Promise<Statistics> {
     headers: {
       'api-key': process.env.NEXT_PUBLIC_API_KEY || '',
     },
-    cache: 'no-store', // garante dados sempre atualizados no Next.js
+    cache: 'no-store',
   });
 
   if (!res.ok) {
@@ -48,4 +48,27 @@ export async function fetchStatistics(): Promise<Statistics> {
   }
 
   return res.json();
+}
+
+export async function getCategorias(): Promise<
+  { label: string; value: string }[]
+> {
+  const api_url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/editals/categories`;
+
+  const response = await fetch(api_url, {
+    headers: {
+      'api-key': process.env.NEXT_PUBLIC_API_KEY || '',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error('Erro ao buscar categorias');
+  }
+
+  const data: string[] = await response.json();
+
+  return data.map((cat) => ({
+    label: cat.charAt(0).toUpperCase() + cat.slice(1),
+    value: cat,
+  }));
 }

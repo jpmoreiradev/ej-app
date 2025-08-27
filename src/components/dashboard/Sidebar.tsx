@@ -34,7 +34,7 @@ export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
             <Home size={18} />
             <span>Início</span>
           </Link>
-          <Link href="/buscar" className={styles.navItem}>
+          <Link href="/dashboard/publicos" className={styles.navItem}>
             <Search size={18} />
             <span>Buscar Editais</span>
           </Link>

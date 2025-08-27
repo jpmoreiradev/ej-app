@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Search, Filter, SortAsc, X } from 'lucide-react';
 import styles from '../../styles/SearchBar.module.css';
+import { getCategorias } from '../../services/editals/informativeServive';
 
 interface SearchBarProps {
   busca: string;
@@ -10,7 +11,7 @@ interface SearchBarProps {
   setCategorias: (cats: string[]) => void;
   ordem: string;
   setOrdem: (o: string) => void;
-  onSearch: () => void; // só dispara a API
+  onSearch: () => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -26,22 +27,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
     { label: string; value: string }[]
   >([]);
 
-  // Buscar categorias da API
   useEffect(() => {
-    fetch('http://localhost:3001/editals/categories', {
-      headers: {
-        'api-key': 'minhachavesupersecreta',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // Supondo que a API retorne algo como: ["saude", "educacao"]
-        const categoriasMapeadas = data.map((cat: string) => ({
-          label: cat.charAt(0).toUpperCase() + cat.slice(1),
-          value: cat,
-        }));
-        setCategoriasDisponiveis(categoriasMapeadas);
-      })
+    getCategorias()
+      .then(setCategoriasDisponiveis)
       .catch((err) => console.error('Erro ao buscar categorias:', err));
   }, []);
 
@@ -106,6 +94,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
             <option value="valorAsc">Menor Valor</option>
           </select>
         </div>
+
         <button type="button" className={styles.button} onClick={onSearch}>
           Buscar
         </button>

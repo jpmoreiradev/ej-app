@@ -1,5 +1,6 @@
 export async function loginRequest(email: string, password: string) {
-  const response = await fetch('http://localhost:3001/auth/login', {
+  const api_url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`;
+  const response = await fetch(api_url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
