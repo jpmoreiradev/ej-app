@@ -5,13 +5,12 @@
   color: #1f2635;
   display: flex;
   flex-direction: column;
-  margin: 0;
   gap: 20px;
   position: fixed;
   top: 0;
   left: 0;
-  border-bottom: 1px solid #e1e7ef;
-  border-right: 1px solid #e1e7ef;
+  border-right: 1px solid #e5e7eb;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.03);
   transition: width 0.3s ease;
   z-index: 100;
 }
@@ -23,10 +22,7 @@
 }
 
 .closed .logo,
-.closed .titleSidebar {
-  display: none;
-}
-
+.closed .titleSidebar,
 .closed .headerSidebar {
   display: none;
 }
@@ -34,29 +30,37 @@
 .headerSidebar {
   display: flex;
   align-items: center;
-  padding: 14px 10px 10px 25px;
+  padding: 16px 12px;
   gap: 16px;
-  border-bottom: 1px solid #e1e7ef;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .logo {
   font-weight: bold;
   padding: 8px;
-  background-color: #3182ed;
-  width: 40px;
-  height: 40px;
-  color: #e5effd;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  width: 44px;
+  height: 44px;
+  color: #ffffff;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
 }
 
 .titleSidebar h1 {
   margin: 0;
   font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  font-weight: 700;
   color: #1f262e;
 }
 
@@ -64,7 +68,7 @@
   margin: 0;
   font-weight: 400;
   font-size: 12px;
-  color: #668099;
+  color: #64748b;
 }
 
 .navGroup {
@@ -75,7 +79,7 @@
 .groupTitle {
   font-size: 12px;
   font-weight: 500;
-  color: #668099;
+  color: #94a3b8;
   text-transform: uppercase;
   margin: 4px 0;
   padding-left: 14px;
@@ -84,36 +88,38 @@
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 0px;
+  gap: 4px;
 }
 
 .navItem {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 1px 10px;
-  margin: 4px 8px;
+  gap: 12px;
+  padding: 8px 12px;
+  margin: 2px 8px;
   border-radius: 8px;
   font-size: 14px;
-  color: #3e9cf5;
+  color: #2563eb;
   text-decoration: none;
   transition: all 0.3s ease;
-  border-left: 2px solid #e1e7ef;
+  border-left: 3px solid transparent;
 }
 
 .navItem:hover {
-  background-color: #3e9cf5;
+  background-color: #2563eb;
   color: #ffffff;
+  border-left-color: #1e40af;
+}
+
+.navItem.active {
+  background-color: #e0f2fe;
+  color: #1e40af;
+  border-left-color: #2563eb;
 }
 
 .footer {
   margin-top: auto;
-}
-
-.closed .titleSidebar,
-.closed .groupTitle,
-.closed span {
-  display: none;
+  padding-bottom: 20px;
 }
 
 .closed .navItem svg {
@@ -123,4 +129,10 @@
 
 .closed .navItem {
   justify-content: center;
+}
+
+.closed .titleSidebar,
+.closed .groupTitle,
+.closed span {
+  display: none;
 }

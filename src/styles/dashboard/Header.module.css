@@ -8,7 +8,38 @@
   position: sticky;
   top: 0;
   z-index: 90;
-  transition: margin-left 0.3s ease; /* aumenta a duração da transição */
+  transition:
+    margin-left 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  font-weight: bold;
+  padding: 8px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  width: 44px;
+  height: 44px;
+  color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(49, 130, 237, 0.3);
 }
 
 .titleHeader h1 {
@@ -21,16 +52,17 @@
 
 .titleHeader p {
   display: flex;
+  flex-direction: column;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   color: #668099;
-  margin: 0px;
-  padding: 0px;
-  flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
 
 .menuButton {
+  margin-left: auto;
   background: transparent;
   border: 2px solid transparent;
   color: #35262e;
@@ -38,15 +70,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 6px;
+  border-radius: 6px;
+  transition:
+    background 0.2s,
+    transform 0.2s;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-  background-color: #3182ed;
-  padding: 8px;
-  width: 40px;
-  height: 40px;
-  color: #e5effd;
-  border-radius: 8px;
+.menuButton:hover {
+  background-color: #e5effd;
+  transform: translateY(-1px);
 }

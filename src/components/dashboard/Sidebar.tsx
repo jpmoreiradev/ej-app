@@ -65,7 +65,7 @@ export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
             <FileText size={18} />
             <span>Públicos</span>
           </a>
-          <Link href="/dashboard/privado" className={styles.navItem}>
+          <Link href="/dashboard/privados" className={styles.navItem}>
             <Shield size={18} />
             <span>Privados</span>
           </Link>
