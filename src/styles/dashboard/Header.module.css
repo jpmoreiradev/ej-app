@@ -78,6 +78,7 @@
 }
 
 .menuButton:hover {
-  background-color: #e5effd;
-  transform: translateY(-1px);
+  background-color: #1e40af;
+  color: #ffffff;
+  transform: translateY(-2px);
 }
