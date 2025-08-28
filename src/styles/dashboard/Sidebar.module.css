@@ -102,13 +102,12 @@
   color: #2563eb;
   text-decoration: none;
   transition: all 0.3s ease;
-  border-left: 3px solid transparent;
+  border-left: 3px solid #e2e8ef;
 }
 
 .navItem:hover {
-  background-color: #2563eb;
-  color: #ffffff;
-  border-left-color: #1e40af;
+  color: #000000;
+  text-decoration: none;
 }
 
 .navItem.active {
