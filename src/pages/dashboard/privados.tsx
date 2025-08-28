@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AlertTriangle, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/router';
 import Header from '../../components/dashboard/Header';
-import Sidebar from '../../components/dashboard/Sidebar';
+import Sidebar from '../../components/dashboard/sidebar/Sidebar';
 import styles from '../../styles/maintenance/Maintenance.module.css';
 
 const MaintenancePage = () => {

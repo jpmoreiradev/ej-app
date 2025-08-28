@@ -1,13 +1,17 @@
 import React from 'react';
 import styles from '../../styles/dashboard/Card.module.css';
 import { Calendar, DollarSign, MapPin, Clock } from 'lucide-react';
+import { formatarData } from '../../utils/formatDate';
+import { formatMoney } from '../../utils/formatMoney';
 
 interface EditalCardProps {
   id: string;
   title: string;
   orgao: string;
   valorEstimado: number;
+  dataPublicacao: string;
   dataEncerramento: string;
+  linkEdital: string;
   categoria: string;
   status: 'Aberto' | 'Fechando' | 'fechado';
   cidade: string;
@@ -41,7 +45,9 @@ const EditalCard: React.FC<EditalCardProps> = ({
   title,
   orgao,
   valorEstimado,
+  dataPublicacao,
   dataEncerramento,
+  linkEdital,
   categoria,
   status,
   cidade,
@@ -77,15 +83,40 @@ const EditalCard: React.FC<EditalCardProps> = ({
       <div className={styles.info}>
         <div className={styles.infoItem}>
           <DollarSign size={16} color="#6ec68e" />
-          <span className={styles.resultItems}> {valorEstimado}</span>
+          <span className={styles.resultItems}>
+            {' '}
+            {formatMoney(valorEstimado)}
+          </span>
         </div>
         <div className={styles.infoItem}>
           <Calendar size={16} color="#3182ed" />
           <span>
-            Encerra em:{' '}
-            <span className={styles.resultItems}>{dataEncerramento}</span>
+            Publicado em:{' '}
+            <span className={styles.resultItems}>
+              {formatarData(dataPublicacao)}
+            </span>
           </span>
         </div>
+        <div className={styles.infoItem}>
+          <Calendar size={16} color="#9b2020ff" />
+          <span>
+            Encerra em:{' '}
+            <span className={styles.resultItems}>
+              {formatarData(dataEncerramento)}
+            </span>
+          </span>
+        </div>
+        <div style={{ position: 'relative' }}>
+          <a
+            href={linkEdital}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.buttonEdital}
+          >
+            Ver Edital
+          </a>
+        </div>
+
         <div className={styles.infoItem}>
           <MapPin size={16} />
           <span>{cidade}</span>

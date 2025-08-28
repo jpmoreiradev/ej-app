@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { Heart, BookOpen, Trophy } from 'lucide-react';
-import styles from '../../styles/dashboard/Sidebar.module.css';
-import { getCategorias } from '../../services/editals/informativeServive';
+import styles from '../../../styles/dashboard/Sidebar.module.css';
+import { getCategorias } from '../../../services/editals/informativeServive';
 
 interface Categoria {
   label: string;
@@ -32,7 +32,7 @@ export default function CategoriasNav() {
   const handleCategoriaClick = (cat: string) => {
     const url = new URL(window.location.href);
     url.searchParams.set('categoria', cat);
-    window.location.href = url.toString(); // força reload
+    window.location.href = url.toString();
   };
 
   return (

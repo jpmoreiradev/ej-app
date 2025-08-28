@@ -6,16 +6,12 @@ import {
   LogOut,
   Building2,
   Search,
-  Heart,
-  Trophy,
-  BookOpen,
   Globe,
-  Lock,
   Shield,
 } from 'lucide-react';
 import Link from 'next/link';
-import styles from '../../styles/dashboard/Sidebar.module.css';
-import CategoriasNav from './Categorias';
+import styles from '../../../styles/dashboard/Sidebar.module.css';
+import CategoriasNav from './CategoriasNav';
 
 export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
   return (

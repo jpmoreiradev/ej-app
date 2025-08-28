@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import EditalCard from '../../components/dashboard/Card';
-import Sidebar from '../../components/dashboard/Sidebar';
+import Sidebar from '../../components/dashboard/sidebar/Sidebar';
 import Header from '../../components/dashboard/Header';
 import SearchBar from '../../components/dashboard/SearchBar';
 import { fetchEditais } from '../../services/editals/informativeServive';
@@ -156,6 +156,8 @@ const EditaisPage = () => {
                   orgao={edital.orgaoResponsavel}
                   valorEstimado={edital.valorEstimado}
                   dataEncerramento={edital.dataEncerramento}
+                  dataPublicacao={edital.dataPublicacao}
+                  linkEdital={edital.linkEdital}
                   categoria={edital.categoria}
                   status={edital.status}
                   cidade={edital.cidade}

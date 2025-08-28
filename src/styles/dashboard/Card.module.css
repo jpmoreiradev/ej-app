@@ -8,10 +8,18 @@
   padding: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  cursor: pointer;
   gap: 12px;
+  padding-bottom: 20px;
+  position: relative;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -20,7 +28,7 @@
 .cardWrapper {
   display: flex;
   flex-direction: column;
-  height: 100%; /* garante altura uniforme para o motion.div */
+  height: 100%;
 }
 
 .badge {
@@ -66,4 +74,28 @@
   font-weight: 500;
   color: #1f262e;
   font-size: 14px;
+}
+
+.buttonEdital {
+  position: absolute;
+  right: 12px;
+  background-color: #3182ed;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none; /* impede clique quando invisível */
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+/* Quando o card é hover, botão aparece */
+.card:hover .buttonEdital {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-2px); /* efeito sutil de movimento */
 }
