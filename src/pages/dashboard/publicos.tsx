@@ -32,8 +32,17 @@ const EditaisPage = () => {
         router.push('/login');
         return;
       }
-      carregarEditais(true);
+
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get('categoria');
+      if (cat) {
+        setCategorias([cat]);
+        carregarEditais(true, [cat]);
+      } else {
+        carregarEditais(true);
+      }
     };
+
     init();
   }, []);
 
@@ -52,7 +61,7 @@ const EditaisPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [loading, loadingMore, editais, total]);
 
-  const carregarEditais = (reset = false) => {
+  const carregarEditais = (reset = false, cats?: string[]) => {
     if (reset) setLoading(true);
 
     setPagina((prevPagina) => {
@@ -62,14 +71,12 @@ const EditaisPage = () => {
         page: pageToFetch,
         size: 20,
         busca,
-        categorias,
+        categorias: cats ?? categorias, // usa cats se passado, senão usa estado
         ordem,
       })
         .then((data: NoticePage) => {
           setEditais((prevEditais) =>
-            pageToFetch === 0
-              ? data.content
-              : [...prevEditais, ...data.content],
+            reset ? data.content : [...prevEditais, ...data.content],
           );
           setTotal(data.totalEditals);
         })

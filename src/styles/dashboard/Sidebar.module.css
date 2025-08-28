@@ -102,12 +102,24 @@
   color: #2563eb;
   text-decoration: none;
   transition: all 0.3s ease;
-  border-left: 3px solid #e2e8ef;
+  border-left: 2px solid #2563eb;
 }
 
 .navItem:hover {
   color: #000000;
+  font-weight: 600;
+  font-size: 14px;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.closed .navItem:hover {
+  color: #000000;
+  font-weight: 600;
+  font-size: 14px;
+  background-color: #2563eb;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .navItem.active {

@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import styles from '../../styles/dashboard/Sidebar.module.css';
+import CategoriasNav from './Categorias';
 
 export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
   return (
@@ -54,17 +55,17 @@ export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
       <div className={styles.navGroup}>
         <p className={styles.groupTitle}>Tipos de Editais</p>
         <nav className={styles.nav}>
-          <a
-            href="#"
+          <Link
             className={styles.navItem}
+            href="/dashboard/publicos"
             onClick={(e) => {
               e.preventDefault();
-              window.location.reload(); // força recarregamento da página
+              window.location.href = '/dashboard/publicos'; // força reload
             }}
           >
             <FileText size={18} />
             <span>Públicos</span>
-          </a>
+          </Link>
           <Link href="/dashboard/privados" className={styles.navItem}>
             <Shield size={18} />
             <span>Privados</span>
@@ -76,23 +77,7 @@ export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
         </nav>
       </div>
 
-      <div className={styles.navGroup}>
-        <p className={styles.groupTitle}>Categorias</p>
-        <nav className={styles.nav}>
-          <a href="#" className={styles.navItem}>
-            <Heart size={18} />
-            <span>Saúde</span>
-          </a>
-          <a href="#" className={styles.navItem}>
-            <BookOpen size={18} />
-            <span>Educação</span>
-          </a>
-          <a href="#" className={styles.navItem}>
-            <Trophy size={18} />
-            <span>Esporte</span>
-          </a>
-        </nav>
-      </div>
+      <CategoriasNav />
 
       <div className={styles.footer}>
         <a href="#" className={styles.navItem}>

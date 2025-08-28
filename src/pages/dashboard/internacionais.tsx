@@ -1,16 +1,20 @@
-import React from 'react';
-import { AlertTriangle } from 'lucide-react';
-
+import React, { useState } from 'react';
+import { AlertTriangle, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/router';
-import Header from '../../components/maintenance/Header';
+import Header from '../../components/dashboard/Header';
+import Sidebar from '../../components/dashboard/Sidebar';
 import styles from '../../styles/maintenance/Maintenance.module.css';
 
 const MaintenancePage = () => {
   const router = useRouter();
+  const [sidebarOpen, setSidebarOpen] = useState(true); // estado da sidebar
+
+  const toggleSidebar = () => setSidebarOpen((prev) => !prev); // função de toggle
 
   return (
     <div className={styles.pageWrapper}>
-      <Header title="Portal de Editais" subtitle="Governo Federal" />
+      <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+      <Sidebar sidebarOpen={sidebarOpen} />
 
       <main className={styles.main}>
         <div className={styles.illustration}>
@@ -19,12 +23,15 @@ const MaintenancePage = () => {
 
         <h1 className={styles.title}>Página em Manutenção</h1>
         <p className={styles.message}>
-          Estamos trabalhando para melhorar esta página. Em breve tudo estará
-          disponível!
+          Estamos trabalhando para <strong>construir esta página</strong>. Em
+          breve tudo estará disponível!
         </p>
 
-        <button className={styles.homeButton} onClick={() => router.push('/')}>
-          Voltar para Início
+        <button
+          className={styles.homeButton}
+          onClick={() => router.push('/dashboard/publicos')}
+        >
+          <ArrowLeft className={styles.icon} /> Voltar
         </button>
       </main>
     </div>
