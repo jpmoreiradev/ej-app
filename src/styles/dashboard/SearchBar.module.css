@@ -35,8 +35,8 @@
 }
 
 .inputWrapper:focus-within {
-  border: 2px solid #3182ed; /* azul */
-  box-shadow: 0 0 0 1px #3182ed; /* brilho sutil */
+  border: 2px solid #3182ed;
+  box-shadow: 0 0 0 1px #3182ed;
 }
 
 .selectWrapper {
@@ -47,12 +47,12 @@
   padding: 8px 12px;
   border-radius: 8px;
   flex: 1;
-  border: 1px solid #e5e7eb; /* garante borda sempre */
+  border: 1px solid #e5e7eb;
 }
 
 .selectWrapper:focus-within {
   border: 2px solid #3182ed;
-  box-shadow: 0 0 0 1px #3182ed; /* brilho sutil */
+  box-shadow: 0 0 0 1px #3182ed;
 }
 
 .icon {
@@ -80,7 +80,7 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
-  transition: background-color 0.3s ease; /* animação */
+  transition: background-color 0.3s ease;
 }
 .button:hover {
   background-color: #1d4ed8;
@@ -93,7 +93,7 @@
   flex-wrap: wrap;
   gap: 8px;
   font-size: 14px;
-  row-gap: 4px; /* separa melhor quando quebrar linha */
+  row-gap: 4px;
 }
 
 .activeFilters strong {

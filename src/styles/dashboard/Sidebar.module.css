@@ -16,7 +16,7 @@
 }
 
 .closed {
-  width: 60px; /* mini sidebar */
+  width: 60px; 
   gap: 20px;
   padding-top: 10px;
 }

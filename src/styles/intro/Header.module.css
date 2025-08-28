@@ -3,8 +3,8 @@
   top: 0;
   z-index: 50;
   border-bottom: 1px solid #e5e7eb;
-  background: rgba(255, 255, 255, 0.85); /* translúcido e moderno */
-  backdrop-filter: blur(14px); /* blur mais suave */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition:
     background 0.3s ease,
@@ -66,7 +66,6 @@
   margin-top: -2px;
 }
 
-/* Botão Sair */
 .outlineButton {
   border: 1px solid #d1d5db;
   background: white;

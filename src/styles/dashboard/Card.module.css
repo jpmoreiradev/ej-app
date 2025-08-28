@@ -87,15 +87,14 @@
   font-weight: 600;
   text-decoration: none;
   opacity: 0;
-  pointer-events: none; /* impede clique quando invisível */
+  pointer-events: none;
   transition:
     opacity 0.3s,
     transform 0.3s;
 }
 
-/* Quando o card é hover, botão aparece */
 .card:hover .buttonEdital {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(-2px); /* efeito sutil de movimento */
+  transform: translateY(-2px);
 }
