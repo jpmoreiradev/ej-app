@@ -1,6 +1,8 @@
 import styles from '../../styles/editalDetails/EditalDetalhes.module.css';
 import { GetServerSideProps } from 'next';
 import { getEditalById } from '../../services/editals/informativeServive';
+import { ChevronLeft } from 'lucide-react';
+import { useRouter } from 'next/router';
 import {
   Calendar,
   MapPin,
@@ -25,7 +27,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const router = useRouter();
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
@@ -45,7 +49,16 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
         }}
       >
         <div className={styles.header}>
-          <h1 className={styles.titulo}>{edital.titulo}</h1>
+          <div className={styles.headerTitulo}>
+            <button
+              className={styles.botaoVoltar}
+              onClick={() => router.back()}
+            >
+              <ChevronLeft size={33} />
+            </button>
+            <h1 className={styles.titulo}>{edital.titulo}</h1>
+          </div>
+
           <div className={styles.meta}>
             <span>
               <MapPin size={20} className={styles.icon} /> {edital.cidade},{' '}
@@ -69,7 +82,7 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
 
         <div className={styles.grid}>
           <div className={styles.descricao}>
-            <h2>Descrição</h2>
+            <h2>Descrição:</h2>
             <p>{edital.conteudo}</p>
           </div>
 

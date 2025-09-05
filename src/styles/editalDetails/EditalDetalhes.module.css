@@ -46,22 +46,27 @@
 
 .descricao {
   background: #fff;
-  padding: 25px;
+  padding: 25px 30px; /* espaçamento interno */
   border-radius: 16px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  max-width: 900px; /* largura máxima do card */
+  margin: 20px auto; /* centraliza horizontalmente e dá espaço vertical */
 }
 
 .descricao h2 {
   font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 12px;
-  color: #111827;
+  margin-bottom: 16px;
+  color: #02060f;
 }
 
 .descricao p {
-  line-height: 1.7;
-  color: #4b5563;
+  line-height: 1.8;
+  color: #0d1116;
+  word-break: break-word;
+  text-indent: 4em;
+  margin: 0; /* remove margem extra do <p> */
 }
 
 .sidebar {
@@ -173,4 +178,27 @@
 .strongVencimento {
   color: #1f262e; /* vermelho, por exemplo */
   font-weight: 500;
+}
+
+.headerTitulo {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* espaço entre a seta e o título */
+}
+
+.botaoVoltar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #3182ed;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.botaoVoltar:hover {
+  color: #1e40af;
 }

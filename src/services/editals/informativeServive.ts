@@ -53,7 +53,9 @@ export async function fetchStatistics(): Promise<Statistics> {
 export async function getEditalById(id: string): Promise<AllEdital | null> {
   const api_url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/editals/${id}`;
   const res = await fetch(api_url, {
-    headers: { 'api-key': 'minhachavesupersecreta' },
+    headers: {
+      'api-key': process.env.NEXT_PUBLIC_API_KEY || '',
+    },
   });
 
   if (!res.ok) return null;

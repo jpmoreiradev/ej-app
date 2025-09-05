@@ -1,9 +1,20 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Heart, BookOpen, Trophy } from 'lucide-react';
+import React from 'react';
+import {
+  Heart,
+  BookOpen,
+  Trophy,
+  Layers,
+  Grid,
+  Box,
+  Compass,
+  Shuffle,
+  CurlyBraces,
+  Archive,
+  Aperture,
+} from 'lucide-react';
 import styles from '../../../styles/dashboard/Sidebar.module.css';
-import { getCategorias } from '../../../services/editals/informativeServive';
 
 interface Categoria {
   label: string;
@@ -11,60 +22,41 @@ interface Categoria {
 }
 
 export default function CategoriasNav() {
-  const [categorias, setCategorias] = useState<Categoria[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const carregarCategorias = async () => {
-      try {
-        const data = await getCategorias();
-        setCategorias(data);
-      } catch (err) {
-        console.error('Erro ao carregar categorias:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    carregarCategorias();
-  }, []);
-
-  const handleCategoriaClick = (cat: string) => {
-    const url = new URL(window.location.href);
-    url.searchParams.set('categoria', cat);
-    window.location.href = url.toString();
-  };
+  const categorias: Categoria[] = [
+    { label: 'Saúde', value: 'saude' },
+    { label: 'Educação', value: 'educacao' },
+    { label: 'Esportes', value: 'esportes' },
+    { label: 'Infraestrutura', value: 'infraestrutura' },
+    { label: 'Outros', value: 'não foi possível' },
+  ];
 
   return (
     <div className={styles.navGroup}>
       <p className={styles.groupTitle}>Categorias</p>
       <nav className={styles.nav}>
-        {loading && <p>Carregando...</p>}
-        {!loading &&
-          categorias.slice(0, 5).map((cat) => (
-            <a
-              key={cat.value}
-              onClick={() => handleCategoriaClick(cat.value)}
-              className={styles.navItem}
-            >
-              {getIcon(cat.value)}
-              <span>{cat.label}</span>
-            </a>
-          ))}
+        {categorias.map((cat) => (
+          <a
+            key={cat.value}
+            href={`?categoria=${cat.value}`}
+            className={styles.navItem}
+          >
+            {getIcon(cat.value)}
+            <span>{cat.label}</span>
+          </a>
+        ))}
       </nav>
     </div>
   );
 }
 
 function getIcon(categoria: string) {
-  switch (categoria.toLowerCase()) {
-    case 'saude':
-      return <Heart size={18} />;
-    case 'educacao':
-      return <BookOpen size={18} />;
-    case 'esporte':
-      return <Trophy size={18} />;
-    default:
-      return <Heart size={18} />; // ícone padrão
-  }
+  const iconsMap: Record<string, JSX.Element> = {
+    saude: <Heart size={18} />,
+    educacao: <BookOpen size={18} />,
+    esportes: <Trophy size={18} />,
+    infraestrutura: <Layers size={18} />,
+    'não foi possível': <Box size={18} />,
+  };
+
+  return iconsMap[categoria.toLowerCase()] || <Heart size={18} />;
 }
