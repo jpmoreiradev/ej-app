@@ -1,8 +1,8 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Search, Filter, SortAsc, X } from 'lucide-react';
 import styles from '../../styles/dashboard/SearchBar.module.css';
-import { getCategorias } from '../../services/editals/informativeServive';
+import { categoriasDisponiveis } from '../config/categorias';
 
 interface SearchBarProps {
   busca: string;
@@ -23,16 +23,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
   setOrdem,
   onSearch,
 }) => {
-  const [categoriasDisponiveis, setCategoriasDisponiveis] = useState<
-    { label: string; value: string }[]
-  >([]);
-
-  useEffect(() => {
-    getCategorias()
-      .then(setCategoriasDisponiveis)
-      .catch((err) => console.error('Erro ao buscar categorias:', err));
-  }, []);
-
   const adicionarCategoria = (value: string) => {
     if (value && !categorias.includes(value)) {
       setCategorias([...categorias, value]);
@@ -80,6 +70,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
               ))}
           </select>
         </div>
+
         <div className={styles.selectWrapper}>
           <SortAsc className={styles.icon} />
           <select
@@ -91,8 +82,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
             <option value="tituloAsc">Titulo</option>
             <option value="desc">Mais Recentes</option>
             <option value="asc">Mais Antigos</option>
-            <option value="valorDesc">Maior Valor</option>
-            <option value="valorAsc">Menor Valor</option>
           </select>
         </div>
 

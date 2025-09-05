@@ -12,8 +12,10 @@ import {
 import Link from 'next/link';
 import styles from '../../../styles/dashboard/Sidebar.module.css';
 import CategoriasNav from './CategoriasNav';
+import { useRouter } from 'next/navigation';
 
 export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
+  const router = useRouter();
   return (
     <aside className={`${styles.sidebar} ${!sidebarOpen ? styles.closed : ''}`}>
       <div className={styles.headerSidebar}>
@@ -31,11 +33,12 @@ export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
             <Home size={18} />
             <span>Início</span>
           </Link>
-          <a
-            href="#"
+          <Link
+            href="/dashboard/publicos"
             className={styles.navItem}
             onClick={(e) => {
               e.preventDefault();
+              router.push('/dashboard/publicos');
               const input = document.getElementById(
                 'inputBusca',
               ) as HTMLInputElement;
@@ -44,7 +47,7 @@ export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
           >
             <Search size={18} />
             <span>Buscar Editais</span>
-          </a>
+          </Link>
         </nav>
       </div>
 

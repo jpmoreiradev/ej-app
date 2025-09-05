@@ -3,12 +3,13 @@ import styles from '../../styles/dashboard/Card.module.css';
 import { Calendar, DollarSign, MapPin, Clock } from 'lucide-react';
 import { formatarData } from '../../utils/formatDate';
 import { formatMoney } from '../../utils/formatMoney';
+import Link from 'next/link';
 
 interface EditalCardProps {
   id: string;
   title: string;
   orgao: string;
-  valorEstimado: number;
+  valorEstimado: string;
   dataPublicacao: string;
   dataEncerramento: string;
   linkEdital: string;
@@ -42,6 +43,7 @@ const statusBackground: Record<EditalCardProps['status'], string> = {
 };
 
 const EditalCard: React.FC<EditalCardProps> = ({
+  id,
   title,
   orgao,
   valorEstimado,
@@ -52,6 +54,7 @@ const EditalCard: React.FC<EditalCardProps> = ({
   status,
   cidade,
 }) => {
+  console.log(valorEstimado ? 'tem' : 'nao');
   return (
     <div className={styles.card} style={{ borderLeft: '4px solid #3182ed' }}>
       <div className={styles.header}>
@@ -81,13 +84,14 @@ const EditalCard: React.FC<EditalCardProps> = ({
       <p className={styles.infoItem}>{orgao}</p>
 
       <div className={styles.info}>
-        <div className={styles.infoItem}>
-          <DollarSign size={16} color="#6ec68e" />
-          <span className={styles.resultItems}>
-            {' '}
-            {formatMoney(valorEstimado)}
-          </span>
-        </div>
+        {valorEstimado !== null && valorEstimado !== undefined ? (
+          <div className={styles.infoItem}>
+            <DollarSign size={16} color="#6ec68e" />
+            <span className={styles.resultItems}>
+              {formatMoney(valorEstimado)}
+            </span>
+          </div>
+        ) : null}
         <div className={styles.infoItem}>
           <Calendar size={16} color="#3182ed" />
           <span>
@@ -107,14 +111,9 @@ const EditalCard: React.FC<EditalCardProps> = ({
           </span>
         </div>
         <div style={{ position: 'relative' }}>
-          <a
-            href={linkEdital}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.buttonEdital}
-          >
+          <Link href={`/editais/${id}`} className={styles.buttonEdital}>
             Ver Edital
-          </a>
+          </Link>
         </div>
 
         <div className={styles.infoItem}>

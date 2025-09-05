@@ -1,6 +1,6 @@
-export function formatMoney(value: number): string {
+export function formatMoney(value: string): string {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
-  }).format(value);
+  }).format(parseInt(value));
 }

@@ -1,0 +1,176 @@
+.container {
+  max-width: 1300px;
+  padding: 30px 40px;
+  font-family: 'Inter', sans-serif;
+  color: #1f2937;
+  transition: margin 0.3s;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+.titulo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin-top: 6px;
+  gap: 10px;
+}
+
+.icon {
+  vertical-align: middle;
+  margin-right: 6px;
+  color: #6b7280;
+}
+
+.iconInline {
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  transition: all 0.3s;
+}
+
+.descricao {
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+.descricao h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.descricao p {
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card,
+.cardAcoes {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+.cardAcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cardAcoes h3,
+.card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.acoesBotoesVertical {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Botão primário */
+.botaoPrimario {
+  background: #3182ed;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.botaoPrimario:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.4);
+  background: #5492e4;
+}
+
+.botaoSecundario {
+  background: #fff;
+  border: 2px solid #3182ed;
+  color: #3182ed;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.botaoSecundario:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.3);
+  background: #3b82f6;
+  color: #fff;
+}
+
+.listaInfo {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listaInfo li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.status {
+  color: #15803d;
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .container {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+.strongVencimento {
+  color: #1f262e; /* vermelho, por exemplo */
+  font-weight: 500;
+}

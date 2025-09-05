@@ -1,4 +1,4 @@
-import { NoticePage, Statistics } from '../../types/informative';
+import { NoticePage, Statistics, AllEdital } from '../../types/informative';
 
 export async function fetchEditais({
   page,
@@ -48,6 +48,18 @@ export async function fetchStatistics(): Promise<Statistics> {
   }
 
   return res.json();
+}
+
+export async function getEditalById(id: string): Promise<AllEdital | null> {
+  const api_url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/editals/${id}`;
+  const res = await fetch(api_url, {
+    headers: { 'api-key': 'minhachavesupersecreta' },
+  });
+
+  if (!res.ok) return null;
+
+  const edital: AllEdital = await res.json();
+  return edital;
 }
 
 export async function getCategorias(): Promise<

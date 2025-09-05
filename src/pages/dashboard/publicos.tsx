@@ -151,7 +151,7 @@ const EditaisPage = () => {
                 transition={{ duration: 0.3 }}
               >
                 <EditalCard
-                  id={edital['_id'] ?? String(index)}
+                  id={edital.id ?? String(index)}
                   title={edital.titulo}
                   orgao={edital.orgaoResponsavel}
                   valorEstimado={edital.valorEstimado}

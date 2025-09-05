@@ -1,10 +1,10 @@
 export interface Notice {
-  id: number;
+  id: string;
   titulo: string;
   orgaoResponsavel: string;
   conteudo: string;
   categoria: string;
-  valorEstimado: number;
+  valorEstimado: string;
   status: 'Aberto' | 'Fechando' | 'fechado';
   cidade: string;
   dataPublicacao: string;
@@ -49,4 +49,22 @@ export interface Statistics {
   participatingAgencies: number;
   totalAmount: number;
   updated: string;
+}
+
+export interface AllEdital {
+  _id: string;
+  titulo: string;
+  orgaoResponsavel: string;
+  conteudo: string;
+  pais: string;
+  estado: string;
+  cidade: string;
+  dataPublicacao: string;
+  dataLimite: string;
+  linkEdital: string;
+  categoria: string;
+  fonte: string;
+  tipo: string;
+  vencimento: string;
+  valorEstimado?: number;
 }
