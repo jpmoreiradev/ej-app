@@ -106,9 +106,10 @@
 }
 
 .navItem:hover {
-  color: #000000;
+  color: #ffffff;
   font-weight: 600;
   font-size: 14px;
+  background-color: #2563eb;
   text-decoration: none;
   cursor: pointer;
 }
@@ -156,6 +157,7 @@
   padding: 8px 12px;
   margin: 2px 8px;
   border-radius: 8px;
+  width: 211px;
   font-size: 14px;
   color: #2563eb;
   text-decoration: none;
@@ -166,7 +168,7 @@
 
 /* Hover igual ao Link */
 .logout:hover {
-  color: #000000;
+  color: #ffffff;
   font-weight: 600;
   font-size: 14px;
   text-decoration: none;

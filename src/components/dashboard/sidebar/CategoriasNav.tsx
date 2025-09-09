@@ -53,7 +53,7 @@ function getIcon(categoria?: string) {
     educacao: <BookOpen size={18} />,
     esportes: <Trophy size={18} />,
     infraestrutura: <Layers size={18} />,
-    nao_foi_possivel: <Box size={18} />,
+    'não foi possível': <Box size={18} />,
   };
 
   return iconsMap[categoria.toLowerCase()] || <Heart size={18} />;
