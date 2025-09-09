@@ -47,7 +47,6 @@ export interface NoticePageProps {
 export interface Statistics {
   totalEditals: number;
   participatingAgencies: number;
-  totalAmount: number;
   updated: string;
 }
 
@@ -67,4 +66,10 @@ export interface AllEdital {
   tipo: string;
   vencimento: string;
   valorEstimado?: number;
+}
+
+export interface Statistics {
+  totalEditals: number;
+  participatingAgencies: number;
+  totalValue: string;
 }

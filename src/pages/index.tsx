@@ -8,6 +8,7 @@ import welcomeHero from '../../public/images/welcome-hero.jpg';
 import { motion } from 'framer-motion';
 import styles from '../styles/welcome/Welcome.module.css';
 import Header from '../components/intro/Header';
+import Stats from '../components/welcome/Stats';
 
 export default function Welcome() {
   const router = useRouter();
@@ -113,23 +114,7 @@ export default function Welcome() {
             </div>
           </div>
 
-          {/* Stats Section */}
-          <div className={styles.statsCard}>
-            <div className={styles.statsGrid}>
-              <div>
-                <div className={styles.statNumber}>500+</div>
-                <div className={styles.statLabel}>Editais Ativos</div>
-              </div>
-              <div>
-                <div className={styles.statNumber}>50+</div>
-                <div className={styles.statLabel}>Organizações Parceiras</div>
-              </div>
-              <div>
-                <div className={styles.statNumber}>R$ 2B+</div>
-                <div className={styles.statLabel}>Valor Total Disponível</div>
-              </div>
-            </div>
-          </div>
+          <Stats />
         </div>
       </main>
 

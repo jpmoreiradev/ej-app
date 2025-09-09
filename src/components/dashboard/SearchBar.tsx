@@ -2,7 +2,7 @@
 import React from 'react';
 import { Search, Filter, SortAsc, X } from 'lucide-react';
 import styles from '../../styles/dashboard/SearchBar.module.css';
-import { categoriasDisponiveis } from '../config/categorias';
+import { categoriasDisponiveis } from '../../config/categorias';
 
 interface SearchBarProps {
   busca: string;

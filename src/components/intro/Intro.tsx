@@ -11,8 +11,6 @@ import styles from '../../styles/intro/Intro.module.css';
 
 export default function Intro() {
   const router = useRouter();
-  const [stats, setStats] = useState<Statistics | null>(null);
-  const [loading, setLoading] = useState(true);
   const [playVideo, setPlayVideo] = useState(false);
 
   const handleNavigateToEditais = (type: string) => {
@@ -20,20 +18,6 @@ export default function Intro() {
   };
 
   const handlePlayVideo = () => setPlayVideo(true);
-
-  useEffect(() => {
-    async function loadData() {
-      try {
-        const data = await fetchStatistics();
-        setStats(data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadData();
-  }, []);
 
   return (
     <div className={styles.pageWrapper}>
@@ -144,7 +128,7 @@ export default function Intro() {
           </div>
         </div>
 
-        <Stats stats={stats} loading={loading} />
+        <Stats />
       </main>
     </div>
   );

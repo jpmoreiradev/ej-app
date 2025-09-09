@@ -3,7 +3,7 @@
 import React from 'react';
 import { Heart, BookOpen, Trophy, Layers, Box } from 'lucide-react';
 import styles from '../../../styles/dashboard/Sidebar.module.css';
-import { categoriasDisponiveis } from '../../config/categorias';
+import { categoriasDisponiveis } from '../../../config/categorias';
 import { useSearchParams } from 'next/navigation';
 
 interface Categoria {
