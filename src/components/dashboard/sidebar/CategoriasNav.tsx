@@ -3,6 +3,7 @@
 import React from 'react';
 import { Heart, BookOpen, Trophy, Layers, Box } from 'lucide-react';
 import styles from '../../../styles/dashboard/Sidebar.module.css';
+import { categoriasDisponiveis } from '../../config/categorias';
 import { useSearchParams } from 'next/navigation';
 
 interface Categoria {
@@ -18,21 +19,11 @@ export default function CategoriasNav({ categoriasProps }: CategoriasNavProps) {
   const searchParams = useSearchParams();
   const categoriaAtual = searchParams.get('categoria');
 
-  // Lista padrão de categorias
-  const categorias: Categoria[] = [
-    { label: 'Saúde', value: 'saude' },
-    { label: 'Educação', value: 'educacao' },
-    { label: 'Esportes', value: 'esportes' },
-    { label: 'Infraestrutura', value: 'infraestrutura' },
-    { label: 'Tecnologia', value: 'tecnologia' },
-    { label: 'Outros', value: 'nao_foi_possivel' }, // sem acentos para map
-  ];
-
   return (
     <div className={styles.navGroup}>
       <p className={styles.groupTitle}>Categorias</p>
       <nav className={styles.nav}>
-        {categorias.map((cat) => {
+        {categoriasDisponiveis.map((cat) => {
           const categoriaAtiva =
             categoriaAtual === cat.value ||
             categoriasProps?.includes(cat.value);

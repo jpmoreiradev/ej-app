@@ -3,5 +3,5 @@ export const categoriasDisponiveis = [
   { label: 'Saúde', value: 'saude' },
   { label: 'Infraestrutura', value: 'infraestrutura' },
   { label: 'Esporte', value: 'esportes' },
-  { label: 'Tecnologia', value: 'tecnologia' },
+  { label: 'Outros', value: 'não foi possível' },
 ];
