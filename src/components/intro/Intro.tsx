@@ -5,8 +5,6 @@ import { useRouter } from 'next/navigation';
 import { FileText, Globe, Shield, Play } from 'lucide-react';
 import Header from './Header';
 import Stats from './Stats';
-import { fetchStatistics } from '../../services/editals/informativeServive';
-import { Statistics } from '../../types/informative';
 import styles from '../../styles/intro/Intro.module.css';
 
 export default function Intro() {

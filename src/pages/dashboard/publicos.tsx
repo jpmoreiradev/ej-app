@@ -10,6 +10,7 @@ import { Notice, NoticePage } from '../../types/informative';
 import styles from '../../styles/dashboard/Dashboard.module.css';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import SkeletonCard from '../../components/skeleton/SkeletonCard';
 import Cookies from 'js-cookie';
 
 const EditaisPage = () => {
@@ -71,7 +72,7 @@ const EditaisPage = () => {
         page: pageToFetch,
         size: 20,
         busca,
-        categorias: cats ?? categorias, // usa cats se passado, senão usa estado
+        categorias: cats ?? categorias,
         ordem,
       })
         .then((data: NoticePage) => {
@@ -103,16 +104,6 @@ const EditaisPage = () => {
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-  // Loader inicial
-  if (loading) {
-    return (
-      <div className={styles.loader}>
-        <div className={styles.spinner}></div>
-        <p>Carregando editais...</p>
-      </div>
-    );
-  }
-
   return (
     <div className={styles.page}>
       <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
@@ -139,31 +130,36 @@ const EditaisPage = () => {
             />
             <p className={styles.totalEditais}>{total} editais encontrados </p>
           </div>
-
-          <div className={styles.container}>
-            {editais.map((edital, index) => (
-              <motion.div
-                key={edital['_id'] ?? index}
-                className={styles.cardWrapper}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <EditalCard
-                  id={edital.id ?? String(index)}
-                  title={edital.titulo}
-                  orgao={edital.orgaoResponsavel}
-                  valorEstimado={edital.valorEstimado}
-                  dataEncerramento={edital.dataEncerramento}
-                  dataPublicacao={edital.dataPublicacao}
-                  linkEdital={edital.linkEdital}
-                  categoria={edital.categoria}
-                  status={edital.status}
-                  cidade={edital.cidade}
-                />
-              </motion.div>
-            ))}
+          <div className={styles.cardsArea}>
+            <div className={styles.container}>
+              {loading
+                ? Array.from({ length: 9 }).map((_, i) => (
+                    <SkeletonCard key={i} />
+                  ))
+                : editais.map((edital, index) => (
+                    <motion.div
+                      key={edital['_id'] ?? index}
+                      className={styles.cardWrapper}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <EditalCard
+                        id={edital.id ?? String(index)}
+                        title={edital.titulo}
+                        orgao={edital.orgaoResponsavel}
+                        valorEstimado={edital.valorEstimado}
+                        dataEncerramento={edital.dataEncerramento}
+                        dataPublicacao={edital.dataPublicacao}
+                        linkEdital={edital.linkEdital}
+                        categoria={edital.categoria}
+                        status={edital.status}
+                        cidade={edital.cidade}
+                      />
+                    </motion.div>
+                  ))}
+            </div>
           </div>
 
           {loadingMore && (
