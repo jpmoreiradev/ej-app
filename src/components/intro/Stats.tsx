@@ -5,11 +5,6 @@ import styles from '../../styles/intro/Stats.module.css';
 import { Statistics } from '../../types/informative';
 import { fetchStatistics } from '../../services/editals/informativeServive';
 
-interface StatsProps {
-  stats: Statistics | null;
-  loading: boolean;
-}
-
 export default function Stats() {
   const [stats, setStats] = useState<Statistics | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -29,7 +24,16 @@ export default function Stats() {
   }, []);
 
   if (loading) {
-    return <div className={styles.statsGrid}>Carregando...</div>;
+    return (
+      <div className={styles.statsGrid}>
+        {[1, 2, 3].map((item) => (
+          <div key={item} className={styles.statItem}>
+            <div className={`${styles.skeleton}`}></div>
+            <div className={`${styles.skeleton} ${styles.skeletonLabel}`}></div>
+          </div>
+        ))}
+      </div>
+    );
   }
 
   if (error || !stats) {

@@ -16,9 +16,20 @@ export default function Stats() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className={styles.statsGrid}>Carregando...</div>;
+  if (loading) {
+    return (
+      <div className={styles.spinnerContainer}>
+        <div className={styles.spinner}></div>
+      </div>
+    );
+  }
+
   if (!stats)
-    return <div className={styles.statsGrid}>Erro ao carregar dados</div>;
+    return (
+      <div className={styles.statsCard}>
+        <div className={styles.statsGrid}>Erro ao carregar dados</div>
+      </div>
+    );
 
   return (
     <div className={styles.statsCard}>

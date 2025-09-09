@@ -24,14 +24,5 @@ export default function HomePage() {
     checkToken();
   }, [router]);
 
-  if (loading) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <div className="loader"></div>
-        <p>Validando sessão...</p>
-      </div>
-    );
-  }
-
   return <Intro />;
 }

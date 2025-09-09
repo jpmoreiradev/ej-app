@@ -1,4 +1,4 @@
-import styles from '../../styles/skeleton/CardSkeleton.module.css';
+import styles from '../../styles/skeleton/SkeletonCard.module.css';
 
 const SkeletonCard = () => (
   <div className={styles.skeletonCard}>

@@ -1,0 +1,58 @@
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.statsCard {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff10;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  min-height: 120px;
+}
+
+.statNumber {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  font-size: 1rem;
+  color: #e0e0e0;
+}
+
+/* Skeleton Loader */
+.skeleton {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  width: 80%;
+  height: 2rem;
+  margin-bottom: 0.5rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonLabel {
+  width: 60%;
+  height: 1rem;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
