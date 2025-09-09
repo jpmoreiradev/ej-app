@@ -16,7 +16,7 @@
 }
 
 .closed {
-  width: 60px; 
+  width: 60px;
   gap: 20px;
   padding-top: 10px;
 }
@@ -122,7 +122,7 @@
   cursor: pointer;
 }
 
-.navItem.active {
+.navItem .active {
   background-color: #e0f2fe;
   color: #1e40af;
   border-left-color: #2563eb;
@@ -146,4 +146,48 @@
 .closed .groupTitle,
 .closed span {
   display: none;
+}
+
+.logout {
+  all: unset; /* remove estilos padrões do botão */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  margin: 2px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #2563eb;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-left: 2px solid #2563eb;
+  cursor: pointer;
+}
+
+/* Hover igual ao Link */
+.logout:hover {
+  color: #000000;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.closed .logout {
+  padding: 8px;
+  justify-content: center;
+}
+
+.closed .logout svg {
+  width: 20px;
+  height: 20px;
+}
+
+.active {
+  background-color: #2563eb; /* fundo azul */
+  color: #ffffff; /* texto branco */
+  font-weight: 600;
+}
+
+.active svg {
+  color: #ffffff; /* deixa o ícone branco */
 }

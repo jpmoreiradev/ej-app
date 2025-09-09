@@ -37,7 +37,11 @@ export default function Intro() {
 
   return (
     <div className={styles.pageWrapper}>
-      <Header title="Portal de Editais" subtitle="Governo Federal" />
+      <Header
+        title="Portal de Editais"
+        subtitle="Governo Federal"
+        typeButton="logout"
+      />
 
       <main className={styles.main}>
         <div className={styles.introText}>

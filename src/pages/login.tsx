@@ -25,7 +25,7 @@ const Login = () => {
       if (data.authToken) {
         document.cookie = `authToken=${data.authToken}; path=/; secure; samesite=strict`;
       }
-      router.push('/');
+      router.push('/intro');
     } catch (err: any) {
       setError(err.message || 'Erro no login');
     } finally {

@@ -118,7 +118,7 @@ const EditaisPage = () => {
       <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
 
       <div className={styles.layout}>
-        <Sidebar sidebarOpen={sidebarOpen} />
+        <Sidebar sidebarOpen={sidebarOpen} categorias={categorias} />
 
         <main
           className={styles.containerWrapper}

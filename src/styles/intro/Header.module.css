@@ -2,17 +2,17 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  border-bottom: 1px solid #e5e7eb;
+  /* border-bottom: 1px solid #e5e7eb; */
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(14px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); */
   transition:
     background 0.3s ease,
     box-shadow 0.3s ease;
 }
 
 .headerContainer {
-  max-width: 1200px;
+  max-width: 1320px;
   height: 64px;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -21,7 +21,6 @@
   align-items: center;
 }
 
-/* Logo e título */
 .headerLeft {
   display: flex;
   align-items: center;
@@ -53,40 +52,67 @@
   height: 24px;
 }
 
+.texts {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 1.2;
+}
+
 .headerTitle {
-  font-size: 1.3rem;
+  margin: 0;
+  font-size: 1.25rem;
+  color: #2563eb;
   font-weight: 700;
-  color: #111827;
   letter-spacing: -0.5px;
 }
 
 .headerSubtitle {
+  margin: 0;
   font-size: 0.85rem;
   color: #6b7280;
-  margin-top: -2px;
+  line-height: 1.2;
 }
 
+/* -------------------- Botões -------------------- */
 .outlineButton {
-  border: 1px solid #d1d5db;
-  background: white;
-  color: #374151;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: 0.6rem;
   cursor: pointer;
   font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border: 1px solid transparent;
 }
 
-.outlineButton:hover {
+/* Botão de Login */
+.loginButton {
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  background: white;
+}
+.loginButton:hover {
   background: #2563eb;
-  border-color: #2563eb;
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.25);
 }
 
-/* Responsividade */
+/* Botão de Logout */
+.logoutButton {
+  border: 1px solid #3563eb;
+  color: #3563eb;
+  background: white;
+}
+.logoutButton:hover {
+  background: #3563eb;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(239, 68, 68, 0.25);
+}
+
+/* -------------------- Responsividade -------------------- */
 @media (max-width: 768px) {
   .headerContainer {
     padding: 0 1rem;
@@ -95,7 +121,7 @@
     font-size: 1.1rem;
   }
   .headerSubtitle {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
   }
   .logo {
     width: 40px;

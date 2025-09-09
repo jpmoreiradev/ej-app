@@ -54,7 +54,6 @@ const EditalCard: React.FC<EditalCardProps> = ({
   status,
   cidade,
 }) => {
-  console.log(valorEstimado ? 'tem' : 'nao');
   return (
     <div className={styles.card} style={{ borderLeft: '4px solid #3182ed' }}>
       <div className={styles.header}>

@@ -9,14 +9,20 @@ import styles from '../../styles/intro/Header.module.css';
 interface HeaderProps {
   title: string;
   subtitle: string;
+  typeButton: 'logout' | 'login' | 'none';
 }
 
-export default function Header({ title, subtitle }: HeaderProps) {
+export default function Header({ title, subtitle, typeButton }: HeaderProps) {
   const router = useRouter();
 
-  const handleLogout = () => {
-    Cookies.remove('authToken');
-    window.location.reload();
+  const handleClick = () => {
+    if (typeButton === 'logout') {
+      Cookies.remove('authToken', { path: '/' });
+      router.push('/');
+    }
+    if (typeButton === 'login') {
+      router.push('/login');
+    }
   };
 
   return (
@@ -26,14 +32,22 @@ export default function Header({ title, subtitle }: HeaderProps) {
           <div className={styles.logo}>
             <Building2 className={styles.logoIcon} />
           </div>
-          <div>
+          <div className={styles.texts}>
             <h1 className={styles.headerTitle}>{title}</h1>
             <p className={styles.headerSubtitle}>{subtitle}</p>
           </div>
         </div>
-        <button className={styles.outlineButton} onClick={handleLogout}>
-          Sair
-        </button>
+
+        {typeButton !== 'none' && (
+          <button
+            className={`${styles.outlineButton} ${
+              typeButton === 'logout' ? styles.logoutButton : styles.loginButton
+            }`}
+            onClick={handleClick}
+          >
+            {typeButton === 'login' ? 'Entrar' : 'Sair'}
+          </button>
+        )}
       </div>
     </header>
   );

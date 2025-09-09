@@ -12,10 +12,23 @@ import {
 import Link from 'next/link';
 import styles from '../../../styles/dashboard/Sidebar.module.css';
 import CategoriasNav from './CategoriasNav';
-import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import { useRouter, usePathname } from 'next/navigation';
 
-export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
+export default function Sidebar({
+  sidebarOpen,
+  categorias,
+}: {
+  sidebarOpen: boolean;
+  categorias?: string[];
+}) {
   const router = useRouter();
+  const pathname = usePathname();
+  const handleLogout = () => {
+    Cookies.remove('authToken', { path: '/' });
+    router.push('/login');
+  };
+
   return (
     <aside className={`${styles.sidebar} ${!sidebarOpen ? styles.closed : ''}`}>
       <div className={styles.headerSidebar}>
@@ -29,7 +42,7 @@ export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
       <div className={styles.navGroup}>
         <p className={styles.groupTitle}>Navegação</p>
         <nav className={styles.nav}>
-          <Link href="/" className={styles.navItem}>
+          <Link href="/intro" className={styles.navItem}>
             <Home size={18} />
             <span>Início</span>
           </Link>
@@ -55,7 +68,9 @@ export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
         <p className={styles.groupTitle}>Tipos de Editais</p>
         <nav className={styles.nav}>
           <Link
-            className={styles.navItem}
+            className={`${styles.navItem} ${
+              pathname === '/dashboard/publicos' ? styles.active : ''
+            }`}
             href="/dashboard/publicos"
             onClick={(e) => {
               e.preventDefault();
@@ -65,24 +80,37 @@ export default function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
             <FileText size={18} />
             <span>Públicos</span>
           </Link>
-          <Link href="/dashboard/privados" className={styles.navItem}>
+          <Link
+            href="/dashboard/privados"
+            className={`${styles.navItem} ${
+              pathname === '/dashboard/privados' ? styles.active : ''
+            }`}
+          >
             <Shield size={18} />
             <span>Privados</span>
           </Link>
-          <Link href="/dashboard/internacionais" className={styles.navItem}>
+          <Link
+            href="/dashboard/internacionais"
+            className={`${styles.navItem} ${
+              pathname === '/dashboard/internacionais' ? styles.active : ''
+            }`}
+          >
             <Globe size={18} />
             <span>Internacionais</span>
           </Link>
         </nav>
       </div>
 
-      <CategoriasNav />
+      <CategoriasNav categoriasProps={categorias} />
 
       <div className={styles.footer}>
-        <a href="#" className={styles.navItem}>
+        <button
+          className={`${styles.navItem} ${styles.logout}`}
+          onClick={handleLogout}
+        >
           <LogOut size={18} />
           <span>Sair</span>
-        </a>
+        </button>
       </div>
     </aside>
   );

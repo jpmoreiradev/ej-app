@@ -13,9 +13,13 @@ const publicRoutes = [
     path: '/esqueceu-senha',
     whenAutenticated: 'redirect',
   },
+  {
+    path: '/',
+    whenAutenticated: 'noRedirect',
+  },
 ] as const;
 
-const REDIRECT_WHEN_NOT_AUTHENTICATED = '/login';
+const REDIRECT_WHEN_NOT_AUTHENTICATED = '/';
 
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
@@ -31,14 +35,10 @@ export function middleware(request: NextRequest) {
     url.pathname = REDIRECT_WHEN_NOT_AUTHENTICATED;
     return NextResponse.redirect(url);
   }
-
   if (authToken && publicRoute && publicRoute.whenAutenticated === 'redirect') {
     const url = request.nextUrl.clone();
-    url.pathname = '/';
+    url.pathname = '/dashboard/publicos';
     return NextResponse.redirect(url);
-  }
-
-  if (authToken && !publicRoute) {
   }
 
   return NextResponse.next();
