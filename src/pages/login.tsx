@@ -23,7 +23,7 @@ const Login = () => {
       const data = await loginRequest(email, password);
 
       if (data.authToken) {
-        document.cookie = `authToken=${data.authToken}; path=/; secure; samesite=strict`;
+        document.cookie = `authToken=${data.authToken}; path=/; samesite=lax`;
       }
       router.push('/intro');
     } catch (err: any) {
