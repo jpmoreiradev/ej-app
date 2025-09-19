@@ -150,7 +150,7 @@
 }
 
 .logout {
-  all: unset; /* remove estilos padrões do botão */
+  all: unset;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -166,7 +166,6 @@
   cursor: pointer;
 }
 
-/* Hover igual ao Link */
 .logout:hover {
   color: #ffffff;
   font-weight: 600;
@@ -185,11 +184,11 @@
 }
 
 .active {
-  background-color: #2563eb; /* fundo azul */
-  color: #ffffff; /* texto branco */
+  background-color: #2563eb;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .active svg {
-  color: #ffffff; /* deixa o ícone branco */
+  color: #ffffff;
 }

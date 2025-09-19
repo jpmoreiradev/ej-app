@@ -10,7 +10,8 @@ export async function loginRequest(email: string, password: string) {
   });
 
   if (!response.ok) {
-    throw new Error('E-mail ou senha inválidos');
+    const message = await response.json();
+    throw new Error(message.message);
   }
 
   return response.json();
