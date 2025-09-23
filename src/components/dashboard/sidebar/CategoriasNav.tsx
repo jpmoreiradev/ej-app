@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Heart, BookOpen, Trophy, Layers, Box } from 'lucide-react';
+import { Heart, BookOpen, Trophy, Layers, Box, User, Leaf } from 'lucide-react';
 import styles from '../../../styles/dashboard/Sidebar.module.css';
 import { categoriasDisponiveis } from '../../../config/categorias';
 import { useSearchParams } from 'next/navigation';
@@ -12,7 +12,7 @@ interface Categoria {
 }
 
 interface CategoriasNavProps {
-  categoriasProps?: string[]; // Lista de categorias ativas vindas de props
+  categoriasProps?: string[];
 }
 
 export default function CategoriasNav({ categoriasProps }: CategoriasNavProps) {
@@ -44,17 +44,17 @@ export default function CategoriasNav({ categoriasProps }: CategoriasNavProps) {
   );
 }
 
-// Ícones seguros
 function getIcon(categoria?: string) {
   if (!categoria) return <Heart size={18} />;
 
   const iconsMap: Record<string, JSX.Element> = {
-    saude: <Heart size={18} />,
-    educacao: <BookOpen size={18} />,
-    esportes: <Trophy size={18} />,
-    infraestrutura: <Layers size={18} />,
+    Educação: <BookOpen size={18} />,
+    Saúde: <Heart size={18} />,
+    Infraestrutura: <Layers size={18} />,
+    'Esporte-Cultura': <Trophy size={18} />,
+    'Meio Ambiente': <Leaf size={18} />,
+    Idosos: <User size={18} />,
     'não foi possível': <Box size={18} />,
   };
-
-  return iconsMap[categoria.toLowerCase()] || <Heart size={18} />;
+  return iconsMap[categoria] || <Heart size={18} />;
 }

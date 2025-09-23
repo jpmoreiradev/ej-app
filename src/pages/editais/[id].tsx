@@ -12,6 +12,8 @@ import {
   ExternalLink,
   MessageCircle,
 } from 'lucide-react';
+import Image from 'next/image';
+import brasao from '../../../public/images/brasao.webp';
 import Header from '../../components/dashboard/Header';
 import Sidebar from '../../components/dashboard/sidebar/Sidebar';
 import { useState } from 'react';
@@ -82,7 +84,17 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
 
         <div className={styles.grid}>
           <div className={styles.descricao}>
-            <h2>Descrição:</h2>
+            <Image
+              src={brasao}
+              alt="Brasão"
+              width={120}
+              height={120}
+              className={styles.brasao}
+            />
+            <h2 className={styles.dataPublicacao}>
+              Publicado no Diário Oficial da União em:{' '}
+              {formatarData(edital.dataPublicacao)}
+            </h2>
             <p>{edital.conteudo}</p>
           </div>
 
@@ -103,6 +115,10 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
                   Ver Edital Oficial{' '}
                   <ExternalLink size={16} className={styles.iconInline} />
                 </a>
+                <p className={styles.aviso}>
+                  ⚠️ Este conteúdo não substitui o publicado na versão
+                  certificada!
+                </p>
               </div>
             </div>
 

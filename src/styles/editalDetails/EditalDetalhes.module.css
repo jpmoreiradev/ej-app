@@ -46,27 +46,40 @@
 
 .descricao {
   background: #fff;
-  padding: 25px 30px; /* espaçamento interno */
+  padding: 25px 30px;
   border-radius: 16px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
-  max-width: 900px; /* largura máxima do card */
-  margin: 20px auto; /* centraliza horizontalmente e dá espaço vertical */
-}
-
-.descricao h2 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #02060f;
+  max-width: 900px;
+  margin: 20px auto;
 }
 
 .descricao p {
   line-height: 1.8;
-  color: #0d1116;
+  color: #000000;
   word-break: break-word;
-  text-indent: 4em;
-  margin: 0; /* remove margem extra do <p> */
+  text-align: justify; /* deixa alinhado */
+  text-indent: 4em; /* opcional: recuo de parágrafo */
+  margin: 20px;
+}
+
+.dataPublicacao {
+  color: #000000;
+  text-align: center;
+  font-size: large;
+  margin-top: 12px;
+}
+
+.aviso {
+  color: #991b1b; /* vermelho médio */
+  background-color: #fef2f2; /* fundo vermelho bem clarinho */
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 12px;
+  border: 1px solid #fecaca; /* contorno sutil */
 }
 
 .sidebar {
@@ -79,6 +92,7 @@
 .cardAcoes {
   background: #fff;
   padding: 20px;
+  margin-top: 20px;
   border-radius: 16px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
@@ -201,4 +215,10 @@
 
 .botaoVoltar:hover {
   color: #1e40af;
+}
+
+.brasao {
+  display: block;
+  max-width: 120px;
+  margin: 0 auto 20px auto;
 }
