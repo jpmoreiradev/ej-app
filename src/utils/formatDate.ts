@@ -1,7 +1,4 @@
 export function formatarData(dataISO: string): string {
-  return new Date(dataISO).toLocaleDateString('pt-BR', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  });
+  const [ano, mes, dia] = dataISO.split('T')[0].split('-');
+  return `${dia}/${mes}/${ano}`;
 }

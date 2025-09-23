@@ -80,7 +80,11 @@ const EditalCard: React.FC<EditalCardProps> = ({
       </div>
 
       <h3 className={styles.title}>{title}</h3>
-      <p className={styles.infoItem}>{orgao}</p>
+      {orgao === 'não foi possível' ? (
+        <p className={styles.infoItem}></p>
+      ) : (
+        <p className={styles.infoItem}>{orgao}</p>
+      )}
 
       <div className={styles.info}>
         {valorEstimado !== null && valorEstimado !== undefined ? (
@@ -114,7 +118,6 @@ const EditalCard: React.FC<EditalCardProps> = ({
             Ver Edital
           </Link>
         </div>
-
         <div className={styles.infoItem}>
           <MapPin size={16} />
           <span>{cidade}</span>

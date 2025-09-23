@@ -104,10 +104,7 @@ export default function Sidebar({
       <CategoriasNav categoriasProps={categorias} />
 
       <div className={styles.footer}>
-        <button
-          className={`${styles.navItem} ${styles.logout}`}
-          onClick={handleLogout}
-        >
+        <button className={styles.logout} onClick={handleLogout}>
           <LogOut size={18} />
           <span>Sair</span>
         </button>
