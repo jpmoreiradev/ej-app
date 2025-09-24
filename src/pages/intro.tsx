@@ -13,7 +13,7 @@ export default function HomePage() {
   useEffect(() => {
     const checkToken = async () => {
       const isValid = await validateToken();
-      if (!isValid) {
+      if (!isValid.nome) {
         Cookies.remove('authToken');
         router.push('/login');
         return;

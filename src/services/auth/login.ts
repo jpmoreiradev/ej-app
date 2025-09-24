@@ -8,7 +8,6 @@ export async function loginRequest(email: string, password: string) {
     },
     body: JSON.stringify({ email, password }),
   });
-
   if (!response.ok) {
     const message = await response.json();
     throw new Error(message.message);

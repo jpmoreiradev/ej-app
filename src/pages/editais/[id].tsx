@@ -1,6 +1,6 @@
 import styles from '../../styles/editalDetails/EditalDetalhes.module.css';
 import { GetServerSideProps } from 'next';
-import { getEditalById } from '../../services/editals/informativeServive';
+import { getEditalById } from '../../services/editals/informativeService';
 import { ChevronLeft } from 'lucide-react';
 import { useRouter } from 'next/router';
 import {
@@ -19,6 +19,7 @@ import Sidebar from '../../components/dashboard/sidebar/Sidebar';
 import { useState } from 'react';
 import { formatarData } from '../../utils/formatDate';
 import { AllEdital } from '../../types/informative';
+import { pedirMentoriaService } from '../../services/editals/mentoriaService';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.params!;
@@ -102,7 +103,17 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
             <div className={styles.cardAcoes}>
               <h3>Ações</h3>
               <div className={styles.acoesBotoesVertical}>
-                <button className={styles.botaoPrimario}>
+                <button
+                  className={styles.botaoPrimario}
+                  onClick={async () => {
+                    try {
+                      await pedirMentoriaService(edital);
+                      alert('📩 Pedido de mentoria enviado com sucesso!');
+                    } catch {
+                      alert('❌ Não foi possível enviar o pedido de mentoria.');
+                    }
+                  }}
+                >
                   <MessageCircle size={16} className={styles.iconInline} />
                   Pedir Mentoria
                 </button>

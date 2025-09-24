@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles/intro/Stats.module.css';
 import { Statistics } from '../../types/informative';
-import { fetchStatistics } from '../../services/editals/informativeServive';
+import { fetchStatistics } from '../../services/editals/informativeService';
 
 export default function Stats() {
   const [stats, setStats] = useState<Statistics | null>(null);

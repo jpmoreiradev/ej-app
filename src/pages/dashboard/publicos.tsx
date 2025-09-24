@@ -4,7 +4,7 @@ import EditalCard from '../../components/dashboard/Card';
 import Sidebar from '../../components/dashboard/sidebar/Sidebar';
 import Header from '../../components/dashboard/Header';
 import SearchBar from '../../components/dashboard/SearchBar';
-import { fetchEditais } from '../../services/editals/informativeServive';
+import { fetchEditais } from '../../services/editals/informativeService';
 import { validateToken } from '../../services/auth/authProfile';
 import { Notice, NoticePage } from '../../types/informative';
 import styles from '../../styles/dashboard/Dashboard.module.css';
@@ -28,7 +28,7 @@ const EditaisPage = () => {
   useEffect(() => {
     const init = async () => {
       const isValid = await validateToken();
-      if (!isValid) {
+      if (!isValid.nome) {
         Cookies.remove('authToken');
         router.push('/login');
         return;

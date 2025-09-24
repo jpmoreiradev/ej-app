@@ -1,6 +1,13 @@
 import Cookies from 'js-cookie';
 
-export const validateToken = async (): Promise<boolean> => {
+interface authProfile {
+  InstituteId: string;
+  email: string;
+  telefone: string;
+  nome: string;
+}
+
+export const validateToken = async (): Promise<authProfile | false> => {
   const token = Cookies.get('authToken');
   if (!token) return false;
   const api_url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/profile`;
@@ -13,7 +20,7 @@ export const validateToken = async (): Promise<boolean> => {
       },
     });
 
-    return response.ok;
+    return response.json();
   } catch {
     return false;
   }
