@@ -18,16 +18,34 @@ interface EditalCardProps {
   cidade: string;
 }
 
-const categoryColors: Record<EditalCardProps['categoria'], string> = {
-  saude: '#16a249',
-  esporte: '#FBBF24',
-  educacao: '#A78BFA',
+const categoriaMap: Record<string, string> = {
+  Saúde: 'saude',
+  Educação: 'educacao',
+  Infraestrutura: 'infraestrutura',
+  'Esporte-Cultura': 'esporte-cultura',
+  'Meio Ambiente': 'meio-ambiente',
+  Idosos: 'idosos',
+  'não foi possível': 'outros',
 };
 
-const categoryBackground: Record<EditalCardProps['categoria'], string> = {
-  saude: '#e8fcf0',
-  esporte: '#FBBF24',
-  educacao: '#A78BFA',
+const categoryColors: Record<string, string> = {
+  saude: '#16a249', // verde forte
+  educacao: '#4f46e5', // azul escuro
+  infraestrutura: '#0284c7', // azul médio
+  'meio-ambiente': '#059669', // verde médio
+  'esporte-cultura': '#f59e0b', // laranja
+  idosos: '#d946ef', // rosa/púrpura
+  outros: '#6b7280', // cinza neutro
+};
+
+const categoryBackground: Record<string, string> = {
+  saude: '#d1fae5', // verde claro suave
+  educacao: '#e0e7ff', // azul claro suave
+  infraestrutura: '#bae6fd', // azul muito claro
+  'meio-ambiente': '#d1fae5', // verde claro suave
+  'esporte-cultura': '#fef3c7', // laranja bem claro
+  idosos: '#f5d0fe', // rosa claro
+  outros: '#f3f4f6', // cinza claro
 };
 
 const statusColors: Record<EditalCardProps['status'], string> = {
@@ -42,6 +60,27 @@ const statusBackground: Record<EditalCardProps['status'], string> = {
   fechado: '#9CA3AF',
 };
 
+const getCategoryStyles = (categoria: string) => {
+  const slug = categoriaMap[categoria] || 'outros';
+  console.log(slug);
+  const background = categoryBackground[slug] || '#11ce2aff';
+  const color = categoryColors[slug] || '#000';
+  const border = `1px solid ${color}33`;
+
+  return { background, color, border };
+};
+
+const formatCategoriaName = (categoria: string) => {
+  if (categoria === 'não foi possível') {
+    return 'Outros';
+  }
+  if (categoria === 'Esporte-Cultura') {
+    return 'Esporte Cultura';
+  }
+
+  return categoria;
+};
+
 const EditalCard: React.FC<EditalCardProps> = ({
   id,
   title,
@@ -54,18 +93,12 @@ const EditalCard: React.FC<EditalCardProps> = ({
   status,
   cidade,
 }) => {
+  const categoryStyle = getCategoryStyles(categoria);
   return (
     <div className={styles.card} style={{ borderLeft: '4px solid #3182ed' }}>
       <div className={styles.header}>
-        <span
-          className={styles.badge}
-          style={{
-            backgroundColor: categoryBackground[categoria] + '33',
-            color: categoryColors[categoria],
-            border: `1px solid ${categoryColors[categoria]}33`,
-          }}
-        >
-          {categoria}
+        <span className={styles.badge} style={categoryStyle}>
+          {formatCategoriaName(categoria)}
         </span>
         <span
           className={styles.badge}
