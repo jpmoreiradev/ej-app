@@ -38,7 +38,15 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
 
   return (
     <>
-      <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+      <Header
+        sidebarOpen={sidebarOpen}
+        toggleSidebar={toggleSidebar}
+        editalsType={
+          edital.tipo === 'CHAMAMENTO_PUBLICO'
+            ? 'Editais Publicos'
+            : edital.titulo
+        }
+      />
 
       <Sidebar sidebarOpen={sidebarOpen} />
 

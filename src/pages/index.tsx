@@ -9,8 +9,21 @@ import { motion } from 'framer-motion';
 import styles from '../styles/welcome/Welcome.module.css';
 import Header from '../components/intro/Header';
 import Stats from '../components/welcome/Stats';
+import { useEffect, useState } from 'react';
+import { validateToken } from '../services/auth/authProfile';
 
 export default function Welcome() {
+  const [isValid, setIsValid] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const checkToken = async () => {
+      const isValid = await validateToken();
+      setIsValid(isValid ? true : false);
+    };
+
+    checkToken();
+  }, []);
+
   const router = useRouter();
 
   const handleLogin = () => {
@@ -20,15 +33,14 @@ export default function Welcome() {
   return (
     <div className={styles.container}>
       <Header
-        title="Portal de Editais"
-        subtitle="Governo Federal"
-        typeButton="login"
+        title="Oportuniza"
+        subtitle="AJUSTAR"
+        typeButton={isValid ? 'logout' : 'login'}
+        onButtonClick={() => setIsValid((prev) => !prev)}
       />
-      {/* Hero Section */}
       <main className={styles.main}>
         <div className={styles.wrapper}>
           <div className={styles.heroGrid}>
-            {/* Text Content */}
             <div className={styles.heroText}>
               <motion.h1
                 className={styles.heroTitle}
@@ -57,12 +69,11 @@ export default function Welcome() {
               </button>
             </div>
 
-            {/* Hero Image */}
             <div className={styles.heroImageWrapper}>
               <div className={styles.heroImageCard}>
                 <Image
                   src={welcomeHero}
-                  alt="Portal de Editais"
+                  alt="Oportuniza"
                   className={styles.heroImage}
                   priority
                 />

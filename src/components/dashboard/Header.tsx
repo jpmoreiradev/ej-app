@@ -6,9 +6,14 @@ import styles from '../../styles/dashboard/Header.module.css';
 interface HeaderProps {
   sidebarOpen: boolean;
   toggleSidebar: () => void;
+  editalsType: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ sidebarOpen, toggleSidebar }) => {
+const Header: React.FC<HeaderProps> = ({
+  sidebarOpen,
+  toggleSidebar,
+  editalsType,
+}) => {
   return (
     <header
       className={styles.header}
@@ -27,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, toggleSidebar }) => {
       </button>
       <Building2 size={24} className={styles.logo} />
       <div className={styles.titleHeader}>
-        <h1 className={styles.title}>Editais Públicos</h1>
+        <h1 className={styles.title}>{editalsType}</h1>
         <p>Concursos e licitações do setor público</p>
       </div>
     </header>

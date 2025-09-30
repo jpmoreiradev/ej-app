@@ -19,18 +19,13 @@ export default function Intro() {
 
   return (
     <div className={styles.pageWrapper}>
-      <Header
-        title="Portal de Editais"
-        subtitle="Governo Federal"
-        typeButton="logout"
-      />
+      <Header title="Oportuniza" subtitle="AJUSTAR" typeButton="logout" />
 
       <main className={styles.main}>
         <div className={styles.introText}>
-          <h2 className={styles.introTitle}>Bem-vindo ao Portal de Editais</h2>
+          <h2 className={styles.introTitle}>Bem-vindo ao Oportuniza</h2>
           <p className={styles.introSubtitle}>
-            Acesse informações sobre editais públicos, privados e internacionais
-            de forma rápida e organizada
+            Sua jornada para o fomento começa aqui
           </p>
         </div>
 
@@ -58,7 +53,7 @@ export default function Intro() {
                       <Play className={styles.playIcon} />
                     </div>
                     <h3 className={styles.videoTitle}>
-                      Como Utilizar o Portal
+                      Assista ao Guia Rápido
                     </h3>
                     <p className={styles.videoSubtitle}>
                       Assista este vídeo introdutório para conhecer todas as
@@ -80,11 +75,13 @@ export default function Intro() {
                 <div className={`${styles.iconCircle} ${styles.publicIcon}`}>
                   <FileText className={styles.icon} />
                 </div>
-                <h3 className={styles.cardTitle}>Editais Públicos</h3>
+                <h3 className={styles.cardTitle}>
+                  Oportunidades Governamentais
+                </h3>
                 <p className={styles.cardText}>
                   Concursos, licitações e processos seletivos do setor público
                 </p>
-                <button className={styles.primaryButton}>Acessar</button>
+                <button className={styles.primaryButton}>Explorar</button>
               </div>
             </div>
 
@@ -96,11 +93,11 @@ export default function Intro() {
                 <div className={`${styles.iconCircle} ${styles.privateIcon}`}>
                   <Shield className={styles.icon} />
                 </div>
-                <h3 className={styles.cardTitle}>Editais Privados</h3>
+                <h3 className={styles.cardTitle}>Iniciativas Privadas</h3>
                 <p className={styles.cardText}>
                   Processos seletivos e oportunidades do setor privado
                 </p>
-                <button className={styles.outlineButton}>Acessar</button>
+                <button className={styles.outlineButton}>Descobrir</button>
               </div>
             </div>
 
@@ -114,12 +111,12 @@ export default function Intro() {
                 >
                   <Globe className={styles.icon} />
                 </div>
-                <h3 className={styles.cardTitle}>Editais Internacionais</h3>
+                <h3 className={styles.cardTitle}>Fomento Global</h3>
                 <p className={styles.cardText}>
                   Oportunidades e bolsas em organizações internacionais
                 </p>
                 <button className={styles.outlineButtonInternacionais}>
-                  Acessar
+                  Ver Oportunidades Globais
                 </button>
               </div>
             </div>

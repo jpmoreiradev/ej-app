@@ -9,7 +9,7 @@ const NotFoundPage = () => {
 
   return (
     <div className={styles.pageWrapper}>
-      <Header title="Portal de Editais" subtitle="Governo Federal" />
+      <Header title="Oportuniza" subtitle="Governo Federal AJUSTAR" />
 
       <main className={styles.main}>
         <div className={styles.illustration}>

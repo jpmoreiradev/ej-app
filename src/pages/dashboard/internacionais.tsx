@@ -13,7 +13,11 @@ const MaintenancePage = () => {
 
   return (
     <div className={styles.pageWrapper}>
-      <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+      <Header
+        sidebarOpen={sidebarOpen}
+        toggleSidebar={toggleSidebar}
+        editalsType="Editais Globais"
+      />
       <Sidebar sidebarOpen={sidebarOpen} />
 
       <main className={styles.main}>

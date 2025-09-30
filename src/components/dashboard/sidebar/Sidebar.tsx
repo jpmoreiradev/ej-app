@@ -34,8 +34,8 @@ export default function Sidebar({
       <div className={styles.headerSidebar}>
         <Building2 className={styles.logo} />
         <div className={styles.titleSidebar}>
-          <h1>Portal de Editais</h1>
-          <p>Governo Federal</p>
+          <h1>Oportuniza</h1>
+          <p>Governo Federal AJUSTAR</p>
         </div>
       </div>
 
@@ -59,7 +59,7 @@ export default function Sidebar({
             }}
           >
             <Search size={18} />
-            <span>Buscar Editais</span>
+            <span>Explorar Editais</span>
           </Link>
         </nav>
       </div>
@@ -78,7 +78,7 @@ export default function Sidebar({
             }}
           >
             <FileText size={18} />
-            <span>Públicos</span>
+            <span>Oportunidades Públicas</span>
           </Link>
           <Link
             href="/dashboard/privados"
@@ -87,7 +87,7 @@ export default function Sidebar({
             }`}
           >
             <Shield size={18} />
-            <span>Privados</span>
+            <span>Iniciativas Privadas</span>
           </Link>
           <Link
             href="/dashboard/internacionais"
@@ -96,7 +96,7 @@ export default function Sidebar({
             }`}
           >
             <Globe size={18} />
-            <span>Internacionais</span>
+            <span>Conexões Globais</span>
           </Link>
         </nav>
       </div>

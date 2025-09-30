@@ -148,7 +148,7 @@ const EditalCard: React.FC<EditalCardProps> = ({
         </div>
         <div style={{ position: 'relative' }}>
           <Link href={`/editais/${id}`} className={styles.buttonEdital}>
-            Ver Edital
+            Ver Detalhes
           </Link>
         </div>
         <div className={styles.infoItem}>

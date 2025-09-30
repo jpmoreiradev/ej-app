@@ -28,21 +28,31 @@ export async function pedirMentoriaService(edital: Edital) {
         : edital.conteudo;
 
     const mensagem = `
-📢 Pedido de Mentoria
+📢 *Novo Pedido de Mentoria*  
 
-🏛 Instituto: ${nomeInstituto}
-📱 Número: ${profileResponse.telefone}
+Prezado(a) Mentor(a),  
 
-📄 Título: ${edital.titulo}
-🏢 Órgão Responsável: ${edital.orgaoResponsavel}
-🌍 Local: ${edital.cidade} - ${edital.estado}, ${edital.pais}
-🗓 Publicado em: ${new Date(edital.dataPublicacao).toLocaleDateString('pt-BR')}
-⏳ Vencimento: ${new Date(edital.vencimento).toLocaleDateString('pt-BR')}
-🔗 Link do Edital: ${edital.linkEdital}
+Você recebeu um novo pedido de mentoria através do *Portal de Editais*.  
+Uma instituição interessada busca seu apoio para o edital abaixo:  
 
-Resumo:
-${resumo}
-    `.trim();
+👤 *Informações da Instituição*  
+🏛 Instituto: ${profileResponse.nome}  
+📱 Telefone: ${profileResponse.telefone}  
+✉️ E-mail: ${profileResponse.email}  
+
+📄 *Detalhes do Edital*  
+📌 Título: ${edital.titulo}  
+🏢 Órgão Responsável: ${edital.orgaoResponsavel}  
+🌍 Local: ${edital.cidade} - ${edital.estado}, ${edital.pais}  
+🗓 Publicado em: ${new Date(edital.dataPublicacao).toLocaleDateString('pt-BR')}  
+⏳ Vencimento: ${new Date(edital.vencimento).toLocaleDateString('pt-BR')}  
+🔗 Link: ${edital.linkEdital}  
+📝 Resumo:  
+${resumo}  
+
+⚠️ Solicitamos que entre em contato com o instituto solicitante o mais breve possível.  
+A agilidade no retorno é essencial, especialmente considerando a data de vencimento do edital.
+`.trim();
 
     await enviarMensagem(mensagem);
   } catch (error) {

@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Portal de Editais</title>
+        <title>Oportuniza</title>
         <meta name="description" content="Portal de Editais do Governo" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

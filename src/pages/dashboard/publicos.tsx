@@ -28,7 +28,7 @@ const EditaisPage = () => {
   useEffect(() => {
     const init = async () => {
       const isValid = await validateToken();
-      if (!isValid.nome) {
+      if (!isValid) {
         Cookies.remove('authToken');
         router.push('/login');
         return;
@@ -106,7 +106,11 @@ const EditaisPage = () => {
 
   return (
     <div className={styles.page}>
-      <Header sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+      <Header
+        sidebarOpen={sidebarOpen}
+        toggleSidebar={toggleSidebar}
+        editalsType="Editais Publicos"
+      />
 
       <div className={styles.layout}>
         <Sidebar sidebarOpen={sidebarOpen} categorias={categorias} />

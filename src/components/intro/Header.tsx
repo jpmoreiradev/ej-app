@@ -5,14 +5,21 @@ import { Building2 } from 'lucide-react';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import styles from '../../styles/intro/Header.module.css';
+import Link from 'next/link';
 
 interface HeaderProps {
-  title: string;
-  subtitle: string;
-  typeButton: 'logout' | 'login' | 'none';
+  title?: string;
+  subtitle?: string;
+  typeButton?: 'logout' | 'login' | 'none';
+  onButtonClick?: () => void; // callback opcional
 }
 
-export default function Header({ title, subtitle, typeButton }: HeaderProps) {
+export default function Header({
+  title,
+  subtitle,
+  typeButton,
+  onButtonClick,
+}: HeaderProps) {
   const router = useRouter();
 
   const handleClick = () => {
@@ -23,19 +30,27 @@ export default function Header({ title, subtitle, typeButton }: HeaderProps) {
     if (typeButton === 'login') {
       router.push('/login');
     }
+
+    if (onButtonClick) {
+      onButtonClick(); // chama callback do pai
+    }
   };
 
   return (
     <header className={styles.header}>
       <div className={styles.headerContainer}>
         <div className={styles.headerLeft}>
-          <div className={styles.logo}>
-            <Building2 className={styles.logoIcon} />
-          </div>
-          <div className={styles.texts}>
-            <h1 className={styles.headerTitle}>{title}</h1>
-            <p className={styles.headerSubtitle}>{subtitle}</p>
-          </div>
+          <Link href="/" className={styles.logoLink}>
+            <div className={styles.logo}>
+              <Building2 className={styles.logoIcon} />
+            </div>
+          </Link>
+          <Link href="/" className={styles.logoLink}>
+            <div className={styles.texts}>
+              <h1 className={styles.headerTitle}>{title}</h1>
+              <p className={styles.headerSubtitle}>{subtitle}</p>
+            </div>
+          </Link>
         </div>
 
         {typeButton !== 'none' && (
