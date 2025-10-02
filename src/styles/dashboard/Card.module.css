@@ -79,22 +79,31 @@
 .buttonEdital {
   position: absolute;
   right: 12px;
-  background-color: #3182ed;
-  color: white;
+  background-color: #f3f4f6; /* cinza claro */
+  color: #97a2b4; /* texto escuro */
+  border: 2px solid #d1d5db; /* borda cinza */
   padding: 6px 12px;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  opacity: 0;
-  pointer-events: none;
+  opacity: 1; /* visível mesmo antes do hover */
+  pointer-events: auto;
   transition:
-    opacity 0.3s,
-    transform 0.3s;
+    background-color 0.3s,
+    color 0.3s,
+    transform 0.3s,
+    border-color 0.3s;
 }
 
 .card:hover .buttonEdital {
-  opacity: 1;
-  pointer-events: auto;
+  background-color: #3182ed; /* azul */
+  color: white;
+  border-color: #3182ed;
   transform: translateY(-2px);
+}
+
+.placeholder {
+  color: #ffffff;
+  font-style: italic;
 }

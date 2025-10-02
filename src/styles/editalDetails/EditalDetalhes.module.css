@@ -4,16 +4,22 @@
   font-family: 'Inter', sans-serif;
   color: #1f2937;
   transition: margin 0.3s;
+  margin-bottom: 0px;
 }
 
 .header {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 .titulo {
   font-size: 1.4rem;
   font-weight: 600;
   color: #111827;
-  margin-bottom: 12px;
+  margin-bottom: 0px;
+}
+
+.volta {
+  margin-top: 18px;
+  margin-bottom: 0px;
 }
 
 .meta {
@@ -23,7 +29,12 @@
   font-size: 0.95rem;
   color: #4b5563;
   margin-top: 6px;
-  gap: 10px;
+  margin-left: 30px;
+  gap: 20px;
+}
+
+.valor {
+  margin-left: 25px;
 }
 
 .icon {
@@ -38,6 +49,7 @@
 }
 
 .grid {
+  margin: 0px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 30px;
@@ -58,8 +70,8 @@
   line-height: 1.8;
   color: #000000;
   word-break: break-word;
-  text-align: justify; /* deixa alinhado */
-  text-indent: 4em; /* opcional: recuo de parágrafo */
+  text-align: justify;
+  text-indent: 4em;
   margin: 20px;
 }
 
@@ -71,8 +83,8 @@
 }
 
 .aviso {
-  color: #991b1b; /* vermelho médio */
-  background-color: #fef2f2; /* fundo vermelho bem clarinho */
+  color: #991b1b;
+  background-color: #fef2f2;
   padding: 8px 14px;
   border-radius: 6px;
   font-weight: 500;

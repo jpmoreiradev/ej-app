@@ -65,7 +65,7 @@ export interface AllEdital {
   fonte: string;
   tipo: string;
   vencimento: string;
-  valorEstimado?: number;
+  valorEstimado?: string;
 }
 
 export interface Statistics {

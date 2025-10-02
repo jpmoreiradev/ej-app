@@ -65,29 +65,10 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
               className={styles.botaoVoltar}
               onClick={() => router.back()}
             >
-              <ChevronLeft size={33} />
+              <ChevronLeft size={33} className={styles.volta} />
+              <h2 className={styles.volta}>voltar</h2>
             </button>
             <h1 className={styles.titulo}>{edital.titulo}</h1>
-          </div>
-
-          <div className={styles.meta}>
-            <span>
-              <MapPin size={20} className={styles.icon} /> {edital.cidade},{' '}
-              {edital.estado}
-            </span>
-            {edital.valorEstimado && (
-              <span>
-                <DollarSign size={18} className={styles.icon} color="green" />{' '}
-                R$ {edital.valorEstimado.toLocaleString('pt-BR')}
-              </span>
-            )}
-            <span>
-              <Calendar size={16} className={styles.icon} color="#3182ed" />{' '}
-              Encerra em:{' '}
-              <strong className={styles.strongVencimento}>
-                {formatarData(edital.vencimento)}
-              </strong>
-            </span>
           </div>
         </div>
 
@@ -100,6 +81,39 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
               height={120}
               className={styles.brasao}
             />
+
+            <div className={styles.meta}>
+              <span>
+                <MapPin size={20} className={styles.icon} />{' '}
+                {edital.cidade && edital.cidade !== 'não foi possível'
+                  ? edital.estado && edital.estado !== 'não foi possível'
+                    ? `${edital.cidade}, ${edital.estado}`
+                    : edital.cidade
+                  : edital.estado && edital.estado !== 'não foi possível'
+                    ? edital.estado
+                    : 'Brasil'}
+              </span>
+
+              {edital.valorEstimado &&
+              edital.valorEstimado !== 'não foi possível' ? (
+                <span className={styles.valor}>
+                  <DollarSign size={18} className={styles.icon} color="green" />{' '}
+                  R$ {Number(edital.valorEstimado).toLocaleString('pt-BR')}
+                </span>
+              ) : (
+                <span className={styles.semValor}></span>
+              )}
+
+              <span>
+                <Calendar size={16} className={styles.icon} color="#3182ed" />{' '}
+                Encerra em:{' '}
+                <strong className={styles.strongVencimento}>
+                  {edital.vencimento && edital.vencimento !== 'não foi possível'
+                    ? formatarData(edital.vencimento)
+                    : 'Não informado'}
+                </strong>
+              </span>
+            </div>
             <h2 className={styles.dataPublicacao}>
               Publicado no Diário Oficial da União em:{' '}
               {formatarData(edital.dataPublicacao)}
@@ -144,27 +158,47 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
             <div className={styles.card}>
               <h3>Informações</h3>
               <ul className={styles.listaInfo}>
-                <li>
-                  <Building size={16} className={styles.icon} />{' '}
-                  <strong>Órgão:</strong> {edital.orgaoResponsavel}
-                </li>
+                {edital.orgaoResponsavel &&
+                edital.orgaoResponsavel !== 'não foi possível' ? (
+                  <li>
+                    <Building size={16} className={styles.icon} />{' '}
+                    <strong>Órgão:</strong> {edital.orgaoResponsavel}
+                  </li>
+                ) : (
+                  <li>
+                    <Building size={16} className={styles.icon} />{' '}
+                    <strong>Órgão:</strong> Não encontrado
+                  </li>
+                )}
+
                 <li>
                   <Clock size={16} className={styles.icon} />{' '}
                   <strong>Status:</strong>{' '}
                   <span className={styles.status}>Aberto para inscrições</span>
                 </li>
-                {edital.valorEstimado && (
+
+                {edital.valorEstimado &&
+                  edital.valorEstimado !== 'não foi possível' && (
+                    <li>
+                      <DollarSign size={16} className={styles.icon} />{' '}
+                      <strong>Valor Total:</strong> R${' '}
+                      {Number(edital.valorEstimado).toLocaleString('pt-BR')}
+                    </li>
+                  )}
+
+                {edital.vencimento &&
+                edital.vencimento !== 'não foi possível' ? (
                   <li>
-                    <DollarSign size={16} className={styles.icon} />{' '}
-                    <strong>Valor Total:</strong> R${' '}
-                    {edital.valorEstimado.toLocaleString('pt-BR')}
+                    <Calendar size={16} className={styles.icon} />{' '}
+                    <strong>Data de Encerramento:</strong>{' '}
+                    {new Date(edital.vencimento).toLocaleDateString('pt-BR')}
+                  </li>
+                ) : (
+                  <li>
+                    <Calendar size={16} className={styles.icon} />{' '}
+                    <strong>Data de Encerramento:</strong> Não encontrada
                   </li>
                 )}
-                <li>
-                  <Calendar size={16} className={styles.icon} />{' '}
-                  <strong>Data de Encerramento:</strong>{' '}
-                  {new Date(edital.vencimento).toLocaleDateString('pt-BR')}
-                </li>
               </ul>
             </div>
           </div>
