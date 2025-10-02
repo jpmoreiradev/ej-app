@@ -19,7 +19,11 @@ export default function Intro() {
 
   return (
     <div className={styles.pageWrapper}>
-      <Header title="Oportuniza" subtitle="AJUSTAR" typeButton="logout" />
+      <Header
+        title="Oportuniza"
+        subtitle="Portal de editais"
+        typeButton="logout"
+      />
 
       <main className={styles.main}>
         <div className={styles.introText}>

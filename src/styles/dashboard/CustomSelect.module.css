@@ -1,0 +1,103 @@
+/* CustomSelect.module.css */
+
+/* O WRAPPER EXTERNO (Mantém o visual de input) */
+.selectWrapper {
+  flex: 0.8;
+  position: relative; /* Importante para posicionar a lista suspensa */
+  min-width: 110px;
+}
+
+/* O BOTÃO QUE SIMULA O INPUT (O que fica fechado) */
+.dropdownButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f9fafb;
+  border-radius: 10px;
+  padding: 6px 10px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  width: 100%;
+}
+
+.dropdownButton:hover {
+  border-color: #3b82f6;
+}
+
+.placeholder {
+  flex: 1;
+  font-size: 14px;
+  color: #1f2937;
+  /* Garante o padding e alinhamento */
+  padding-top: 1px;
+  padding-bottom: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.arrowIcon {
+  width: 16px;
+  height: 16px;
+  color: #64748b;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+/* A LISTA SUSPENSA: AQUI ESTÁ O SEGREDO DO ESTILO! */
+.dropdownList {
+  position: absolute;
+  top: 100%; /* Posiciona abaixo do botão */
+  left: 0;
+  z-index: 10;
+  width: 200px; /* Largura customizada */
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: 8px; /* Espaço entre o input e a lista */
+  padding: 8px 0;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  list-style: none;
+}
+
+/* OS ITENS INDIVIDUAIS (Opções) */
+.dropdownItem {
+  padding: 10px 16px; /* Padding generoso */
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+/* ESTILO DE HOVER (Quando o mouse passa por cima) */
+.dropdownItem:hover {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+/* ESTILO DE ITEM SELECIONADO (Fica destacado) */
+.selectedItem {
+  background-color: #e0f2fe; /* Ex: light blue */
+  color: #1d4ed8; /* Ex: dark blue */
+  font-weight: 600;
+}
+
+.selectedItem:hover {
+  background-color: #e0f2fe; /* Não muda no hover para manter o destaque */
+}

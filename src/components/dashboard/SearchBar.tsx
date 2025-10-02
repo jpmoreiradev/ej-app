@@ -1,8 +1,9 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Search, Filter, SortAsc, X } from 'lucide-react';
 import styles from '../../styles/dashboard/SearchBar.module.css';
 import { categoriasDisponiveis } from '../../config/categorias';
+import CustomSelect from './CustomSelect';
 
 interface SearchBarProps {
   busca: string;
@@ -14,6 +15,12 @@ interface SearchBarProps {
   onSearch: () => void;
 }
 
+const ordemOptions = [
+  { value: 'tituloAsc', label: 'Título' },
+  { value: 'desc', label: 'Mais Recentes' },
+  { value: 'asc', label: 'Mais Antigos' },
+];
+
 const SearchBar: React.FC<SearchBarProps> = ({
   busca,
   setBusca,
@@ -23,98 +30,145 @@ const SearchBar: React.FC<SearchBarProps> = ({
   setOrdem,
   onSearch,
 }) => {
+  const currentOrderLabel =
+    ordemOptions.find((o) => o.value === ordem)?.label || 'Ordem';
+
   const adicionarCategoria = (value: string) => {
     if (value && !categorias.includes(value)) {
-      setCategorias([...categorias, value]);
+      setCategorias([...categorias, value]); // apenas atualiza o estado
     }
   };
 
-  const removerCategoria = (value: string) => {
+  useEffect(() => {
+    if (categorias.length > 0) {
+      onSearch();
+    }
+  }, [categorias]);
+
+  useEffect(() => {
+    if (ordem) {
+      onSearch();
+    }
+  }, [ordem]);
+
+  useEffect(() => {
+    onSearch();
+  }, [busca, categorias, ordem]);
+
+  const removerCategoria = (value: string) =>
     setCategorias(categorias.filter((c) => c !== value));
-  };
 
   const temFiltros =
     busca.trim() !== '' || categorias.length > 0 || ordem.trim() !== '';
 
+  // NOVO: Função para obter o rótulo amigável da ordem
+  const getOrdemLabel = (value: string) => {
+    return ordemOptions.find((o) => o.value === value)?.label || value;
+  };
+
   return (
     <div className={styles.searchBarContainer}>
       <div className={styles.searchBar}>
+        {/* 1. SELECIONAR CATEGORIA: CustomSelect */}
+        <CustomSelect
+          label="Categoria"
+          icon={Filter}
+          currentValues={categorias}
+          options={categoriasDisponiveis}
+          onSelect={(value: string) => {
+            adicionarCategoria(value); // já chama onSearch dentro de adicionarCategoria
+          }}
+          isMulti={true}
+          placeholder="Categoria"
+          iconClassName={styles.categoryIcon}
+        />
+
+        {/* 2. ORDEM: CustomSelect */}
+        <CustomSelect
+          label="Ordem"
+          icon={SortAsc}
+          currentValues={[ordem]}
+          options={ordemOptions}
+          onSelect={setOrdem}
+          isMulti={false}
+          placeholder={currentOrderLabel}
+          iconClassName={styles.orderIcon}
+        />
+
+        {/* 3. CAMPO DE BUSCA (Input) */}
         <div className={styles.inputWrapper}>
-          <Search className={styles.icon} />
+          <Search className={`${styles.icon} ${styles.searchIcon}`} />
           <input
-            id="inputBusca"
             type="text"
-            placeholder="Buscar por título ou órgão..."
+            placeholder="Buscar..."
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
+            onKeyDown={(e) =>
+              e.key === 'Enter' && (e.preventDefault(), onSearch())
+            }
             className={styles.input}
           />
         </div>
 
-        <div className={styles.selectWrapper}>
-          <Filter className={styles.icon} />
-          <select
-            onChange={(e) => {
-              adicionarCategoria(e.target.value);
-              e.target.value = '';
+        {/* 4. BOTÃO DE BUSCA */}
+
+        <div className={styles.buttonsWrapper}>
+          <button className={styles.button} onClick={onSearch}>
+            Buscar
+          </button>
+
+          <button
+            className={`${styles.button} ${styles.clearButton}`}
+            onClick={() => {
+              setBusca('');
+              setCategorias([]);
+              setOrdem('');
             }}
-            className={styles.select}
           >
-            <option value="">Selecione Categoria</option>
-            {categoriasDisponiveis
-              .filter((cat) => !categorias.includes(cat.value))
-              .map((cat) => (
-                <option key={cat.value} value={cat.value}>
-                  {cat.label}
-                </option>
-              ))}
-          </select>
+            Limpar filtros
+          </button>
         </div>
-
-        <div className={styles.selectWrapper}>
-          <SortAsc className={styles.icon} />
-          <select
-            value={ordem}
-            onChange={(e) => setOrdem(e.target.value)}
-            className={styles.select}
-          >
-            <option value="">Ordem</option>
-            <option value="tituloAsc">Titulo</option>
-            <option value="desc">Mais Recentes</option>
-            <option value="asc">Mais Antigos</option>
-          </select>
-        </div>
-
-        <button type="button" className={styles.button} onClick={onSearch}>
-          Buscar
-        </button>
       </div>
 
+      {/* FILTROS ATIVOS ATUALIZADOS */}
       <div className={styles.activeFilters}>
-        <strong className={styles.activeFilters}>Filtros ativos: </strong>
-        {!temFiltros && (
+        {!temFiltros ? (
           <span className={styles.noFilterTag}>Nenhum filtro aplicado</span>
-        )}
-        {busca && (
-          <div className={styles.filterTag}>
-            {busca}{' '}
-            <X className={styles.closeIcon} onClick={() => setBusca('')} />
-          </div>
-        )}
-        {categorias.map((cat) => (
-          <div key={cat} className={styles.filterTag}>
-            {categoriasDisponiveis.find((c) => c.value === cat)?.label || cat}{' '}
-            <X
-              className={styles.closeIcon}
-              onClick={() => removerCategoria(cat)}
-            />
-          </div>
-        ))}
-        {ordem && (
-          <div className={styles.filterTag}>
-            {ordem}{' '}
-            <X className={styles.closeIcon} onClick={() => setOrdem('')} />
-          </div>
+        ) : (
+          <>
+            {/* TAG DE BUSCA: MANTIDA */}
+            {busca && (
+              <div className={styles.filterTag}>
+                <span className={styles.filterPrefix}>Busca:</span> {busca}{' '}
+                <X className={styles.closeIcon} onClick={() => setBusca('')} />
+              </div>
+            )}
+
+            {/* TAGS DE CATEGORIA: MANTIDAS */}
+            {categorias.map((cat) => (
+              <div
+                key={cat}
+                className={`${styles.filterTag} ${styles.categoryTag}`}
+              >
+                <span className={styles.filterPrefix}>Categoria:</span>
+                {categoriasDisponiveis.find((c) => c.value === cat)?.label ||
+                  cat}
+                <X
+                  className={styles.closeIcon}
+                  onClick={() => removerCategoria(cat)}
+                />
+              </div>
+            ))}
+
+            {/* TAG DE ORDEM: ATUALIZADA PARA SER MAIS LEGÍVEL */}
+            {ordem && (
+              <div className={`${styles.filterTag} ${styles.orderTag}`}>
+                <span className={styles.filterPrefix}>Ordem:</span>
+                {getOrdemLabel(ordem)}{' '}
+                <X className={styles.closeIcon} onClick={() => setOrdem('')} />
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

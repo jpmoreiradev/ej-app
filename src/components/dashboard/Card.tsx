@@ -62,7 +62,6 @@ const statusBackground: Record<EditalCardProps['status'], string> = {
 
 const getCategoryStyles = (categoria: string) => {
   const slug = categoriaMap[categoria] || 'outros';
-  console.log(slug);
   const background = categoryBackground[slug] || '#11ce2aff';
   const color = categoryColors[slug] || '#000';
   const border = `1px solid ${color}33`;

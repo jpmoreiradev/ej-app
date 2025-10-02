@@ -34,7 +34,7 @@ export default function Welcome() {
     <div className={styles.container}>
       <Header
         title="Oportuniza"
-        subtitle="AJUSTAR"
+        subtitle="Portal de editais"
         typeButton={isValid ? 'logout' : 'login'}
         onButtonClick={() => setIsValid((prev) => !prev)}
       />

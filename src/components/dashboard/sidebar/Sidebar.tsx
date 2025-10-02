@@ -35,7 +35,7 @@ export default function Sidebar({
         <Building2 className={styles.logo} />
         <div className={styles.titleSidebar}>
           <h1>Oportuniza</h1>
-          <p>Governo Federal AJUSTAR</p>
+          <p>Portal de editais</p>
         </div>
       </div>
 

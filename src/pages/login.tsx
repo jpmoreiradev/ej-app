@@ -36,7 +36,11 @@ const Login = () => {
 
   return (
     <>
-      <Header title="Oportuniza" typeButton="none"></Header>
+      <Header
+        title="Oportuniza"
+        subtitle="Portal de Editais"
+        typeButton="none"
+      ></Header>
       <div className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.header}>
