@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Building2 } from 'lucide-react';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
@@ -11,16 +11,26 @@ interface HeaderProps {
   title?: string;
   subtitle?: string;
   typeButton?: 'logout' | 'login' | 'none';
-  onButtonClick?: () => void; // callback opcional
+  onButtonClick?: () => void;
 }
 
 export default function Header({
-  title,
-  subtitle,
-  typeButton,
+  title = 'Oportuniza',
+  subtitle = 'Inovando sempre',
+  typeButton = 'none',
   onButtonClick,
 }: HeaderProps) {
   const router = useRouter();
+  const [scrolled, setScrolled] = useState(false);
+
+  // Detecta scroll para animação
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleClick = () => {
     if (typeButton === 'logout') {
@@ -31,13 +41,11 @@ export default function Header({
       router.push('/login');
     }
 
-    if (onButtonClick) {
-      onButtonClick(); // chama callback do pai
-    }
+    if (onButtonClick) onButtonClick();
   };
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.headerContainer}>
         <div className={styles.headerLeft}>
           <Link href="/" className={styles.logoLink}>
@@ -45,12 +53,15 @@ export default function Header({
               <Building2 className={styles.logoIcon} />
             </div>
           </Link>
-          <Link href="/" className={styles.logoLink}>
-            <div className={styles.texts}>
-              <h1 className={styles.headerTitle}>{title}</h1>
-              <p className={styles.headerSubtitle}>{subtitle}</p>
-            </div>
-          </Link>
+
+          <div className={styles.texts}>
+            <Link href="/" className={styles.titleLink}>
+              <h1 className={styles.headerTitle}>
+                <strong>{title}</strong>{' '}
+              </h1>
+            </Link>
+            {subtitle && <p className={styles.headerSubtitle}>{subtitle}</p>}
+          </div>
         </div>
 
         {typeButton !== 'none' && (
