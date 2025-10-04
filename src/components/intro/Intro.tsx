@@ -69,7 +69,6 @@ export default function Intro() {
             </div>
           </div>
 
-          {/* Cards abaixo do vídeo */}
           <div className={styles.cardsGrid}>
             <div
               className={styles.navCard}
@@ -101,6 +100,7 @@ export default function Intro() {
                 <p className={styles.cardText}>
                   Processos seletivos e oportunidades do setor privado
                 </p>
+                <br />
                 <button className={styles.outlineButton}>Descobrir</button>
               </div>
             </div>
@@ -119,6 +119,7 @@ export default function Intro() {
                 <p className={styles.cardText}>
                   Oportunidades e bolsas em organizações internacionais
                 </p>
+                <br />
                 <button className={styles.outlineButtonInternacionais}>
                   Ver Oportunidades Globais
                 </button>
