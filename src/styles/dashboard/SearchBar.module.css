@@ -8,12 +8,13 @@
 
 .searchBar {
   display: flex;
-  align-items: center;
+  align-items: left;
   gap: 10px;
   background-color: #f8f9fa;
   padding: 8px 16px;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #007bff;
 }
 
 .selectWrapper {
