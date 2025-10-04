@@ -16,7 +16,7 @@ const MaintenancePage = () => {
       <Header
         sidebarOpen={sidebarOpen}
         toggleSidebar={toggleSidebar}
-        editalsType="Editais Privados"
+        editalsType="Privados"
       />
       <Sidebar sidebarOpen={sidebarOpen} />
 

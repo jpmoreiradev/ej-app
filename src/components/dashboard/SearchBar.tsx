@@ -100,7 +100,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           <Search className={`${styles.icon} ${styles.searchIcon}`} />
           <input
             type="text"
-            placeholder="Buscar..."
+            placeholder="Buscar órgão ou título..."
             value={busca}
             onChange={(e) => setBusca(e.target.value)}
             onKeyDown={(e) =>

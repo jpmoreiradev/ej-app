@@ -32,8 +32,8 @@ const Header: React.FC<HeaderProps> = ({
       </button>
       <Building2 size={24} className={styles.logo} />
       <div className={styles.titleHeader}>
-        <h1 className={styles.title}>{editalsType}</h1>
-        <p>Concursos e licitações do setor público</p>
+        <h1 className={styles.title}>Editais {editalsType}</h1>
+        <p>Concursos e licitações do setor {editalsType} </p>
       </div>
     </header>
   );

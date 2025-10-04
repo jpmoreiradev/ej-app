@@ -109,7 +109,7 @@ const EditaisPage = () => {
       <Header
         sidebarOpen={sidebarOpen}
         toggleSidebar={toggleSidebar}
-        editalsType="Editais Publicos"
+        editalsType="Publicos"
       />
 
       <div className={styles.layout}>

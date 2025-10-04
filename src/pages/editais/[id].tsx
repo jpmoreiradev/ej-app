@@ -60,16 +60,11 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
         }}
       >
         <div className={styles.header}>
-          <div className={styles.headerTitulo}>
-            <button
-              className={styles.botaoVoltar}
-              onClick={() => router.back()}
-            >
-              <ChevronLeft size={33} className={styles.volta} />
-              <h2 className={styles.volta}>voltar</h2>
-            </button>
-            <h1 className={styles.titulo}>{edital.titulo}</h1>
-          </div>
+          <button className={styles.botaoVoltar} onClick={() => router.back()}>
+            <ChevronLeft size={28} className={styles.iconeVoltar} />
+            <span className={styles.textoVoltar}>Voltar</span>
+          </button>
+          <h1 className={styles.titulo}>{edital.titulo}</h1>
         </div>
 
         <div className={styles.grid}>
@@ -136,8 +131,8 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
                     }
                   }}
                 >
-                  <MessageCircle size={16} className={styles.iconInline} />
                   Pedir Mentoria
+                  <MessageCircle size={16} className={styles.iconInline} />
                 </button>
                 <a
                   href={edital.linkEdital}
