@@ -1,21 +1,20 @@
-/* HEADER PRINCIPAL */
 .header {
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 999;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0); /* totalmente transparente */
+  backdrop-filter: none; /* sem blur */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* linha sutil */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* sombra moderna */
   transition: all 0.35s ease;
   font-family: 'Inter', sans-serif;
 }
 
-/* SCROLL: diminui altura e aumenta sombra */
+/* Quando rolar a página */
 .header.scrolled {
-  height: 80px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
 /* CONTAINER PRINCIPAL */
