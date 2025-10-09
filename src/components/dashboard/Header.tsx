@@ -2,6 +2,7 @@
 import React from 'react';
 import { PanelLeft, Building2 } from 'lucide-react';
 import styles from '../../styles/dashboard/Header.module.css';
+import { useRouter } from 'next/navigation';
 
 interface HeaderProps {
   sidebarOpen: boolean;
@@ -14,6 +15,7 @@ const Header: React.FC<HeaderProps> = ({
   toggleSidebar,
   editalsType,
 }) => {
+  const router = useRouter();
   return (
     <header
       className={styles.header}
@@ -35,6 +37,26 @@ const Header: React.FC<HeaderProps> = ({
         <h1 className={styles.title}>Editais {editalsType}</h1>
         <p>Concursos e licitações do setor {editalsType} </p>
       </div>
+
+      <button
+        onClick={() => {
+          const url = new URL(window.location.href);
+          const isTrue = url.searchParams.get('fg-interesse') === 'true';
+
+          if (isTrue) {
+            // se já está true, remove o parâmetro
+            url.searchParams.delete('fg-interesse');
+          } else {
+            // senão, adiciona
+            url.searchParams.set('fg-interesse', 'true');
+          }
+
+          window.location.href = url.toString(); // 🔄 recarrega com a nova URL
+        }}
+        className={styles.menuButton}
+      >
+        Alternar Interesse
+      </button>
     </header>
   );
 };

@@ -6,14 +6,18 @@ export async function fetchEditais({
   busca,
   categorias,
   ordem,
+  fgInteresse,
 }: {
   page: number;
   size: number;
   busca?: string;
   categorias?: string[];
   ordem?: string;
+  fgInteresse: boolean;
 }): Promise<NoticePage> {
-  const api_url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/editals/summary?page=${page}&pageSize=${size}`;
+  console.log(fgInteresse);
+  // ADD BUTTON FG INTERESSE fgInteresse=true
+  const api_url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/editals/summary?page=${page}&pageSize=${size}&fgInteresse=${fgInteresse}`;
   const res = await fetch(api_url, {
     method: 'POST',
     headers: {

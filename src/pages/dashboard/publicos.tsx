@@ -67,6 +67,15 @@ const EditaisPage = () => {
 
     setPagina((prevPagina) => {
       const pageToFetch = reset ? 1 : prevPagina;
+      const params = new URLSearchParams(window.location.search);
+
+      const fgInteresse = (): boolean => {
+        const interesseParam = params.get('fg-interesse');
+        if (interesseParam === 'true') {
+          return true;
+        }
+        return false;
+      };
 
       fetchEditais({
         page: pageToFetch,
@@ -74,6 +83,7 @@ const EditaisPage = () => {
         busca,
         categorias: cats ?? categorias,
         ordem,
+        fgInteresse: fgInteresse(),
       })
         .then((data: NoticePage) => {
           setEditais((prevEditais) =>

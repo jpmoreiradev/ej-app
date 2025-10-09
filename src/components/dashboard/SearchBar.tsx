@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Search, Filter, SortAsc, X } from 'lucide-react';
 import styles from '../../styles/dashboard/SearchBar.module.css';
 import { categoriasDisponiveis } from '../../config/categorias';
@@ -30,6 +31,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
   setOrdem,
   onSearch,
 }) => {
+  const router = useRouter();
+
   const currentOrderLabel =
     ordemOptions.find((o) => o.value === ordem)?.label || 'Ordem';
 
@@ -123,6 +126,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
               setBusca('');
               setCategorias([]);
               setOrdem('');
+              router.replace(window.location.pathname);
             }}
           >
             Limpar filtros
@@ -155,7 +159,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
                   cat}
                 <X
                   className={styles.closeIcon}
-                  onClick={() => removerCategoria(cat)}
+                  onClick={() => {
+                    removerCategoria(cat);
+                    const url = new URL(window.location.href);
+                    url.searchParams.delete('categoria', cat);
+                    router.replace(
+                      url.pathname + '?' + url.searchParams.toString(),
+                    );
+                  }}
                 />
               </div>
             ))}
