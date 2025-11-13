@@ -87,9 +87,9 @@ export default function Welcome() {
             <div className={styles.featureCard}>
               <div className={styles.featureContent}>
                 <Globe className={styles.featureIcon} />
-                <h3 className={styles.featureTitle}>Editais Globais</h3>
+                <h3 className={styles.featureTitle}>Gestão Centralizada</h3>
                 <p className={styles.featureText}>
-                  Acesse oportunidades nacionais e internacionais
+                  Centralize todos os editais municipais em uma única plataforma
                 </p>
               </div>
             </div>
@@ -97,9 +97,9 @@ export default function Welcome() {
             <div className={styles.featureCard}>
               <div className={styles.featureContent}>
                 <Shield className={styles.featureIcon} />
-                <h3 className={styles.featureTitle}>Segurança Total</h3>
+                <h3 className={styles.featureTitle}>Conformidade Legal</h3>
                 <p className={styles.featureText}>
-                  Plataforma segura e confiável para suas candidaturas
+                  Sistema em conformidade com a LGPD e legislação municipal
                 </p>
               </div>
             </div>
@@ -107,9 +107,9 @@ export default function Welcome() {
             <div className={styles.featureCard}>
               <div className={styles.featureContent}>
                 <Zap className={styles.featureIcon} />
-                <h3 className={styles.featureTitle}>Busca Inteligente</h3>
+                <h3 className={styles.featureTitle}>Acesso Facilitado</h3>
                 <p className={styles.featureText}>
-                  Encontre editais personalizados para seu perfil
+                  Interface moderna e intuitiva para cidadãos e gestores
                 </p>
               </div>
             </div>
@@ -117,15 +117,37 @@ export default function Welcome() {
             <div className={styles.featureCard}>
               <div className={styles.featureContent}>
                 <Users className={styles.featureIcon} />
-                <h3 className={styles.featureTitle}>Mentoria Especializada</h3>
+                <h3 className={styles.featureTitle}>Transparência</h3>
                 <p className={styles.featureText}>
-                  Suporte profissional para maximizar suas chances
+                  Aumente a transparência e democratize o acesso às
+                  oportunidades
                 </p>
               </div>
             </div>
           </div>
 
           <Stats />
+
+          {/* CTA Section */}
+          <div className={styles.ctaSection}>
+            <div className={styles.ctaContent}>
+              <h2 className={styles.ctaTitle}>
+                Leve Modernização e Transparência para sua Prefeitura
+              </h2>
+              <p className={styles.ctaDescription}>
+                Solicite uma demonstração personalizada e descubra como o
+                Oportuniza pode transformar a gestão de editais.
+              </p>
+              <button
+                type="button"
+                onClick={handleLogin}
+                className={styles.ctaButtonLarge}
+              >
+                Saiba Mais
+                <ArrowRight className={styles.ctaIcon} />
+              </button>
+            </div>
+          </div>
         </div>
       </main>
 

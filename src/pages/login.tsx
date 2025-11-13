@@ -111,10 +111,6 @@ const Login = () => {
               </Link>
             </p>
           </div>
-
-          <p className={styles.footer}>
-            Portal Oficial do Governo • Dados Protegidos
-          </p>
         </div>
       </div>
     </>
