@@ -15,8 +15,6 @@ export async function fetchEditais({
   ordem?: string;
   fgInteresse: boolean;
 }): Promise<NoticePage> {
-  console.log(fgInteresse);
-  // ADD BUTTON FG INTERESSE fgInteresse=true
   const api_url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/editals/summary?page=${page}&pageSize=${size}&fgInteresse=${fgInteresse}`;
   const res = await fetch(api_url, {
     method: 'POST',
