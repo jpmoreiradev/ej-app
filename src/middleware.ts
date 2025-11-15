@@ -17,12 +17,22 @@ const publicRoutes = [
     path: '/',
     whenAutenticated: 'noRedirect',
   },
+  {
+    path: '/intro',
+    whenAutenticated: 'noRedirect',
+  },
 ] as const;
 
 const REDIRECT_WHEN_NOT_AUTHENTICATED = '/';
 
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+
+  // Permitir todas as rotas /admin sem verificação de authToken
+  if (path.startsWith('/admin')) {
+    return NextResponse.next();
+  }
+
   const publicRoute = publicRoutes.find((route) => route.path === path);
   const authToken = request.cookies.get('authToken');
 

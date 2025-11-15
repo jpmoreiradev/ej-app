@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import styles from '../../styles/admin/Dashboard.module.css';
 import { Shield, LogOut, FileText, MapPin, Settings } from 'lucide-react';
 import { fetchStatistics } from '../../services/editals/informativeService';
@@ -79,22 +80,22 @@ const AdminDashboard = () => {
         </div>
 
         <nav className={styles.nav}>
-          <a href="/admin/dashboard" className={`${styles.navItem} ${styles.active}`}>
+          <Link href="/admin/dashboard" className={`${styles.navItem} ${styles.active}`}>
             <FileText size={20} />
             <span>Dashboard</span>
-          </a>
-          <a href="/admin/municipios" className={styles.navItem}>
+          </Link>
+          <Link href="/admin/municipios" className={styles.navItem}>
             <MapPin size={20} />
             <span>Municípios</span>
-          </a>
-          <a href="#" className={styles.navItem}>
+          </Link>
+          <Link href="#" className={styles.navItem}>
             <FileText size={20} />
             <span>Editais</span>
-          </a>
-          <a href="/admin/configuracoes" className={styles.navItem}>
+          </Link>
+          <Link href="/admin/configuracoes" className={styles.navItem}>
             <Settings size={20} />
             <span>Configurações</span>
-          </a>
+          </Link>
         </nav>
       </aside>
 

@@ -6,6 +6,7 @@ import { FileText, Globe, Shield, Play } from 'lucide-react';
 import Header from './Header';
 import Stats from './Stats';
 import styles from '../../styles/intro/Intro.module.css';
+import FeaturedEditais from './FeaturedEditais';
 
 export default function Intro() {
   const router = useRouter();
@@ -127,6 +128,8 @@ export default function Intro() {
             </div>
           </div>
         </div>
+
+        <FeaturedEditais />
 
         <Stats />
       </main>

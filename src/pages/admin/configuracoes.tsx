@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import styles from '../../styles/admin/Configuracoes.module.css';
 import dashboardStyles from '../../styles/admin/Dashboard.module.css';
 import {
@@ -141,25 +142,25 @@ const ConfiguracoesAdmin = () => {
         </div>
 
         <nav className={dashboardStyles.nav}>
-          <a href="/admin/dashboard" className={dashboardStyles.navItem}>
+          <Link href="/admin/dashboard" className={dashboardStyles.navItem}>
             <FileText size={20} />
             <span>Dashboard</span>
-          </a>
-          <a href="/admin/municipios" className={dashboardStyles.navItem}>
+          </Link>
+          <Link href="/admin/municipios" className={dashboardStyles.navItem}>
             <MapPin size={20} />
             <span>Municípios</span>
-          </a>
-          <a href="#" className={dashboardStyles.navItem}>
+          </Link>
+          <Link href="#" className={dashboardStyles.navItem}>
             <FileText size={20} />
             <span>Editais</span>
-          </a>
-          <a
+          </Link>
+          <Link
             href="/admin/configuracoes"
             className={`${dashboardStyles.navItem} ${dashboardStyles.active}`}
           >
             <Settings size={20} />
             <span>Configurações</span>
-          </a>
+          </Link>
         </nav>
       </aside>
 

@@ -3,17 +3,19 @@
 import { useRouter } from 'next/navigation';
 
 import { Globe, Shield, Zap, Users, ArrowRight } from 'lucide-react';
-import Image from 'next/image';
-import welcomeHero from '../../public/images/welcome-hero.jpg';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import projectImage from '../../public/images/projectimage.png';
 import styles from '../styles/welcome/Welcome.module.css';
 import Header from '../components/intro/Header';
-import Stats from '../components/welcome/Stats';
 import { useEffect, useState } from 'react';
 import { validateToken } from '../services/auth/authProfile';
+import { fetchStatistics } from '../services/editals/informativeService';
+import { Statistics } from '../types/informative';
 
 export default function Welcome() {
   const [isValid, setIsValid] = useState<boolean | null>(null);
+  const [stats, setStats] = useState<Statistics | null>(null);
 
   useEffect(() => {
     const checkToken = async () => {
@@ -21,7 +23,17 @@ export default function Welcome() {
       setIsValid(isValid ? true : false);
     };
 
+    const loadStats = async () => {
+      try {
+        const statistics = await fetchStatistics();
+        setStats(statistics);
+      } catch (error) {
+        console.error('Erro ao carregar estatísticas:', error);
+      }
+    };
+
     checkToken();
+    loadStats();
   }, []);
 
   const router = useRouter();
@@ -70,16 +82,88 @@ export default function Welcome() {
             </div>
 
             <div className={styles.heroImageWrapper}>
-              <div className={styles.heroImageCard}>
-                <Image
-                  src={welcomeHero}
-                  alt="Oportuniza"
-                  className={styles.heroImage}
-                  priority
-                />
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  maxWidth: '100%',
+                  aspectRatio: '900 / 550',
+                }}
+              >
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 900 550"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ display: 'block' }}
+                >
+                  {/* Moldura externa (corpo da tela) */}
+                  <rect
+                    x="0"
+                    y="0"
+                    width="900"
+                    height="550"
+                    rx="26"
+                    fill="#111"
+                  />
+
+                  {/* Borda interna (moldura da tela) */}
+                  <rect
+                    x="14"
+                    y="14"
+                    width="872"
+                    height="522"
+                    rx="18"
+                    fill="#000"
+                  />
+
+                  {/* Tela verdadeira */}
+                  <rect
+                    x="28"
+                    y="28"
+                    width="844"
+                    height="494"
+                    rx="12"
+                    fill="#0b0b0b"
+                  />
+
+                  {/* Clip path para a imagem */}
+                  <defs>
+                    <clipPath id="frameClip">
+                      <rect x="28" y="28" width="844" height="494" rx="12" />
+                    </clipPath>
+                  </defs>
+
+                  {/* Área para a imagem */}
+                  <foreignObject
+                    x="28"
+                    y="28"
+                    width="844"
+                    height="494"
+                    clipPath="url(#frameClip)"
+                  >
+                    <div
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        position: 'relative',
+                        paddingTop: '40px',
+                      }}
+                    >
+                      <Image
+                        src={projectImage}
+                        alt="Oportuniza"
+                        fill
+                        style={{
+                          objectFit: 'cover',
+                          objectPosition: 'center top',
+                        }}
+                        priority
+                      />
+                    </div>
+                  </foreignObject>
+                </svg>
               </div>
-              <div className={styles.heroDecorationTop}></div>
-              <div className={styles.heroDecorationBottom}></div>
             </div>
           </div>
 
@@ -126,8 +210,6 @@ export default function Welcome() {
             </div>
           </div>
 
-          <Stats />
-
           {/* CTA Section */}
           <div className={styles.ctaSection}>
             <div className={styles.ctaContent}>
@@ -138,6 +220,33 @@ export default function Welcome() {
                 Solicite uma demonstração personalizada e descubra como o
                 Oportuniza pode transformar a gestão de editais.
               </p>
+
+              {/* Statistics Grid */}
+              <div className={styles.ctaStatsGrid}>
+                <div className={styles.ctaStat}>
+                  <div className={styles.ctaStatNumber}>
+                    {stats?.totalEditals
+                      ? stats.totalEditals.toLocaleString('pt-BR')
+                      : '0'}
+                  </div>
+                  <div className={styles.ctaStatLabel}>Editais Publicados</div>
+                </div>
+                <div className={styles.ctaStat}>
+                  <div className={styles.ctaStatNumber}>
+                    {stats?.participatingAgencies || '0'}
+                  </div>
+                  <div className={styles.ctaStatLabel}>
+                    Órgãos Participantes
+                  </div>
+                </div>
+                <div className={styles.ctaStat}>
+                  <div className={styles.ctaStatNumber}>
+                    {stats?.updated || 'Hoje'}
+                  </div>
+                  <div className={styles.ctaStatLabel}>Última Atualização</div>
+                </div>
+              </div>
+
               <button
                 type="button"
                 onClick={handleLogin}
