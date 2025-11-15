@@ -16,7 +16,11 @@ export default function FeaturedEditais() {
   useEffect(() => {
     const getEditais = async () => {
       try {
-        const data = await fetchEditais({ page: 0, size: 3, fgInteresse: false });
+        const data = await fetchEditais({
+          page: 0,
+          size: 3,
+          fgInteresse: false,
+        });
         setEditais(data.content);
       } catch (err) {
         setError('Não foi possível carregar os editais em destaque.');

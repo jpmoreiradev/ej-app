@@ -244,9 +244,7 @@ const ConfiguracoesAdmin = () => {
                         <td>{admin.email}</td>
                         <td>{admin.telefone || '-'}</td>
                         <td>
-                          <span className={styles.roleBadge}>
-                            {admin.role}
-                          </span>
+                          <span className={styles.roleBadge}>{admin.role}</span>
                         </td>
                         <td>
                           <span
@@ -262,9 +260,7 @@ const ConfiguracoesAdmin = () => {
                             <button
                               onClick={() => handleToggleStatus(admin)}
                               className={styles.toggleButton}
-                              title={
-                                admin.ativo ? 'Desativar' : 'Ativar'
-                              }
+                              title={admin.ativo ? 'Desativar' : 'Ativar'}
                             >
                               {admin.ativo ? (
                                 <ToggleRight size={18} />

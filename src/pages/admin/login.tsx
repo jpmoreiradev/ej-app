@@ -25,12 +25,15 @@ const AdminLogin = () => {
       if (data.authToken) {
         // Salvar token e informações do admin
         localStorage.setItem('adminToken', data.authToken);
-        localStorage.setItem('adminData', JSON.stringify({
-          admin_id: data.admin_id,
-          nome: data.nome,
-          email: data.email,
-          role: data.role
-        }));
+        localStorage.setItem(
+          'adminData',
+          JSON.stringify({
+            admin_id: data.admin_id,
+            nome: data.nome,
+            email: data.email,
+            role: data.role,
+          }),
+        );
         document.cookie = `adminToken=${data.authToken}; path=/; samesite=lax`;
       }
       router.push('/admin/dashboard');
@@ -45,11 +48,18 @@ const AdminLogin = () => {
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <div className={styles.logo} style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%)' }}>
+          <div
+            className={styles.logo}
+            style={{
+              background: 'linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%)',
+            }}
+          >
             <Shield size={32} />
           </div>
           <h1 className={styles.title}>Administração</h1>
-          <p className={styles.subtitle}>Acesso restrito para administradores</p>
+          <p className={styles.subtitle}>
+            Acesso restrito para administradores
+          </p>
         </div>
 
         <div className={styles.card}>
@@ -101,7 +111,11 @@ const AdminLogin = () => {
               type="submit"
               className={styles.button}
               disabled={loading}
-              style={{ background: loading ? '#999' : 'linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%)' }}
+              style={{
+                background: loading
+                  ? '#999'
+                  : 'linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%)',
+              }}
             >
               {loading ? 'Entrando...' : 'Entrar como Admin'}
             </button>

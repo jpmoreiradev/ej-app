@@ -57,7 +57,8 @@ const AdminDashboard = () => {
   const handleLogout = () => {
     localStorage.removeItem('adminToken');
     localStorage.removeItem('adminData');
-    document.cookie = 'adminToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie =
+      'adminToken=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     router.push('/admin/login');
   };
 
@@ -80,7 +81,10 @@ const AdminDashboard = () => {
         </div>
 
         <nav className={styles.nav}>
-          <Link href="/admin/dashboard" className={`${styles.navItem} ${styles.active}`}>
+          <Link
+            href="/admin/dashboard"
+            className={`${styles.navItem} ${styles.active}`}
+          >
             <FileText size={20} />
             <span>Dashboard</span>
           </Link>
@@ -103,7 +107,9 @@ const AdminDashboard = () => {
         <header className={styles.header}>
           <div className={styles.headerContent}>
             <h1 className={styles.pageTitle}>Painel Administrativo</h1>
-            <p className={styles.pageSubtitle}>Bem-vindo ao sistema de administração</p>
+            <p className={styles.pageSubtitle}>
+              Bem-vindo ao sistema de administração
+            </p>
           </div>
           <div className={styles.headerActions}>
             <div className={styles.adminInfo}>
@@ -133,7 +139,10 @@ const AdminDashboard = () => {
 
           <div className={styles.statsGrid}>
             <div className={styles.statCard}>
-              <div className={styles.statIcon} style={{ background: '#ede9fe' }}>
+              <div
+                className={styles.statIcon}
+                style={{ background: '#ede9fe' }}
+              >
                 <MapPin size={24} style={{ color: '#7c3aed' }} />
               </div>
               <div className={styles.statContent}>
@@ -145,7 +154,10 @@ const AdminDashboard = () => {
             </div>
 
             <div className={styles.statCard}>
-              <div className={styles.statIcon} style={{ background: '#dcfce7' }}>
+              <div
+                className={styles.statIcon}
+                style={{ background: '#dcfce7' }}
+              >
                 <FileText size={24} style={{ color: '#16a34a' }} />
               </div>
               <div className={styles.statContent}>

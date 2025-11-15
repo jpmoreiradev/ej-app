@@ -29,7 +29,7 @@ export async function getAllAdmins(): Promise<Admin[]> {
   const response = await fetch(`${API_BASE_URL}/admin`, {
     method: 'GET',
     headers: {
-      'Authorization': `Bearer ${getAuthToken()}`,
+      Authorization: `Bearer ${getAuthToken()}`,
       'api-key': API_KEY,
     },
   });
@@ -47,7 +47,7 @@ export async function getAdminById(id: string): Promise<Admin> {
   const response = await fetch(`${API_BASE_URL}/admin/${id}`, {
     method: 'GET',
     headers: {
-      'Authorization': `Bearer ${getAuthToken()}`,
+      Authorization: `Bearer ${getAuthToken()}`,
       'api-key': API_KEY,
     },
   });
@@ -81,12 +81,15 @@ export async function createAdmin(data: CreateAdminData): Promise<Admin> {
 }
 
 // Atualizar admin
-export async function updateAdmin(id: string, data: Partial<CreateAdminData>): Promise<Admin> {
+export async function updateAdmin(
+  id: string,
+  data: Partial<CreateAdminData>,
+): Promise<Admin> {
   const response = await fetch(`${API_BASE_URL}/admin/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${getAuthToken()}`,
+      Authorization: `Bearer ${getAuthToken()}`,
       'api-key': API_KEY,
     },
     body: JSON.stringify(data),
@@ -106,7 +109,7 @@ export async function deactivateAdmin(id: string): Promise<Admin> {
   const response = await fetch(`${API_BASE_URL}/admin/${id}/deactivate`, {
     method: 'PATCH',
     headers: {
-      'Authorization': `Bearer ${getAuthToken()}`,
+      Authorization: `Bearer ${getAuthToken()}`,
       'api-key': API_KEY,
     },
   });
@@ -124,7 +127,7 @@ export async function activateAdmin(id: string): Promise<Admin> {
   const response = await fetch(`${API_BASE_URL}/admin/${id}/activate`, {
     method: 'PATCH',
     headers: {
-      'Authorization': `Bearer ${getAuthToken()}`,
+      Authorization: `Bearer ${getAuthToken()}`,
       'api-key': API_KEY,
     },
   });
@@ -142,7 +145,7 @@ export async function deleteAdmin(id: string): Promise<void> {
   const response = await fetch(`${API_BASE_URL}/admin/${id}`, {
     method: 'DELETE',
     headers: {
-      'Authorization': `Bearer ${getAuthToken()}`,
+      Authorization: `Bearer ${getAuthToken()}`,
       'api-key': API_KEY,
     },
   });

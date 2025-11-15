@@ -20,14 +20,16 @@ export default function AdminIndex() {
   }, [router]);
 
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: '100vh',
-      fontSize: '1.2rem',
-      color: '#64748b'
-    }}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+        fontSize: '1.2rem',
+        color: '#64748b',
+      }}
+    >
       Redirecionando...
     </div>
   );
