@@ -6,12 +6,20 @@ import { Notice } from '../../types/informative';
 import styles from '../../styles/intro/FeaturedEditais.module.css';
 import { useRouter } from 'next/navigation';
 import SkeletonCard from '../skeleton/SkeletonCard';
+import { categoriasDisponiveis } from '../../config/categorias';
 
 export default function FeaturedEditais() {
   const [editais, setEditais] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+
+  const getCategoriaLabel = (categoria: string) => {
+    const categoriaEncontrada = categoriasDisponiveis.find(
+      (cat) => cat.value === categoria,
+    );
+    return categoriaEncontrada ? categoriaEncontrada.label : categoria;
+  };
 
   useEffect(() => {
     const getEditais = async () => {
@@ -60,14 +68,18 @@ export default function FeaturedEditais() {
               onClick={() => handleEditalClick(edital.id)}
             >
               <div className={styles.cardHeader}>
-                <span className={styles.orgao}>{edital.orgaoResponsavel}</span>
+                <span className={styles.orgao}>
+                  {getCategoriaLabel(edital.orgaoResponsavel)}
+                </span>
               </div>
               <h3 className={styles.editalTitle}>{edital.titulo}</h3>
               <p className={styles.editalInfo}>
                 <strong>Inscrições até:</strong> {edital.dataEncerramento}
               </p>
               <div className={styles.tags}>
-                <span className={styles.tag}>{edital.categoria}</span>
+                <span className={styles.tag}>
+                  {getCategoriaLabel(edital.categoria)}
+                </span>
               </div>
             </div>
           ))}

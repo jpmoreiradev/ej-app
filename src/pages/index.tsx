@@ -82,87 +82,18 @@ export default function Welcome() {
             </div>
 
             <div className={styles.heroImageWrapper}>
-              <div
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  maxWidth: '100%',
-                  aspectRatio: '900 / 550',
-                }}
-              >
-                <svg
-                  width="100%"
-                  height="100%"
-                  viewBox="0 0 900 550"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ display: 'block' }}
-                >
-                  {/* Moldura externa (corpo da tela) */}
-                  <rect
-                    x="0"
-                    y="0"
-                    width="900"
-                    height="550"
-                    rx="26"
-                    fill="#111"
-                  />
-
-                  {/* Borda interna (moldura da tela) */}
-                  <rect
-                    x="14"
-                    y="14"
-                    width="872"
-                    height="522"
-                    rx="18"
-                    fill="#000"
-                  />
-
-                  {/* Tela verdadeira */}
-                  <rect
-                    x="28"
-                    y="28"
-                    width="844"
-                    height="494"
-                    rx="12"
-                    fill="#0b0b0b"
-                  />
-
-                  {/* Clip path para a imagem */}
-                  <defs>
-                    <clipPath id="frameClip">
-                      <rect x="28" y="28" width="844" height="494" rx="12" />
-                    </clipPath>
-                  </defs>
-
-                  {/* Área para a imagem */}
-                  <foreignObject
-                    x="28"
-                    y="28"
-                    width="844"
-                    height="494"
-                    clipPath="url(#frameClip)"
-                  >
-                    <div
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        position: 'relative',
-                        paddingTop: '40px',
-                      }}
-                    >
-                      <Image
-                        src={projectImage}
-                        alt="Oportuniza"
-                        fill
-                        style={{
-                          objectFit: 'cover',
-                          objectPosition: 'center top',
-                        }}
-                        priority
-                      />
-                    </div>
-                  </foreignObject>
-                </svg>
+              <div className={styles.heroImageContainer}>
+                <Image
+                  src={projectImage}
+                  alt="Oportuniza"
+                  fill
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: 'center top',
+                  }}
+                  priority
+                  quality={100}
+                />
               </div>
             </div>
           </div>
@@ -214,11 +145,11 @@ export default function Welcome() {
           <div className={styles.ctaSection}>
             <div className={styles.ctaContent}>
               <h2 className={styles.ctaTitle}>
-                Leve Modernização e Transparência para sua Prefeitura
+                Pronto para Encontrar Sua Próxima Oportunidade?
               </h2>
               <p className={styles.ctaDescription}>
-                Solicite uma demonstração personalizada e descubra como o
-                Oportuniza pode transformar a gestão de editais.
+                Simplifique sua busca por editais e descubra oportunidades
+                perfeitas para você.
               </p>
 
               {/* Statistics Grid */}
