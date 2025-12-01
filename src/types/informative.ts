@@ -73,3 +73,24 @@ export interface Statistics {
   participatingAgencies: number;
   totalValue: string;
 }
+
+export interface GeneralStatistics {
+  total: {
+    editais: number;
+    ativos: number;
+    vencidos: number;
+    orgaos: number;
+    categorias: number;
+  };
+  recentes: {
+    ultimos7Dias: number;
+  };
+  vencimento: {
+    proximos7Dias: number;
+  };
+  topCategorias: Array<{
+    categoria: string;
+    quantidade: number;
+  }>;
+  ultimaAtualizacao: string;
+}

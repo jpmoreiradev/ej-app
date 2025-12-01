@@ -10,12 +10,12 @@ import styles from '../styles/welcome/Welcome.module.css';
 import Header from '../components/intro/Header';
 import { useEffect, useState } from 'react';
 import { validateToken } from '../services/auth/authProfile';
-import { fetchStatistics } from '../services/editals/informativeService';
-import { Statistics } from '../types/informative';
+import { fetchGeneralStatistics } from '../services/editals/informativeService';
+import { GeneralStatistics } from '../types/informative';
 
 export default function Welcome() {
   const [isValid, setIsValid] = useState<boolean | null>(null);
-  const [stats, setStats] = useState<Statistics | null>(null);
+  const [stats, setStats] = useState<GeneralStatistics | null>(null);
 
   useEffect(() => {
     const checkToken = async () => {
@@ -25,7 +25,7 @@ export default function Welcome() {
 
     const loadStats = async () => {
       try {
-        const statistics = await fetchStatistics();
+        const statistics = await fetchGeneralStatistics();
         setStats(statistics);
       } catch (error) {
         console.error('Erro ao carregar estatísticas:', error);
@@ -156,25 +156,34 @@ export default function Welcome() {
               <div className={styles.ctaStatsGrid}>
                 <div className={styles.ctaStat}>
                   <div className={styles.ctaStatNumber}>
-                    {stats?.totalEditals
-                      ? stats.totalEditals.toLocaleString('pt-BR')
+                    {stats?.total.editais
+                      ? stats.total.editais.toLocaleString('pt-BR')
                       : '0'}
                   </div>
-                  <div className={styles.ctaStatLabel}>Editais Publicados</div>
+                  <div className={styles.ctaStatLabel}>
+                    TOTAL DE EDITAIS Cadastrados
+                  </div>
                 </div>
                 <div className={styles.ctaStat}>
                   <div className={styles.ctaStatNumber}>
-                    {stats?.participatingAgencies || '0'}
+                    {stats?.total.orgaos
+                      ? stats.total.orgaos.toLocaleString('pt-BR')
+                      : '0'}
                   </div>
                   <div className={styles.ctaStatLabel}>
-                    Órgãos Participantes
+                    TOTAL de Órgãos Participantes
                   </div>
                 </div>
                 <div className={styles.ctaStat}>
                   <div className={styles.ctaStatNumber}>
-                    {stats?.updated || 'Hoje'}
+                    {stats?.total.ativos
+                      ? stats.total.ativos.toLocaleString('pt-BR')
+                      : '0'}
                   </div>
-                  <div className={styles.ctaStatLabel}>Última Atualização</div>
+                  <div className={styles.ctaStatLabel}>
+                    {' '}
+                    TOTAL de Editais Ativos
+                  </div>
                 </div>
               </div>
 

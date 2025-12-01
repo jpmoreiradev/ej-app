@@ -1,4 +1,9 @@
-import { NoticePage, Statistics, AllEdital } from '../../types/informative';
+import {
+  NoticePage,
+  Statistics,
+  AllEdital,
+  GeneralStatistics,
+} from '../../types/informative';
 
 export async function fetchEditais({
   page,
@@ -47,6 +52,22 @@ export async function fetchStatistics(): Promise<Statistics> {
 
   if (!res.ok) {
     throw new Error('Erro ao buscar estatísticas');
+  }
+
+  return res.json();
+}
+
+export async function fetchGeneralStatistics(): Promise<GeneralStatistics> {
+  const api_url = `${process.env.NEXT_PUBLIC_API_BASE_URL}/editals/statistics/general`;
+  const res = await fetch(api_url, {
+    headers: {
+      'api-key': process.env.NEXT_PUBLIC_API_KEY || '',
+    },
+    cache: 'no-store',
+  });
+
+  if (!res.ok) {
+    throw new Error('Erro ao buscar estatísticas gerais');
   }
 
   return res.json();
