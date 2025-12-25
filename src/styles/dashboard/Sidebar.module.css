@@ -190,3 +190,391 @@
   background-color: #2563eb;
   color: #ffffff;
 }
+
+/* Mobile Sidebar - Design Completamente Novo */
+@media (max-width: 768px) {
+  /* Esconde o sidebar desktop completamente */
+  .sidebar {
+    display: none !important;
+  }
+}
+
+/* Mobile Bottom Navigation - SEMPRE ESCONDIDO POR PADRÃO */
+.mobileNav {
+  display: none;
+}
+
+/* Mobile Bottom Navigation - SÓ APARECE NO MOBILE */
+@media (max-width: 768px) {
+  .mobileNav {
+    display: flex !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #ffffff !important;
+    border-top: 1px solid #e5e7eb !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1) !important;
+    z-index: 999999 !important;
+    padding: 6px 0 max(6px, env(safe-area-inset-bottom)) !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    width: 100vw !important;
+    max-width: 100% !important;
+    height: 56px !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin: 0 !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    will-change: transform !important;
+  }
+
+  .mobileNavItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 14px;
+    min-width: 68px;
+    text-decoration: none;
+    color: #64748b;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 16px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .mobileNavItem::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(37, 99, 235, 0.08);
+    border-radius: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .mobileNavItem:active::after {
+    opacity: 1;
+  }
+
+  .mobileNavItem svg {
+    width: 22px;
+    height: 22px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+  }
+
+  .mobileNavItem span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .mobileNavItem.active span {
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  /* Menu hambúrguer para sidebar modal */
+  .mobileMenuButton {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow:
+      0 8px 24px rgba(37, 99, 235, 0.35),
+      0 4px 12px rgba(37, 99, 235, 0.25),
+      inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    margin-top: -30px;
+  }
+
+  .mobileMenuButton::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.3;
+    filter: blur(8px);
+    transition: opacity 0.4s ease;
+  }
+
+  .mobileMenuButton:active {
+    transform: scale(0.92);
+    box-shadow:
+      0 4px 16px rgba(37, 99, 235, 0.3),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  }
+
+  .mobileMenuButton:active::before {
+    opacity: 0.5;
+  }
+
+  .mobileMenuButton svg {
+    width: 26px;
+    height: 26px;
+    transition: transform 0.3s ease;
+  }
+
+  /* Sidebar modal para categorias e logout */
+  .mobileSidebarModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    pointer-events: none;
+  }
+
+  .mobileSidebarModal.open {
+    pointer-events: all;
+  }
+}
+
+/* Modal drawer também funciona no desktop quando sidebar está fechada */
+.mobileSidebarModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.mobileSidebarModal.open {
+  pointer-events: all;
+}
+
+.mobileOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobileSidebarModal.open .mobileOverlay {
+  opacity: 1;
+}
+
+.mobileDrawer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to bottom, #ffffff 0%, #fafbfc 100%);
+  border-radius: 28px 28px 0 0;
+  max-height: 75vh;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  box-shadow:
+    0 -8px 32px rgba(0, 0, 0, 0.12),
+    0 -4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.mobileSidebarModal.open .mobileDrawer {
+  transform: translateY(0);
+}
+
+.mobileDrawerHandle {
+  width: 48px;
+  height: 5px;
+  background: linear-gradient(90deg, #cbd5e1 0%, #94a3b8 50%, #cbd5e1 100%);
+  border-radius: 3px;
+  margin: 14px auto;
+  opacity: 0.5;
+}
+
+.mobileDrawerHeader {
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.mobileDrawerHeader .logo {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  box-shadow:
+    0 4px 12px rgba(37, 99, 235, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.mobileDrawerTitle h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.mobileDrawerTitle p {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.mobileDrawerContent {
+  padding: 20px;
+}
+
+.mobileNavGroup {
+  margin-bottom: 24px;
+}
+
+.mobileNavGroup:last-child {
+  margin-bottom: 0;
+}
+
+.mobileGroupTitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+  padding-left: 6px;
+}
+
+.mobileNavList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobileNavListItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  color: #334155;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobileNavListItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #3b82f6, #2563eb);
+  transform: translateX(-4px);
+  transition: transform 0.3s ease;
+  border-radius: 0 4px 4px 0;
+}
+
+.mobileNavListItem:active,
+.mobileNavListItem:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(241, 245, 249, 0.8) 0%,
+    rgba(248, 250, 252, 0.6) 100%
+  );
+  transform: scale(0.97);
+}
+
+.mobileNavListItem svg {
+  width: 21px;
+  height: 21px;
+  color: #64748b;
+  transition: all 0.3s ease;
+}
+
+.mobileNavListItem.active {
+  background: linear-gradient(
+    135deg,
+    rgba(239, 246, 255, 1) 0%,
+    rgba(224, 242, 254, 0.8) 100%
+  );
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.mobileNavListItem.active::before {
+  transform: translateX(0);
+}
+
+.mobileNavListItem.active svg {
+  color: #2563eb;
+  transform: scale(1.1);
+}
+
+.mobileLogout {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  color: #dc2626;
+  font-size: 15px;
+  font-weight: 600;
+  background: linear-gradient(
+    135deg,
+    rgba(254, 242, 242, 0.6) 0%,
+    rgba(255, 247, 247, 0.4) 100%
+  );
+  border: 1px solid rgba(220, 38, 38, 0.15);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobileLogout:active,
+.mobileLogout:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(254, 226, 226, 0.8) 0%,
+    rgba(254, 242, 242, 0.6) 100%
+  );
+  transform: scale(0.97);
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+.mobileLogout svg {
+  width: 21px;
+  height: 21px;
+  transition: transform 0.3s ease;
+}
+
+.mobileLogout:active svg,
+.mobileLogout:hover svg {
+  transform: scale(1.1);
+}
+
+/* Fim do arquivo - código duplicado removido */

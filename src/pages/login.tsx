@@ -1,19 +1,34 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../styles/login/Login.module.css';
 import { Building2, Lock, Mail } from 'lucide-react';
 import { loginRequest } from '../services/auth/login';
 import Link from 'next/link';
 import Header from '../components/intro/Header';
+import { validateToken } from '../services/auth/authProfile';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [checking, setChecking] = useState(true);
   const router = useRouter();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const isValid = await validateToken();
+      if (isValid) {
+        router.push('/dashboard/publicos');
+      } else {
+        setChecking(false);
+      }
+    };
+
+    checkAuth();
+  }, [router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,6 +48,27 @@ const Login = () => {
       setLoading(false);
     }
   };
+
+  if (checking) {
+    return (
+      <>
+        <Header
+          title="Oportuniza"
+          subtitle="Portal de Editais"
+          typeButton="none"
+        ></Header>
+        <div className={styles.container}>
+          <div className={styles.wrapper}>
+            <div className={styles.card}>
+              <p style={{ textAlign: 'center', padding: '2rem' }}>
+                Verificando autenticação...
+              </p>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
