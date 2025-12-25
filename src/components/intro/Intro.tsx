@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { FileText, Globe, Shield, Play } from 'lucide-react';
 import Header from './Header';
 import Stats from './Stats';
+import Sidebar from '../dashboard/sidebar/Sidebar';
 import styles from '../../styles/intro/Intro.module.css';
 import FeaturedEditais from './FeaturedEditais';
 
@@ -19,14 +20,16 @@ export default function Intro() {
   const handlePlayVideo = () => setPlayVideo(true);
 
   return (
-    <div className={styles.pageWrapper}>
-      <Header
-        title="Oportuniza"
-        subtitle="Portal de editais"
-        typeButton="logout"
-      />
+    <div className={styles.introWrapper}>
+      <Sidebar sidebarOpen={false} />
+      <div className={styles.pageWrapper}>
+        <Header
+          title="Oportuniza"
+          subtitle="Portal de editais"
+          typeButton="logout"
+        />
 
-      <main className={styles.main}>
+        <main className={styles.main}>
         <div className={styles.introText}>
           <h2 className={styles.introTitle}>Bem-vindo ao Oportuniza</h2>
           <p className={styles.introSubtitle}>
@@ -35,6 +38,8 @@ export default function Intro() {
         </div>
 
         <div className={styles.videoSection}>
+          <h3 className={styles.videoSectionTitle}>Veja o Guia Rápido</h3>
+
           <div className={styles.videoCard}>
             <div className={styles.videoPreview}>
               {playVideo && (
@@ -42,7 +47,6 @@ export default function Intro() {
                   className={styles.videoFrame}
                   src="https://www.youtube.com/embed/l7R3qveDNXs?si=iBRCk1ibm2fbp934"
                   title="Tutorial do Portal"
-                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
@@ -51,15 +55,15 @@ export default function Intro() {
               {!playVideo && (
                 <div className={styles.overlay}>
                   <div className={styles.videoContent}>
+                    <h3 className={styles.videoTitle}>
+                      Assista ao Guia Rápido
+                    </h3>
                     <div
                       className={styles.playButton}
                       onClick={handlePlayVideo}
                     >
                       <Play className={styles.playIcon} />
                     </div>
-                    <h3 className={styles.videoTitle}>
-                      Assista ao Guia Rápido
-                    </h3>
                     <p className={styles.videoSubtitle}>
                       Assista este vídeo introdutório para conhecer todas as
                       funcionalidades
@@ -133,6 +137,7 @@ export default function Intro() {
 
         <Stats />
       </main>
+    </div>
     </div>
   );
 }

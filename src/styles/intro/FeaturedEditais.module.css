@@ -45,6 +45,64 @@
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
+@media (max-width: 768px) {
+  .featuredSection {
+    padding: 2rem 0;
+    background-color: #f9fafb;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .sectionSubtitle {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+    line-height: 1.5;
+  }
+
+  .editaisGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .editalCard {
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 0.08);
+  }
+
+  .editalCard:hover {
+    transform: translateY(-3px);
+  }
+
+  .editalTitle {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+  }
+
+  .editalInfo {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .orgao {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
+
 .cardHeader {
   display: flex;
   justify-content: space-between;
