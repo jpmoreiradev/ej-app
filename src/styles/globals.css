@@ -43,3 +43,18 @@ a:hover {
 * {
   box-sizing: border-box;
 }
+
+/* Fix para mobile navigation sempre visível */
+@media (max-width: 768px) {
+  html,
+  body {
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    min-height: 100vh;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

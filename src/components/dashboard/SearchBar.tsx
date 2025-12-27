@@ -102,6 +102,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         <div className={styles.inputWrapper}>
           <Search className={`${styles.icon} ${styles.searchIcon}`} />
           <input
+            id="inputBusca"
             type="text"
             placeholder="Buscar órgão ou título..."
             value={busca}

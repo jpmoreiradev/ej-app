@@ -45,6 +45,22 @@ const EditaisPage = () => {
     };
 
     init();
+
+    // Listener para limpar filtros quando disparado do Sidebar
+    const handleLimparFiltros = () => {
+      setBusca('');
+      setCategorias([]);
+      setOrdem('');
+      setPagina(0);
+      setEditais([]);
+      carregarEditais(true, []);
+    };
+
+    window.addEventListener('limparFiltros', handleLimparFiltros);
+
+    return () => {
+      window.removeEventListener('limparFiltros', handleLimparFiltros);
+    };
   }, []);
 
   useEffect(() => {
