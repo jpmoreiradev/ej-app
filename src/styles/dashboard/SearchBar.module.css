@@ -186,3 +186,111 @@
 .clearButton:hover {
   background-color: #cbd5e1;
 }
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+  .searchBarContainer {
+    gap: 10px;
+  }
+
+  .searchBar {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    border-left-width: 3px;
+  }
+
+  .selectWrapper {
+    flex: 1;
+    width: 100%;
+    min-width: 100%;
+    padding: 8px 12px;
+  }
+
+  .inputWrapper {
+    flex: 1;
+    width: 100%;
+    padding: 8px 12px;
+  }
+
+  .input,
+  .select {
+    font-size: 13px;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .buttonsWrapper {
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  .activeFilters {
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .filterTag {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .filterPrefix {
+    font-size: 11px;
+  }
+
+  .closeIcon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .noFilterTag {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+}
+
+/* Mobile muito pequeno */
+@media (max-width: 380px) {
+  .searchBar {
+    padding: 8px;
+    gap: 6px;
+  }
+
+  .selectWrapper,
+  .inputWrapper {
+    padding: 6px 10px;
+  }
+
+  .input,
+  .select {
+    font-size: 12px;
+  }
+
+  .button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .filterTag,
+  .noFilterTag {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  .closeIcon {
+    width: 11px;
+    height: 11px;
+  }
+}
