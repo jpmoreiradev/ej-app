@@ -45,9 +45,9 @@ export default function Intro() {
                 {playVideo && (
                   <iframe
                     className={styles.videoFrame}
-                    src="https://www.youtube.com/embed/l7R3qveDNXs?si=iBRCk1ibm2fbp934"
+                    src="https://player.vimeo.com/video/1181278583?autoplay=1"
                     title="Tutorial do Portal"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="autoplay; fullscreen; picture-in-picture"
                     allowFullScreen
                   ></iframe>
                 )}
