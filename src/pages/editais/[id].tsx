@@ -37,7 +37,7 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   return (
-    <>
+    <div className={styles.pageWrapper}>
       <Header
         sidebarOpen={sidebarOpen}
         toggleSidebar={toggleSidebar}
@@ -90,14 +90,16 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
               </span>
 
               {edital.valorEstimado &&
-              edital.valorEstimado !== 'não foi possível' ? (
-                <span className={styles.valor}>
-                  <DollarSign size={18} className={styles.icon} color="green" />{' '}
-                  R$ {Number(edital.valorEstimado).toLocaleString('pt-BR')}
-                </span>
-              ) : (
-                <span className={styles.semValor}></span>
-              )}
+                edital.valorEstimado !== 'não foi possível' && (
+                  <span className={styles.valor}>
+                    <DollarSign
+                      size={18}
+                      className={styles.icon}
+                      color="green"
+                    />{' '}
+                    R$ {Number(edital.valorEstimado).toLocaleString('pt-BR')}
+                  </span>
+                )}
 
               <span>
                 <Calendar size={16} className={styles.icon} color="#3182ed" />{' '}
@@ -199,6 +201,6 @@ export default function EditalDetalhes({ edital }: { edital: AllEdital }) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
