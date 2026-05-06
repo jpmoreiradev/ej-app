@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Oportuniza</title>
         <meta name="description" content="Portal de Editais do Governo" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico?v=3" />
       </Head>
       <Component {...pageProps} />
     </>
